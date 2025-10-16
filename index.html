@@ -495,7 +495,17 @@ banner.addEventListener('click', e => e.stopPropagation());
 
 </script>
 
-
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", (user) => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 
 
   <!-- 
@@ -514,5 +524,6 @@ banner.addEventListener('click', e => e.stopPropagation());
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
+
 
 </html>
