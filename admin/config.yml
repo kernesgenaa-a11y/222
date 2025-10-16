@@ -5,12 +5,14 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
+locale: 'uk'
+
 collections:
-  - name: "public/news"
+  - name: "news"
     label: "Новини"
-    folder: "news"
+    folder: "public/news"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Дата", name: "date", widget: "datetime" }
@@ -19,3 +21,4 @@ collections:
       - { label: "Опис", name: "description", widget: "text" }
       - { label: "slug", name: "slug", widget: "string" }
       - { label: "Текст", name: "body", widget: "markdown" }
+
