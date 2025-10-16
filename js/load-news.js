@@ -2,7 +2,7 @@
 const repoOwner = "kernesgenaa-a11y";
 const repoName = "222";
 const branch = "main"; // або master
-const folderPath = "news";
+const folderPath = "public/news";
 
 async function fetchFileList() {
   const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=${branch}`;
