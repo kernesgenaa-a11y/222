@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dentis</title>
+  <meta name="title" content="Dentis - home">
+  <meta name="description" content="This is a dental html template made by Roman Shkurenko">
+
+      <!--
+         swiper-js
+     -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/svg+xml">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="./assets/images/hero-bg.png">
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #PRELOADER
+  -->
+
+  <div class="preloader" data-preloader>
+    <div class="circle"></div>
+  </div>
+
+
+
+
+
+  <!-- 
+    - #HEADER
+  -->
+
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo" style="font-size: larger;">
+        <img src="./assets/images/ZARA_LOGO_with_Text.png" style=" width: max(12vw,100px);"alt="Zara">
+      </a>
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+
+          <a href="#" class="logo">
+            <img src="./assets/images/ZARA_LOGO_with_Text.png" width="136" height="46" alt="Doclab home">
+          </a>
+
+          <button class="nav-close-btn" aria-label="clsoe menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+        </div>
+
+       <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link title-md">Головна</a>
+          </li>
+   
+          <li class="navbar-item">
+            <a href="aboutus.html" class="navbar-link title-md">Про нас</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="service.html" class="navbar-link title-md">Послуги</a>
+          </li>
+         
+         
+
+          <li class="navbar-item">
+            <a href="conntact.html" class="navbar-link title-md">Контакти</a>
+          </li>
+          <li class="navbar-item">
+            <a href="appointment.html" class="navbar-link title-md" style="background-color: hsl(182, 100%, 35%); border-radius: 6px;">Записатися на прийом</a>
+          </li>
+        </ul>
+
+        <ul class="social-list">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-pinterest"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="services">
+        <div class="container">
+          <div class="hero-content">
+            <p class="hero-subtitle has-before" data-reveal="left">Про нас</p>
+            <h1 class="headline-lg hero-title" data-reveal="left">
+              Ласкаво просимо до Дентіс
+            </h1>
+            <div class="hero-card" data-reveal="left">
+              <p class="title-lg card-text">
+                Дізнайтеся все про нас, нашу роботу, зобов'язання та відгуки.
+              </p>
+            </div>
+          </div>
+          <figure class="hero-banner" data-reveal="right">
+            <img src="./assets/images/about-hero.avif" width="519" height="517" loading="eager" alt="hero banner" style="width: 600px; height: 500px;">
+          </figure>
+        </div>
+      </section>
+      
+      
+
+      
+
+
+       <section class="section about" aria-labelledby="about-label">
+        <div class="container">
+          <div class="about-content">
+            <p class="section-subtitle title-lg has-after" id="about-label" data-reveal="left">Про наших лікарів</p>
+            <h2 class="headline-md" data-reveal="left">Висококваліфіковані фахівці</h2>
+            <p class="section-text" data-reveal="left">
+              У “Дентіс” ми віримо, що здорові зуби — це не розкіш, а звичка. Ми поєднуємо точність сучасних технологій із людським підходом, який не зникає за маскою лікаря. Наші спеціалісти працюють так, щоб ви приходили не зі страхом, а з довірою.
+
+Ми дбаємо про кожну посмішку: від першої консультації до найдрібнішої деталі лікування. Комфорт, безпека й прозорість — три принципи, на яких стоїть наша робота.
+            </p>
+            <ul class="tab-list" data-reveal="left">
+              <li>
+                <button class="tab-btn active">Кваліфікація</button>
+              </li>
+              <li>
+                <button class="tab-btn">Досвід</button>
+                
+              </li>
+              <li>
+                <button class="tab-btn">Спеціалізації</button>
+              </li>
+            </ul>
+            <p class="tab-text" data-reveal="left">
+              Наші лікарі мають вищі ступені та сертифікати з різних методів діагностики та лікування. Вони регулярно проходять курси підвищення кваліфікації, щоб бути в курсі останніх досягнень у стоматології.
+            </p>
+            
+            <div class="wrapper">
+              <ul class="about-list">
+                <li class="about-item" data-reveal="left">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span class="span">Сертифіковані та ліцензовані</span>
+                </li>
+                <li class="about-item" data-reveal="left">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span class="span">Роки клінічного досвіду</span>
+                </li>
+                <li class="about-item" data-reveal="left">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span class="span">Експертиза в спеціалізованих техніках</span>
+                </li>
+                <li class="about-item" data-reveal="left">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span class="span">Співчутливий та емпатичний підхід</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section> 
+            
+
+
+
+      <!-- 
+        - #LISTING
+      -->
+
+      
+             
+          <!-- Gallery -->
+<!--<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img src="./assets/images/gall1.avif" alt="Gallery"></div>
+    <div class="swiper-slide"> <img src="./assets/images/blog-3.jpg" alt="Gallery"></div>
+    <div class="swiper-slide"> <img src="./assets/images/gall2.avif" alt="Gallery"></div>
+    <div class="swiper-slide"> <img src="./assets/images/gall3.avif" alt="Gallery"></div>
+    <div class="swiper-slide"> <img src="./assets/images/blog-1.jpg" alt="Gallery"></div>
+    <div class="swiper-slide"> <img src="./assets/images/gall4.avif" alt="Gallery"></div>
+    <div class="swiper-slide"> <img src="./assets/images/gall5.avif" alt="Gallery"></div>
+    <div class="swiper-slide"> <img src="./assets/images/blog-3.jpg" alt="Gallery"></div>
+  </div>
+</div>
+
+    </article>
+  </main>-->
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer" style="background-image: url('./assets/images/footer-bg.png')">
+    <div class="container">
+      <div class="section footer-top">
+        <div class="footer-brand" data-reveal="bottom">
+          <a href="#" class="logo">
+            <img src="./assets/images/ZARA_LOGO_with_Text.png" width="136" height="46" loading="lazy" alt="Therapist Home">
+          </a>
+          <ul class="contact-list has-after">
+            <li class="contact-item">
+              <div class="item-icon">
+                <ion-icon name="mail-open-outline"></ion-icon>
+              </div>
+              <div>
+                <p>
+                  Main Email : <a href="mailto:contact@therapy.com" class="contact-link">contact@&shy;therapy.com</a>
+                </p>
+                <p>
+                  Inquiries : <a href="mailto:Info@therapy.com" class="contact-link">Info@therapy.com</a>
+                </p>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="item-icon">
+                <ion-icon name="call-outline"></ion-icon>
+              </div>
+              <div>
+                <p>
+                  Номер телефону : <a href="tel:000232439493" class="contact-link">+38 050 480 0825</a>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-list" data-reveal="bottom">
+          <p class="headline-sm footer-list-title">Про нас</p>
+          <p class="text">
+            Ми прагнемо покращити якість життя наших пацієнтів, надаючи найкращі стоматологічні послуги в комфортній та дружній атмосфері.
+          </p>
+          <address class="address">
+            <ion-icon name="map-outline"></ion-icon>
+            <span class="text">
+              вулиця Волкова, 9 к2 <br>
+              Кропивницький, Україна, 25000
+            </span>
+          </address>
+        </div>
+        
+        <ul class="footer-list" data-reveal="bottom">
+          <li>
+            <p class="headline-sm footer-list-title">Корисні посилання</p>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Політика конфіденційності</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Умови обслуговування</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Відгуки клієнтів</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Питання та відповіді</a>
+          </li>
+        </ul>
+         <div class="footer-list" data-reveal="bottom">
+          
+          <form action="" class="footer-form">
+            
+            <button id="openCallBanner"  class="open-call-banner navbar-link title-md" style="background-color: hsl(182, 100%, 35%); border-radius: 6px;">Зателефонувати</button>
+          </form>
+          
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="text copyright">
+          &copy; Дентіс 2025 | All Rights Reserved by Roman Shkurenko
+        </p>
+        <ul class="social-list">
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+
+  <a href="tel:+38 050 480 0825" class="call-banner" id="callBanner">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.9 19.9 0 0 1 3.1 4.18 2 2 0 0 1 5.1 2h3a2 2 0 0 1 2 1.72c.12.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L9 9a16 16 0 0 0 6 6l.83-.83a2 2 0 0 1 2.11-.45c.74.34 1.53.58 2.34.7A2 2 0 0 1 22 16.92z"/>
+  </svg>
+</a>
+
+<script>
+const banner = document.getElementById('callBanner');
+let hideTimeout;
+
+document.querySelectorAll('.open-call-banner').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    banner.classList.add('visible');
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => banner.classList.remove('visible'), 4000);
+  });
+});
+
+document.addEventListener('click', e => {
+  if (!banner.contains(e.target) && !e.target.classList.contains('open-call-banner')) {
+    banner.classList.remove('visible');
+  }
+});
+
+banner.addEventListener('click', e => e.stopPropagation());
+
+</script>
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1, 
+      spaceBetween: 10,
+      centeredSlides: true,
+      loop: true, 
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    });
+
+    if (window.matchMedia("(max-width: 480px)").matches) {
+    swiper.destroy(); 
+
+    new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 10, 
+        centeredSlides: false, 
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+}
+if (window.matchMedia("(min-width: 480px) and (max-width: 770px)").matches) { 
+    swiper.destroy();
+
+    new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 10, 
+        centeredSlides: false, 
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+}
+
+</script>
+
+</html>

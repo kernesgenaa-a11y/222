@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dentis</title>
+  <meta name="title" content="Dentis - home">
+  <meta name="description" content="This is a dental html template made by Roman Shkurenko">
+
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/ZARA_LOGO.png" type="image/svg+xml">
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="./assets/images/hero-bg.png">
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #PRELOADER
+  -->
+
+  <div class="preloader" data-preloader>
+    <div class="circle"></div>
+  </div>
+
+
+
+
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo" style="font-size: larger;">
+        <img src="./assets/images/ZARA_LOGO_with_Text.png" style=" width: max(12vw,100px);"alt="Zara">
+      </a>
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+
+          <a href="#" class="logo">
+            <img src="./assets/images/ZARA_LOGO_with_Text.png" width="136" height="46" alt="Doclab home">
+          </a>
+
+          <button class="nav-close-btn" aria-label="clsoe menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+        </div>
+
+        <ul class="navbar-list">
+
+         <li class="navbar-item">
+            <a href="index.html" class="navbar-link title-md">Головна</a>
+          </li>
+   
+          <li class="navbar-item">
+            <a href="aboutus.html" class="navbar-link title-md">Про нас</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="service.html" class="navbar-link title-md">Послуги</a>
+          </li>
+         
+         
+
+          <li class="navbar-item">
+            <a href="conntact.html" class="navbar-link title-md">Контакти</a>
+          </li>
+          <li class="navbar-item">
+            <a href="appointment.html" class="navbar-link title-md" style="background-color: hsl(182, 100%, 35%); border-radius: 6px;">Записатися на прийом</a>
+          </li>
+        </ul>
+
+
+        <ul class="social-list">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-pinterest"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+      <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="services">
+        <div class="container">
+          <div class="hero-content">
+            <p class="hero-subtitle has-before" data-reveal="left">Послуги</p>
+            <h1 class="headline-lg hero-title" data-reveal="left">
+              Послуги, які ми надаємо.
+            </h1>
+           
+          </div>
+          <figure class="hero-banner" data-reveal="right">
+            <img src="./assets/images/services.avif" width="519" height="517" loading="eager" alt="hero banner" style="width: 600px; height: 500px;">
+          </figure>
+        </div>
+      </section>
+      
+      
+
+
+
+
+
+      <!-- 
+        - #SERVICE
+      -->
+ <section class="service" aria-label="service">
+        <div class="container">
+          <ul class="service-list">
+            <li>
+              <div class="service-card" data-reveal="bottom">
+                <div class="card-icon">
+                  <img src="./assets/images/message1.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+                <h3 class="headline-sm card-title">
+                  <a href="#">Діагностика</a>
+                </h3>
+                <p class="card-text">
+                  Діагностика в стоматології – це перший та надзвичайно важливий етап у визначенні стану порожнини рота. Вона дозволяє лікарю отримати повну картину патологій, уражень та захворювань, що можуть бути приховані або невідомі пацієнту. Діагностика допомагає обрати найефективніший метод лікування та визначити необхідний перелік процедур.
+                </p>
+                <button class="btn-circle" aria-label="read more about massage therapy">
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="service-card" data-reveal="bottom">
+                <div class="card-icon">
+                  <img src="./assets/images/Physical Rehabilitation.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+                <h3 class="headline-sm card-title">
+                  <a href="#">Професійне очищення</a>
+                </h3>
+                <p class="card-text">
+                  Ретельне апаратне чищення зубів у стоматолога – гігієнічна процедура, мета якої видалити твердий та мʼякий наліт, пігментований наліт та інші накопичення. Відкладення на зубах називаються зубним каменем.
+                </p>
+                <button class="btn-circle" aria-label="read more about physical rehabilitation">
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="service-card" data-reveal="bottom">
+                <div class="card-icon">
+                  <img src="./assets/images/Acupuncture.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+                <h3 class="headline-sm card-title">
+                  <a href="#">Хірургія</a>
+                </h3>
+                <p class="card-text">
+                  Кісткова пластика та синус-ліфтинг, складні хірургічні втручання, видалення зубів мудрості.
+                </p>
+                <button class="btn-circle" aria-label="read more about acupuncture">
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="service-card" data-reveal="bottom">
+                <div class="card-icon">
+                  <img src="./assets/images/Aromatherapy.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+                <h3 class="headline-sm card-title">
+                  <a href="#">Лікування каналів зуба</a>
+                </h3>
+                <p class="card-text">
+                  Зубний біль, який часто викликаний станом нерва зуба, може з'являтися через запущений карієс, бактерії або травму. Неякісне лікування може призвести до втрати зуба. У наших клініках ми використовуємо передові технології та гарантуємо безпечне та комфортне лікування. Якщо у вас є сумніви щодо стану зуба, рекомендуємо пройти огляд для вчасного вирішення проблеми.
+                </p>
+                <button class="btn-circle" aria-label="read more about aromatherapy">
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      
+
+
+      <!-- 
+        - #LISTING
+      -->
+
+    
+
+
+  <!-- 
+    - #FOOTER
+  -->
+  <footer class="footer" style="background-image: url('./assets/images/footer-bg.png')">
+    <div class="container">
+      <div class="section footer-top">
+        <div class="footer-brand" data-reveal="bottom">
+          <a href="#" class="logo">
+            <img src="./assets/images/ZARA_LOGO_with_Text.png" width="136" height="46" loading="lazy" alt="Therapist Home">
+          </a>
+          <ul class="contact-list has-after">
+            <li class="contact-item">
+              <div class="item-icon">
+                <ion-icon name="mail-open-outline"></ion-icon>
+              </div>
+              <div>
+                <p>
+                  Main Email : <a href="mailto:contact@therapy.com" class="contact-link">contact@&shy;therapy.com</a>
+                </p>
+                <p>
+                  Inquiries : <a href="mailto:Info@therapy.com" class="contact-link">Info@therapy.com</a>
+                </p>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="item-icon">
+                <ion-icon name="call-outline"></ion-icon>
+              </div>
+              <div>
+                <p>
+                  Номер телефону : <a href="tel:000232439493" class="contact-link">+38 050 480 0825</a>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-list" data-reveal="bottom">
+          <p class="headline-sm footer-list-title">Про нас</p>
+          <p class="text">
+            Ми прагнемо покращити якість життя наших пацієнтів, надаючи найкращі стоматологічні послуги в комфортній та дружній атмосфері.
+          </p>
+          <address class="address">
+            <ion-icon name="map-outline"></ion-icon>
+            <span class="text">
+              вулиця Волкова, 9 к2 <br>
+              Кропивницький, Україна, 25000
+            </span>
+          </address>
+        </div>
+        
+        <ul class="footer-list" data-reveal="bottom">
+          <li>
+            <p class="headline-sm footer-list-title">Корисні посилання</p>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Політика конфіденційності</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Умови обслуговування</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Відгуки клієнтів</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Питання та відповіді</a>
+          </li>
+        </ul>
+        <div class="footer-list" data-reveal="bottom">
+          <p class="headline-sm footer-list-title">Підписатися</p>
+          <form action="" class="footer-form">
+            <input type="email" name="email" placeholder="Email" class="input-field title-lg">
+            <button type="submit" class="btn has-before title-md">Підписатися</button>
+          </form>
+          <p class="text">
+            Отримуйте останні оновлення електронною поштою. У будь-який час ви можете відписатися.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="text copyright">
+          &copy; Дентіс 2025 | All Rights Reserved by Roman Shkurenko
+        </p>
+        <ul class="social-list">
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
