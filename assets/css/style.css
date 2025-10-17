@@ -761,11 +761,11 @@ display: none;
   margin-block-start: 12px;
 }
 
-.blog-card :is(.card-meta, .card-title, .date, .card-text, .btn-text .full-text) {
+.blog-card :is(.card-meta, .card-title, .date, .card-text, .btn-text .full-text-text) {
   transition: var(--transition-2);
 }
 
-.blog-card:is(:hover, :focus-within) :is(.card-meta, .card-title, .date, .card-text, .btn-text .full-text) {
+.blog-card:is(:hover, :focus-within) :is(.card-meta, .card-title, .date, .card-text, .btn-text .full-text-text) {
   color: var(--white);
 }
 

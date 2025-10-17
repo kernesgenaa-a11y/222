@@ -76,7 +76,8 @@ function createNewsCard(data, fullTextHTML) {
       <p class="card-text">${data.description || ""}</p>
 
       <div class="full-text" hidden>
-        ${fullTextHTML}
+      <p class="full-text-text">
+        ${fullTextHTML}</p>
       </div>
 
       <button class="btn-text title-lg toggle-btn">Читати далі</button>
