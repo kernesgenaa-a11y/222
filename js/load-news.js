@@ -1,4 +1,4 @@
-<script>
+
 const repoOwner = "kernesgenaa-a11y";
 const repoName = "222";
 const branch = "main"; // або master
@@ -42,4 +42,4 @@ async function loadNews() {
 }
 
 loadNews();
-</script>
+
