@@ -1,7 +1,6 @@
-
-const repoOwner = "kernesgenaa-a11y";
-const repoName = "222";
-const branch = "main"; // або master
+const repoOwner = "kernesgenaa-a11y"; // ← заміни
+const repoName = "222";      // ← заміни
+const branch = "main";                    // ← або "master"
 const folderPath = "public/news";
 
 async function fetchFileList() {
@@ -86,4 +85,3 @@ async function loadNews() {
 }
 
 document.addEventListener("DOMContentLoaded", loadNews);
-
