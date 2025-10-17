@@ -22,3 +22,19 @@ collections:
       - { label: "slug", name: "slug", widget: "string" }
       - { label: "Текст", name: "body", widget: "markdown" }
 
+collections:
+  - name: "doctors"
+    label: "Лікарі"
+    folder: "content/doctors"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "doctor/{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "ПІП", name: "name", widget: "string" }
+      - { label: "Посада", name: "position", widget: "string" }
+      - { label: "Спеціалізація", name: "specialization", widget: "string" }
+      - { label: "Стаж", name: "experience", widget: "string" }
+      - { label: "Фото", name: "photo", widget: "image" }

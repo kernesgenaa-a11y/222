@@ -9,5 +9,11 @@
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+<script type="module">
+  import DoctorPreview from "/admin/preview-templates/DoctorPreview.js";
+  CMS.registerPreviewTemplate("doctors", DoctorPreview);
+</script>
+
   </body>
 </html>
