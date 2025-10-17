@@ -96,5 +96,8 @@ window.addEventListener("scroll", revealElementOnScroll);
 window.addEventListener("load", revealElementOnScroll);
 
 /* news*/
+const safeHtml = DOMPurify.sanitize(marked.parse(markdownBody));
+
+
 
 
