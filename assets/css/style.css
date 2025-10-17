@@ -769,6 +769,17 @@ display: none;
   color: var(--white);
 }
 
+.full-text {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.blog-card.expanded .full-text {
+  max-height: 1000px;
+  margin-top: 1rem;
+}
+
 
 
 

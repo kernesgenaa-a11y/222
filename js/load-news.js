@@ -3,6 +3,7 @@ const repoName = "222";      // ← заміни
 const branch = "main";                    // ← або "master"
 const folderPath = "public/news";
 
+
 async function fetchFileList() {
   const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=${branch}`;
   const response = await fetch(apiUrl);
@@ -44,7 +45,19 @@ function formatDate(dateString) {
   });
 }
 
-function createNewsCard(data) {
+function convertMarkdownToHTML(markdown) {
+  // Простий Markdown → HTML (тільки заголовки та абзаци)
+  return markdown
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+    .replace(/\n$/gim, '<br>')
+    .replace(/\n/gim, '<p>');
+}
+
+function createNewsCard(data, fullTextHTML) {
   const li = document.createElement("li");
   li.innerHTML = `
     <div class="blog-card has-before has-after">
@@ -61,10 +74,28 @@ function createNewsCard(data) {
       <h3 class="headline-sm card-title">${data.title || "Без назви"}</h3>
       <time class="title-sm date">${formatDate(data.date)}</time>
       <p class="card-text">${data.description || ""}</p>
-      <a href="/news/${data.slug}.html" class="btn-text title-lg">Читати далі</a>
+
+      <div class="full-text" hidden>
+        ${fullTextHTML}
+      </div>
+
+      <button class="btn-text title-lg toggle-btn">Читати далі</button>
     </div>
   `;
   return li;
+}
+
+function enableToggle() {
+  document.querySelectorAll(".toggle-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".blog-card");
+      const fullText = card.querySelector(".full-text");
+
+      const isExpanded = card.classList.toggle("expanded");
+      fullText.hidden = !isExpanded;
+      button.textContent = isExpanded ? "Згорнути" : "Читати далі";
+    });
+  });
 }
 
 async function loadNews() {
@@ -79,9 +110,12 @@ async function loadNews() {
     const parsed = parseFrontMatter(raw);
     if (!parsed || !parsed.data) continue;
 
-    const card = createNewsCard(parsed.data);
+    const fullTextHTML = convertMarkdownToHTML(parsed.content);
+    const card = createNewsCard(parsed.data, fullTextHTML);
     newsList.appendChild(card);
   }
+
+  enableToggle();
 }
 
 document.addEventListener("DOMContentLoaded", loadNews);

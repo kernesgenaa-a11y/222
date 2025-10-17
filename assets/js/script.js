@@ -99,6 +99,20 @@ window.addEventListener("load", revealElementOnScroll);
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".toggle-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".blog-card");
+      const fullText = card.querySelector(".full-text");
+
+      const isExpanded = card.classList.toggle("expanded");
+      fullText.hidden = !isExpanded;
+      button.textContent = isExpanded ? "Згорнути" : "Читати далі";
+    });
+  });
+});
+
+
 
 
 
