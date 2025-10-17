@@ -18,11 +18,9 @@ collections:
       - { label: "Дата", name: "date", widget: "datetime" }
       - { label: "Автор", name: "author", widget: "string", default: "Дентіс" }
       - { label: "Категорія", name: "category", widget: "select", options: ["Поради щодо здоров'я", "Професійний розвиток"] }
-      - { label: "Опис", name: "description", widget: "text" }
-      - { label: "slug", name: "slug", widget: "string" }
+      - { label: "Опис", name: "description", widget: "text" }      
       - { label: "Текст", name: "body", widget: "markdown" }
 
-collections:
   - name: "doctors"
     label: "Лікарі"
     folder: "content/doctors"
@@ -33,8 +31,9 @@ collections:
     editor:
       preview: true
     fields:
+      - { label: "Фото", name: "photo", widget: "image" }
       - { label: "ПІП", name: "name", widget: "string" }
       - { label: "Посада", name: "position", widget: "string" }
       - { label: "Спеціалізація", name: "specialization", widget: "string" }
       - { label: "Стаж", name: "experience", widget: "string" }
-      - { label: "Фото", name: "photo", widget: "image" }
+      
