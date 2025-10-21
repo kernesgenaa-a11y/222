@@ -41,13 +41,20 @@ window.addEventListener("load", function () {
 const navbar = document.querySelector("[data-navbar]");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
 const overlay = document.querySelector("[data-overlay]");
+const navLinks = document.querySelectorAll("[data-navbar] a");
 
 const toggleNav = function () {
   navbar.classList.toggle("active");
   overlay.classList.toggle("active");
   document.body.classList.toggle("nav-active");
 }
-
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    navbar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("nav-active");
+  });
+});
 addEventOnElements(navTogglers, "click", toggleNav);
 
 
@@ -97,7 +104,14 @@ window.addEventListener("load", revealElementOnScroll);
 
 /* about*/
 
- 
+
+
+  // Закрити меню після кліку на пункт
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+    });
+  });
 
 
 
