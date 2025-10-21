@@ -55,6 +55,7 @@ navLinks.forEach(link => {
     document.body.classList.remove("nav-active");
   });
 });
+
 addEventOnElements(navTogglers, "click", toggleNav);
 
 

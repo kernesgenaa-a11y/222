@@ -24,8 +24,13 @@
   <!-- 
     - custom css link
   -->
+       <!-- Link to Animate.css -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+     <!-- Link to Wow.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
   <link rel="stylesheet" href="./assets/css/style.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <!-- 
     - preload images
   -->
@@ -57,14 +62,14 @@
     <div class="container">
 
       <a href="https://dentis.pp.ua/" class="logo" style="font-size: larger;">
-        <img src="./assets/images/ZARA_LOGO_with_Text.png" style=" width: max(12vw,120px);"alt="Zara">
+        <img src="./assets/images/ZARA_LOGO_with_Text.png" style=" width: max(11vw,120px);"alt="Zara">
       </a>
       <nav class="navbar" data-navbar>
 
         <div class="navbar-top">
 
           <a href="https://dentis.pp.ua/" class="logo">
-            <img src="./assets/images/ZARA_LOGO_with_Text.png" width="145" height="52" alt="Dentis home">
+            <img src="./assets/images/ZARA_LOGO_with_Text.png" width="120" height="48" alt="Dentis home">
           </a>
 
           <button class="nav-close-btn" aria-label="clsoe menu" data-nav-toggler>
@@ -490,6 +495,56 @@
         </div>
     </section>
 
+    <section class="review" id="review">
+    
+    <h1 class="heading"><span>review</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="./assets/images/pic-1.png" alt="1">
+            <h3>Pavlo Bidnenko</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="text">Дуже хороша клініка. Ходив вже кілька разів, але відгук вирішив залишити через деякий час, щоб точно впевнитись що все гаразд. Так і вийшло. Лікарі професійні, є як стоматологи, так і ортодонт. Усе виконують швидко, якісно та за адекватні гроші. Сервіс також приємний, буду ходити далі саме сюди.</p>
+        </div>
+
+        <div class="box">
+            <img src="./assets/images/pic-2.png" alt="1">
+            <h3>Людмила</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="text">Дуже вдячна всьому колективу Дентис! Лікують професійно, якісно, безболісно, комфортно та швидко! Ціни адекватні. Персонал чемний, вихований з гарним почуттям гумору))) Особлива подяка молодому лікарю Антону, так як лікувалася саме у нього. Звернулася в цю клініку за рекомендацією знайомих, не пожалкувала)  Мати з Вами справу - одне задоволення! Успіхів ВАМ !!!</p>
+        </div>
+
+        <div class="box">
+            <img src="./assets/images/pic-3.png" alt="3">
+            <h3>Юліана Динул</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="text">Доброго вечора! Поділюсь відгуком про клініку Дентіс. Звернулась я за допомогою з дитиною, тому що до цього ми лікувалися в іншій приватній клініці, і нам там убили зуб. Від нього майже нічого не залишилося. Знайшла клініку Дентіс, а саме Олександра Олександровича, добрий та прекрасний лікар. Він нам урятував зуб. Дякую йому величезне, надій у мене не було. Клініка чиста, затишна, все за смаком, нове обладнання. Привітний та ввічливий персонал. Тому якщо хтось досі сумнівається, чи варто йти в Дентіс. Ідіть сміливо та не сумнівайтеся. Вам нададуть потрібну допомогу не за космічні гроші. 
+              </p>
+        </div>
+
+    </div>
+
+</section>
+
  
 
 
@@ -562,7 +617,7 @@
             <a href="#" class="text footer-link">Умови обслуговування</a>
           </li>
           <li>
-            <a href="#" class="text footer-link">Відгуки клієнтів</a>
+            <a href="#review" class="text footer-link">Відгуки клієнтів</a>
           </li>
           <li>
             <a href="#" class="text footer-link">Питання та відповіді</a>
