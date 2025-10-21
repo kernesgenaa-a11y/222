@@ -76,10 +76,8 @@ function createNewsCard(data, fullTextHTML) {
       <p class="card-text">${data.description || ""}</p>
 
       <div class="full-text" hidden>
-      <p class="full-text-text">
-        ${fullTextHTML || ""}</p>
+        ${fullTextHTML}
       </div>
-
       <button class="btn-text title-lg toggle-btn">Читати далі</button>
     </div>
   `;
@@ -99,23 +97,61 @@ function enableToggle() {
   });
 }
 
+const MAX_VISIBLE = 3;
+let currentIndex = 0;
+let sortedNews = [];
+
 async function loadNews() {
   const newsList = document.querySelector(".grid-list");
   if (!newsList) return;
 
   const files = await fetchFileList();
+  const parsedFiles = [];
+
   for (const file of files) {
     const raw = await fetchMarkdownFile(file.download_url);
     if (!raw) continue;
 
     const parsed = parseFrontMatter(raw);
-    if (!parsed || !parsed.data) continue;
+    if (!parsed || !parsed.data || !parsed.data.date) continue;
 
-    const fullTextHTML = convertMarkdownToHTML(parsed.content);
-    const card = createNewsCard(parsed.data, fullTextHTML);
+    parsedFiles.push({
+      data: parsed.data,
+      content: parsed.content
+    });
+  }
+
+  sortedNews = parsedFiles.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+  renderNextBatch();
+
+  if (sortedNews.length > MAX_VISIBLE) {
+    const showMoreBtn = document.createElement("button");
+    showMoreBtn.className = "btn-text title-lg show-more-btn";
+    showMoreBtn.textContent = "Показати більше";
+
+    showMoreBtn.addEventListener("click", () => {
+      renderNextBatch();
+      if (currentIndex >= sortedNews.length) {
+        showMoreBtn.remove();
+      }
+    });
+
+    newsList.insertAdjacentElement("afterend", showMoreBtn);
+  }
+}
+
+function renderNextBatch() {
+  const newsList = document.querySelector(".grid-list");
+  const nextItems = sortedNews.slice(currentIndex, currentIndex + MAX_VISIBLE);
+
+  for (const item of nextItems) {
+    const fullTextHTML = convertMarkdownToHTML(item.content);
+    const card = createNewsCard(item.data, fullTextHTML);
     newsList.appendChild(card);
   }
 
+  currentIndex += MAX_VISIBLE;
   enableToggle();
 }
 

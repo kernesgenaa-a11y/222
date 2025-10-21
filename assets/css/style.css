@@ -619,11 +619,25 @@ body.nav-active { overflow: hidden; }
 .tab-btn.active {
   background-color: var(--verdigris);
   color: var(--white);
+  border-bottom: 2px solid var(--verdigris);
 }
 
 .tab-text {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+ 
+}
+
+.tab-text.active {
+  display: block;
   color: var(--midnight-green);
   margin-block: 35px;
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .about-item {
@@ -765,7 +779,7 @@ display: none;
   transition: var(--transition-2);
 }
 
-.blog-card:is(:hover, :focus-within) :is(.card-meta, .card-title, .date, .card-text, .btn-text, .full-text-text) {
+.blog-card:is(:hover, :focus-within) :is(.card-meta, .card-title, .date, .card-text, .btn-text, .full-text) {
   color: var(--white);
 }
 
@@ -773,19 +787,14 @@ display: none;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease;
+  
 }
 
-.blog-card :is(.full-text-text) {
-   transition: var(--transition-2);
-}
-
-.blog-card:is(:hover, :focus-within) :is(.full-text-text) {
-    color: var(--white);
-}
 
 .blog-card.expanded .full-text {
   max-height: 1000px;
   margin-top: 1rem;
+  transition: var(--transition-2);
 }
 
 

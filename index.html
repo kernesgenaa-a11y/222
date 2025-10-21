@@ -260,7 +260,7 @@
         - #ABOUT
       -->
 
-      <section class="section about" aria-labelledby="about-label">
+        <section class="section about" aria-labelledby="about-label">
         <div class="container">
           <div class="about-content">
             <p class="section-subtitle title-lg has-after" id="about-label" data-reveal="left">Про наших лікарів</p>
@@ -270,22 +270,47 @@
 
 Ми дбаємо про кожну посмішку: від першої консультації до найдрібнішої деталі лікування. Комфорт, безпека й прозорість — три принципи, на яких стоїть наша робота.
             </p>
-            <ul class="tab-list" data-reveal="left">
-              <li>
-                <button class="tab-btn active">Кваліфікація</button>                
-              </li>
-              <p class="tab-text" data-reveal="left">
-              Наші лікарі мають вищі ступені та сертифікати з різних методів діагностики та лікування. Вони регулярно проходять курси підвищення кваліфікації, щоб бути в курсі останніх досягнень у стоматології.
-              </p>
-              <li>
-                <button class="tab-btn active">Досвід</button>                
-              </li>
-              <p class="tab-text" data-reveal="right">
-               Кожен лікар має багаторічний досвід роботи з різними випадками, що дозволяє їм ефективно вирішувати навіть найскладніші проблеми.
-              </p>
-            </ul>
+           <ul class="tab-list" data-reveal="left">
+  <li><button class="tab-btn active" data-tab="qualification">Кваліфікація</button></li>
+  <li><button class="tab-btn" data-tab="experience">Досвід</button></li>
+  <li><button class="tab-btn" data-tab="specialization">Спеціалізації</button></li>
+</ul>
+          <div class="tab-content">
+  <div class="tab-text active" data-tab-content="qualification">
+    Наші лікарі мають вищі ступені та сертифікати з різних методів діагностики та лікування. Вони регулярно проходять курси підвищення кваліфікації, щоб бути в курсі останніх досягнень у стоматології.
+  </div>
+  <div class="tab-text" data-tab-content="experience">
+    Кожен наш лікар має не лише професійні сертифікати, а й реальний практичний досвід, що дозволяє нам знаходити індивідуальний підхід до кожного пацієнта. Ми віримо, що якісна стоматологія — це поєднання знань, майстерності та щирої турботи.
+  </div>
+  <div class="tab-text" data-tab-content="specialization">
+    Наша команда спеціалізується на терапевтичній, ортопедичній, хірургічній та естетичній стоматології. Ми пропонуємо комплексні рішення для здоров’я та краси вашої усмішки.
+  </div>
+</div>
+
+<script>
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-text');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const target = button.getAttribute('data-tab');
+
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      tabContents.forEach(content => {
+        if (content.getAttribute('data-tab-content') === target) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+    });
+  });
+</script>
+
+
             
-             
             <div class="wrapper">
               <ul class="about-list">
                 <li class="about-item" data-reveal="left">
@@ -298,7 +323,7 @@
                 </li>
                 <li class="about-item" data-reveal="left">
                   <ion-icon name="checkmark-circle-outline"></ion-icon>
-                  <span class="span">Експерти в спеціалізованих техніках</span>
+                  <span class="span">Експертиза в спеціалізованих техніках</span>
                 </li>
                 <li class="about-item" data-reveal="left">
                   <ion-icon name="checkmark-circle-outline"></ion-icon>
@@ -307,12 +332,8 @@
               </ul>
             </div>
           </div>
-          <figure class="about-banner" data-reveal="right">
-            <img src="./assets/images/about-banner.png"  loading="lazy" alt="about therapists banner" class="w-101">
-          </figure>
         </div>
       </section> 
-      
 
 
 

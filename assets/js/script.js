@@ -95,7 +95,9 @@ window.addEventListener("scroll", revealElementOnScroll);
 
 window.addEventListener("load", revealElementOnScroll);
 
-/* news*/
+/* about*/
+
+ 
 
 
 
