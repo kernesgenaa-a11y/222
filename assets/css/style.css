@@ -761,11 +761,11 @@ display: none;
   margin-block-start: 12px;
 }
 
-.blog-card :is(.card-meta, .card-title, .date, .card-text, .btn-text .full-text-text) {
+.blog-card :is(.card-meta, .card-title, .date, .card-text, .btn-text ) {
   transition: var(--transition-2);
 }
 
-.blog-card:is(:hover, :focus-within) :is(.card-meta, .card-title, .date, .card-text, .btn-text .full-text-text) {
+.blog-card:is(:hover, :focus-within) :is(.card-meta, .card-title, .date, .card-text, .btn-text, .full-text-text) {
   color: var(--white);
 }
 
@@ -775,6 +775,9 @@ display: none;
   transition: max-height 0.5s ease;
 }
 
+.full-text-text {
+    color: var(--white);
+}
 .blog-card.expanded .full-text {
   max-height: 1000px;
   margin-top: 1rem;
