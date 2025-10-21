@@ -769,15 +769,20 @@ display: none;
   color: var(--white);
 }
 
-.full-text {
+.blog-card .full-text {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease;
 }
 
-.full-text-text {
+.blog-card :is(.full-text-text) {
+   transition: var(--transition-2);
+}
+
+.blog-card:is(:hover, :focus-within) :is(.full-text-text) {
     color: var(--white);
 }
+
 .blog-card.expanded .full-text {
   max-height: 1000px;
   margin-top: 1rem;
