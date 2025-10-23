@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Kernesgenaa/222
+  repo: kernesgenaa-a11y/222
   branch: main
   base_url: https://sveltia-cms-auth.kernesgenaa.workers.dev/
 
