@@ -402,6 +402,8 @@ body.nav-active { overflow: hidden; }
   z-index: 3;
   transition: 0.25s var(--cubic-in);
   visibility: hidden;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .navbar.active {
