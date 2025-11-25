@@ -19,8 +19,7 @@ collections:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Дата", name: "date", widget: "datetime" }
       - { label: "Автор", name: "author", widget: "string", default: "Дентіс" }
-      - { label: "Категорія", name: "category", widget: "select", options: ["Поради щодо здоров'я", "Професійний розвиток"] }
-      - { label: "Опис", name: "description", widget: "text" }      
+      - { label: "Категорія", name: "category", widget: "select", options: ["Поради щодо здоров'я", "Професійний розвиток"] }      
       - { label: "Текст", name: "body", widget: "markdown" }
 
   - name: "doctors"
