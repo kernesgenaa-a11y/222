@@ -2,7 +2,7 @@
   "name": "222",
   "version": "1.0.0",
   "description": "Дентіс",
-  "main": "index.ntml",
+  "main": "222/assets/js/script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
