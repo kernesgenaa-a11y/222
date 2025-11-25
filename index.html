@@ -446,34 +446,37 @@
 -->
 
 <section id="contact-details" class="section-p1" data-wow-delay="0.5s" data-wow-duration="1s">
-  <div class="container">
+  
         <div class="details wow animate__animated animate__fadeInLeft">
           <span>Контактна інформація</span>
             <h2>Ласкаво просимо до Дентіс</h2>
+            <div class="contact-content">
             <div>
-                <i class="fal fa-map"></i>              
-                <p>вулиця Героїв-рятувальників, 9 корпус 2, Кропивницький, Кіровоградська область, 25000</p>
+                <i class="fas fa-phone"></i>          
+                <a href="tel:+38 050 480 0825" class="contact-link">+380504800825</a>
             </div>
             <div>
                 <i class="far fa-envelope"></i> 
                   <p>dentis.verhovsky@gmail.com</p>
             </div>
-            <div>
-                <i class="fas fa-phone"></i>          
-                <p>+380504800825</p>
-            </div>
-            <div>
+           
+            <div class="work">
                 <i class="far fa-clock  "></i>
-                <p>Понеділок - П'ятниця: 9:00 - 17:00
-                  Субота: 10:00 - 15:00
+                <p>Понеділок - П'ятниця: 9:00 - 17:00<br>
+                  Субота: 10:00 - 15:00<br>
                   Неділя: Вихідний
                 </p>
-            </div>            
+            </div>  
+             <div>
+                <i class="fal fa-map"></i>              
+                <p>вулиця Героїв-рятувальників, 9 корпус 2, Кропивницький, Кіровоградська область, 25000</p>
+            </div> 
+            </div>         
         </div>
         <div class="map wow animate__animated animate__fadeInRight">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2643.656772483319!2d32.21787637667696!3d48.501473225757316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d043f27017c63f%3A0x154da7cabb6e9d5c!2z0JTQtdC90YLQuNGB!5e0!3m2!1suk!2sua!4v1760328933472!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-     </div>
+     
 </section>
 
 
@@ -482,9 +485,9 @@
 
 
     <section class="review" id="review">
-      <div class="container">
+          
     
-    <h1 class="heading"><span>review</span> </h1>
+    <h1 class="heading"><span>Відгуки</span> </h1>
 
     <div class="box-container">
 
@@ -529,8 +532,25 @@
         </div>
 
     </div>
-</div>
+
 </section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const boxes = document.querySelectorAll('.review .box');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+
+    boxes.forEach(box => observer.observe(box));
+});
+</script>
 
  
 
@@ -560,7 +580,12 @@
               </div>
               <div>
                 <p>
-                  Main Email : <a href="mailto:dentis.verhovsky@gmail.com" class="contact-link">dentis.verhovsky@&shy;gmail.com</a>
+                  Main Email : <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dentis.verhovsky@gmail.com" 
+   target="_blank" 
+   class="contact-link">
+    dentis.verhovsky@gmail.com
+</a>
+
                 </p>
                 
               </div>
@@ -577,7 +602,7 @@
             </li>
           </ul>
         </div>
-        <div class="footer-list" data-reveal="bottom">
+                <div class="footer-list" data-reveal="bottom">
           <p class="headline-sm footer-list-title">Про нас</p>
           <p class="text">
             Ми прагнемо покращити якість життя наших пацієнтів, надаючи найкращі стоматологічні послуги в комфортній та дружній атмосфері.
@@ -591,7 +616,7 @@
           </address>
         </div>
         
-        <ul class="footer-list" data-reveal="bottom">
+        <ul class="footer-list-2" data-reveal="bottom">
           <li>
             <p class="headline-sm footer-list-title">Корисні посилання</p>
           </li>
@@ -608,7 +633,7 @@
             <a href="#" class="text footer-link">Питання та відповіді</a>
           </li>
         </ul>
-        <div class="footer-list" data-reveal="bottom">
+        <div class="footer-list-btn" data-reveal="bottom">
           
           <form action="" class="footer-form">
             
@@ -616,6 +641,7 @@
           </form>
           
         </div>
+      
       </div>
           
       <div class="footer-bottom">

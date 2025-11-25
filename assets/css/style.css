@@ -28,6 +28,7 @@
   --very-dark-blue: hsl(157, 30%, 24%);
   --dark-grayish-blue: hsl(228, 12%, 48%);
   --white: hsl(0, 0%, 100%);
+  --gold: hsl(51, 100%, 50%);
 
   /**
    * typography
@@ -672,7 +673,36 @@ display: none;
   
 }
   
+  @media (max-width: 768px) {
+  #about .about-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #about .tab-list {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
   
+  #contact-details .details {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+#contact-details .contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+}
+
+
 
  
 
@@ -907,6 +937,7 @@ display: none;
 }
 
 .footer-bottom .social-link:is(:hover, :focus-visible) { background-color: var(--verdigris); }
+
 
 
 
@@ -1730,7 +1761,7 @@ display: none;
   color: var(--verdigris);
   }
   
-  #contact-details .details div {
+  #contact-details .details .contact-content div {
   margin-bottom: 1.25rem;
   display: flex;
   align-items: flex-start;
@@ -2058,6 +2089,9 @@ padding: 0rem;
   justify-content: space-between;
   padding: 2.5rem;
 }
+#contact-details .work{
+  text-align: left;
+}
 #contact-form {
   display: flex;
   flex-direction: column;
@@ -2178,11 +2212,28 @@ padding: 0rem;
 /*-----------------------------------*\
   review section appointment Page
 \*-----------------------------------*/
+.review .box {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s ease;
+}
+
+/* клас, який активує анімацію */
+.review .box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.review .box:nth-child(1) { transition-delay: 0.3s; }
+.review .box:nth-child(2) { transition-delay: 0.4s; }
+.review .box:nth-child(3) { transition-delay: 0.5s; }
+
 .review .box-container{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
   gap:2rem;
   margin-bottom: 5rem;
+  
+  
 }
 
 .review .box-container .box{
@@ -2212,7 +2263,7 @@ padding: 0rem;
 }
 
 .review .box-container .box .stars i{
-  color: var(--black);
+  color: var(--gold);
   font-size: 1.5rem;
 }
 

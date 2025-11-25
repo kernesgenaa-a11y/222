@@ -7,7 +7,7 @@ async function loadDoctors() {
 }
 
 async function fetchDoctorFiles(folder) {
-  const res = await fetch('https://api.github.com/repos/kernesgenaa-a11y/222/contents/content/doctors'); // заміни USER/REPO
+  const res = await fetch('https://api.github.com/repos/kernesgenaa-a11y/222/contents/content/doctors');
   const data = await res.json();
   return data.filter(f => f.name.endsWith('.md')).map(f => f.download_url);
 }
