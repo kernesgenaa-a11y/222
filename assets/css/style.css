@@ -1705,7 +1705,7 @@ display: none;
   contact Details
 \*-----------------------------------*/
 
-#contact-details {
+.contact-details {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1713,16 +1713,16 @@ display: none;
   line-height: 4rem;
   }
   
-  #contact-details .details {
+  .contact-details .details {
   width: 48%;
   }
   
-  #contact-details .details span {
+ .contact-details .details span {
   font-size: 1.6rem;
   color:  var(--black);
   }
   
-  #contact-details .details h2 {
+  .contact-details .details h2 {
   font-size: 4rem;
   text-transform: uppercase;
   line-height: 2.5rem;
@@ -1730,34 +1730,34 @@ display: none;
   color: var(--verdigris);
   }
   
-  #contact-details .details div {
+  .contact-details .details div {
   margin-bottom: 1.25rem;
   display: flex;
   align-items: flex-start;
   }
   
-  #contact-details .details i {
+  .contact-details .details i {
   font-size: 2rem;
   margin-right: .6rem;
   color: var(--green); 
   cursor: pointer;
   transition: .3s ease;
   }
-  #contact-details .details i:hover {
+  .contact-details .details i:hover {
    color: var(--green);
   }
   
-  #contact-details .details p {
+  .contact-details .details p {
   font-size: 1.5rem;
   margin: 0;
   color: var(--black);
   }
   
-  #contact-details .map {
+  .contact-details .map {
   width: 48%;
   }
   
-  #contact-details .map iframe {
+  .contact-details .map iframe {
   width: 100%;
   height: 50rem; 
   border: .1rem solid #ddd; 
@@ -2047,6 +2047,9 @@ padding: 0rem;
 }
 
 }
+
+
+
 @media (max-width: 480px) {
 /* contact */
 #contact-details {
