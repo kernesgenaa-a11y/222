@@ -33,9 +33,7 @@
 </head>
 
 <body id="top">
-  <div id="dentis-pwa-root"></div>
-  <script src="/pwa/pwa.js" defer></script>
-
+  
   <!-- 
     - #PRELOADER
   -->
@@ -749,6 +747,185 @@ banner.addEventListener('click', e => e.stopPropagation());
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script>
     new WOW().init();
+</script>
+<!-- Dentis PWA Install Banner -->
+<div id="dentis-pwa-banner" class="hidden">
+  <div class="dentis-pwa-content">
+    <img src="/icons/icon-192.png" class="dentis-pwa-logo" alt="Dentis Logo">
+    <span class="dentis-pwa-text">Встановити додаток</span>
+    <button id="dentis-pwa-install-btn" class="dentis-pwa-btn">Встановити</button>
+    <button id="dentis-pwa-close" class="dentis-pwa-close">×</button>
+  </div>
+
+  <!-- iOS Instruction Panel -->
+  <div id="dentis-ios-instructions">
+    <p>Щоб встановити додаток:</p>
+    <p>1. Натисніть <strong>Поділитися</strong></p>
+    <p>2. Оберіть <strong>“Додати на головний екран”</strong></p>
+    <button id="dentis-ios-ok" class="dentis-pwa-btn small">Зрозуміло</button>
+  </div>
+</div>
+
+<style>
+  #dentis-pwa-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #005761;
+    color: #fff;
+    padding: 14px 12px;
+    z-index: 999999;
+    font-family: system-ui, sans-serif;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    
+    /* animation base */
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform .45s cubic-bezier(0.18, 0.67, 0.32, 0.98),
+                opacity .45s ease;
+  }
+
+  #dentis-pwa-banner.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #dentis-pwa-banner.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  .dentis-pwa-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .dentis-pwa-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .dentis-pwa-text {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .dentis-pwa-btn {
+    background: #ffffff;
+    color: #005761;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background .2s ease, opacity .2s ease;
+  }
+
+  .dentis-pwa-btn:hover {
+    background: #e4e4e4;
+  }
+
+  .dentis-pwa-btn.small {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .dentis-pwa-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0 6px;
+  }
+
+  /* iOS instruction panel animation */
+  #dentis-ios-instructions {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height .35s ease, opacity .35s ease;
+    padding: 0 4px;
+  }
+
+  #dentis-ios-instructions.visible {
+    max-height: 200px;
+    opacity: 1;
+    padding-top: 12px;
+  }
+</style>
+
+<script>
+(function() {
+  const banner = document.getElementById("dentis-pwa-banner");
+  const installBtn = document.getElementById("dentis-pwa-install-btn");
+  const closeBtn = document.getElementById("dentis-pwa-close");
+  const iosPanel = document.getElementById("dentis-ios-instructions");
+  const iosOk = document.getElementById("dentis-ios-ok");
+
+  let deferredPrompt = null;
+
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    navigator.standalone;
+
+  // Already installed → do nothing
+  if (isStandalone || localStorage.getItem("dentis_pwa_closed") === "1") return;
+
+  // Show with animation
+  function showBanner() {
+    banner.style.display = "block";
+    setTimeout(() => banner.classList.add("visible"), 10);
+  }
+
+  function hideBanner() {
+    banner.classList.remove("visible");
+    setTimeout(() => banner.style.display = "none", 400);
+    localStorage.setItem("dentis_pwa_closed", "1");
+  }
+
+  // Android / Chrome
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    if (!isIOS) showBanner();
+  });
+
+  // iOS — show immediately
+  if (isIOS && !isStandalone) {
+    showBanner();
+  }
+
+  // Buttons
+  closeBtn.addEventListener("click", () => hideBanner());
+
+  installBtn.addEventListener("click", () => {
+    if (isIOS) {
+      iosPanel.classList.add("visible");
+      return;
+    }
+
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt = null;
+      hideBanner();
+    }
+  });
+
+  iosOk.addEventListener("click", () => hideBanner());
+
+  // Auto-hide on scroll (one-time)
+  window.addEventListener("scroll", () => {
+    hideBanner();
+  }, { once: true });
+
+})();
 </script>
 
 </body>
