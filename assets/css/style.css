@@ -461,14 +461,16 @@ body.nav-active { overflow: hidden; }
   visibility: visible;
 }
 
-
-
-
-
 /*-----------------------------------*\
-  #HERO
+  #pwa
 \*-----------------------------------*/
-.dentis-pwa-banner {
+
+
+.hidden {
+  display: none !important;
+}
+
+.pwa-banner {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -476,31 +478,29 @@ body.nav-active { overflow: hidden; }
   width: calc(100% - 40px);
   max-width: 480px;
   background: #fff;
-  border: 1px solid #e5e5e5;
   border-radius: 14px;
+  border: 1px solid #e5e5e5;
   padding: 14px 18px;
   display: flex;
-  align-items: center;
   gap: 12px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-  z-index: 9999;
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  z-index: 999999;
 }
 
-.hidden { display: none; }
-
-.banner-icon {
+.pwa-icon {
   width: 48px;
   height: 48px;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-.banner-text p {
-  font-size: 14px;
+.pwa-info p {
   margin: 0;
+  font-size: 14px;
   color: #444;
 }
 
-.banner-install {
+.pwa-btn {
   background: #0a6ffa;
   color: #fff;
   border: none;
@@ -508,49 +508,52 @@ body.nav-active { overflow: hidden; }
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  white-space: nowrap;
 }
 
-.banner-close {
-  font-size: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #666;
+.pwa-close {
+  font-size: 22px;
   margin-left: auto;
-}
-
-/* Модалка для iOS */
-#ios-close {
   cursor: pointer;
 }
 
-.ios-modal {
-  pointer-events: auto;
+/* iOS modal */
+.pwa-ios-modal {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.45);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999;
+  z-index: 1000000;
 }
 
-.ios-modal-content {
-  pointer-events: auto;
+.pwa-ios-card {
   background: #fff;
   padding: 20px;
   border-radius: 14px;
-  max-width: 340px;
+  max-width: 320px;
+  width: 90%;
   text-align: center;
-   position: relative;
-  z-index: 100000;
+  position: relative;
 }
 
-.ios-modal-content img {
+.pwa-ios-card img {
   width: 100%;
   margin: 12px 0;
 }
-.ios-modal-content button,
+
+.pwa-btn,
+#pwa-ios-close,
+#pwa-close {
+  cursor: pointer !important;
+}
+
+
+/*-----------------------------------*\
+  #HERO
+\*-----------------------------------*/
+
 
 
 .hero-banner { display: none; 

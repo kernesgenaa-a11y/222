@@ -47,26 +47,28 @@
     - #banner app
   -->
 
- <div id="pwa-banner" class="dentis-pwa-banner hidden">
-  <img src="/icons/icon-192.png" alt="Dentis App" class="banner-icon">
-  <div class="banner-text">
+ <!-- PWA Install Banner -->
+<div id="pwa-banner" class="pwa-banner hidden">
+  <img src="/assets/icons/icon-192.png" class="pwa-icon" alt="Dentis App">
+  <div class="pwa-info">
     <strong>Dentis</strong>
-    <p>Встановіть застосунок на ваш пристрій для швидкого доступу.</p>
+    <p>Встановіть застосунок для швидкого доступу.</p>
   </div>
-  <button id="install-btn" class="banner-install">Встановити</button>
-  <button id="close-banner" class="banner-close">×</button>
+  <button id="pwa-install-btn" class="pwa-btn">Встановити</button>
+  <div id="pwa-close" class="pwa-close">×</div>
 </div>
 
-<!-- Модалка для iOS -->
-<div id="ios-modal" class="ios-modal hidden">
-  <div class="ios-modal-content">
+<!-- iOS Instructions Modal -->
+<div id="pwa-ios-modal" class="pwa-ios-modal hidden">
+  <div class="pwa-ios-card">
     <h3>Як встановити Dentis</h3>
     <p>1. Натисніть кнопку «Поділитись».</p>
     <p>2. Оберіть «На головний екран».</p>
-    <img src="/assets/images/ios-install-guide.png" alt="iOS install guide">
-    <button id="ios-close" class="banner-install">Зрозуміло</button>
+    <img src="/assets/images/ios-install-guide.png" alt="iOS guide">
+    <button id="pwa-ios-close" class="pwa-btn">Зрозуміло</button>
   </div>
 </div>
+
 
 
   <!-- 
