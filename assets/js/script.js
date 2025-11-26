@@ -173,11 +173,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeIosModal() {
   iosModal.classList.add('hidden');
 }
-
 iosClose.addEventListener('click', closeIosModal);
 iosClose.addEventListener('touchstart', closeIosModal);
-
-  
+  iosClose.addEventListener('click', () => {
+    iosModal.classList.add('hidden');
+  });
 });
 
 
