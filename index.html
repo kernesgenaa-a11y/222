@@ -43,106 +43,10 @@
     <div class="circle"></div>
   </div>
 
-
-  <!-- 
-    - #banner app
-  -->
-
- <!-- PWA Install Banner -->
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PWA Banner</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    .pwa-banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #005761;
-      color: #fff;
-      padding: 10px;
-      z-index: 9999;
-      transition: transform 0.6s ease, opacity 0.6s ease, height 0.6s ease;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-
-    .pwa-banner.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .pwa-banner.hidden {
-      transform: translateY(-100%);
-      opacity: 0;
-      height: 0;
-      padding: 0;
-    }
-
-    .pwa-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .pwa-logo {
-      height: 30px;
-    }
-
-    .pwa-text {
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .pwa-btn {
-      background: #fff;
-      color: #005761;
-      border: none;
-      padding: 6px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .pwa-close {
-      background: transparent;
-      color: #fff;
-      font-size: 18px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .ios-instructions {
-      display: none;
-      margin-top: 10px;
-      text-align: center;
-    }
-    .ios-instructions.active {
-      display: block;
-    }
-
-    .ios-instructions img {
-      max-width: 90%;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-  </style>
-</head>
-<body>
-
   <!-- Банер -->
   <div id="pwa-banner" class="pwa-banner">
     <div class="pwa-content">
-      <img src="logo.png" alt="Логотип" class="pwa-logo">
+      <img src="assets/images/ZARA_LOGO_with_Text.png" alt="Логотип" class="pwa-logo">
       <span class="pwa-text">Встановити додаток</span>
       <button id="pwa-install-btn" class="pwa-btn">Встановити</button>
       <button id="pwa-close-btn" class="pwa-close">✕</button>
