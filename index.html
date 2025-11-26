@@ -37,12 +37,36 @@
     - #PRELOADER
   -->
 
+
   <div class="preloader" data-preloader>
     <div class="circle"></div>
   </div>
 
 
+  <!-- 
+    - #banner app
+  -->
 
+ <div id="pwa-banner" class="dentis-pwa-banner hidden">
+  <img src="/icons/icon-192.png" alt="Dentis App" class="banner-icon">
+  <div class="banner-text">
+    <strong>Dentis</strong>
+    <p>Встановіть застосунок на ваш пристрій для швидкого доступу.</p>
+  </div>
+  <button id="install-btn" class="banner-install">Встановити</button>
+  <button id="close-banner" class="banner-close">×</button>
+</div>
+
+<!-- Модалка для iOS -->
+<div id="ios-modal" class="ios-modal hidden">
+  <div class="ios-modal-content">
+    <h3>Як встановити Dentis</h3>
+    <p>1. Натисніть кнопку «Поділитись».</p>
+    <p>2. Оберіть «На головний екран».</p>
+    <img src="/assets/images/ios-install-guide.png" alt="iOS install guide">
+    <button id="ios-close" class="banner-install">Зрозуміло</button>
+  </div>
+</div>
 
 
   <!-- 
@@ -158,9 +182,12 @@
       -->
 
       <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home">
+        
+
         <div class="container">
 
           <div class="hero-content">
+           
             <p class="hero-subtitle has-before" data-reveal="left">Стоматолог у м.Кропивницький</p>
             <h1 class="headline-lg hero-title" data-reveal="left">
               Посмішка — це інвестиція  <br>
@@ -212,9 +239,7 @@
                 <p class="card-text">
                   Ретельне апаратне чищення зубів у стоматолога – гігієнічна процедура, мета якої видалити твердий та мʼякий наліт, пігментований наліт та інші накопичення. Відкладення на зубах називаються зубним каменем.
                 </p>
-                <button class="btn-circle" aria-label="read more about physical rehabilitation">
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </button>
+               
               </div>
             </li>
             <li>
@@ -228,9 +253,7 @@
                 <p class="card-text">
                   Кісткова пластика та синус-ліфтинг, складні хірургічні втручання, видалення зубів мудрості.
                 </p>
-                <button class="btn-circle" aria-label="read more about acupuncture">
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </button>
+               
               </div>
             </li>
             <li>
@@ -244,9 +267,7 @@
                 <p class="card-text">
                   Зубний біль, який часто викликаний станом нерва зуба, може з'являтися через запущений карієс, бактерії або травму. Неякісне лікування може призвести до втрати зуба. У наших клініках ми використовуємо передові технології та гарантуємо безпечне та комфортне лікування. Якщо у вас є сумніви щодо стану зуба, рекомендуємо пройти огляд для вчасного вирішення проблеми.
                 </p>
-                <button class="btn-circle" aria-label="read more about aromatherapy">
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </button>
+               
               </div>
             </li>
           </ul>
@@ -723,17 +744,7 @@ banner.addEventListener('click', e => e.stopPropagation());
 
 </script>
 
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", (user) => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+
 
 
   <!-- 

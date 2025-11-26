@@ -119,7 +119,61 @@ window.addEventListener("load", revealElementOnScroll);
   });
 
 
+/*banner app */
+let deferredPrompt;
 
+function isIos() {
+  return /iphone|ipad|ipod/i.test(navigator.userAgent);
+}
+
+function isInStandaloneMode() {
+  return window.matchMedia('(display-mode: standalone)').matches ||
+         navigator.standalone === true;
+}
+
+document.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  if (!localStorage.getItem('pwa-banner-closed')) {
+    document.getElementById('pwa-banner').classList.remove('hidden');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const banner = document.getElementById('pwa-banner');
+  const installBtn = document.getElementById('install-btn');
+  const closeBtn = document.getElementById('close-banner');
+  const iosModal = document.getElementById('ios-modal');
+  const iosClose = document.getElementById('ios-close');
+
+  // Показуємо плашку для iOS, якщо це ще не PWA
+  if (isIos() && !isInStandaloneMode() && !localStorage.getItem('pwa-banner-closed')) {
+    banner.classList.remove('hidden');
+  }
+
+  // Кнопка "Встановити"
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const choice = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    } else if (isIos()) {
+      iosModal.classList.remove('hidden');
+    }
+  });
+
+  // Закриття плашки
+  closeBtn.addEventListener('click', () => {
+    banner.classList.add('hidden');
+    localStorage.setItem('pwa-banner-closed', '1');
+  });
+
+  // Закриття модалки для iOS
+  iosClose.addEventListener('click', () => {
+    iosModal.classList.add('hidden');
+  });
+});
 
 
 

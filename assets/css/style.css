@@ -468,6 +468,80 @@ body.nav-active { overflow: hidden; }
 /*-----------------------------------*\
   #HERO
 \*-----------------------------------*/
+.dentis-pwa-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 480px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  z-index: 9999;
+}
+
+.hidden { display: none; }
+
+.banner-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+}
+
+.banner-text p {
+  font-size: 14px;
+  margin: 0;
+  color: #444;
+}
+
+.banner-install {
+  background: #0a6ffa;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.banner-close {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  margin-left: auto;
+}
+
+/* Модалка для iOS */
+.ios-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.ios-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  max-width: 340px;
+  text-align: center;
+}
+
+.ios-modal-content img {
+  width: 100%;
+  margin: 12px 0;
+}
 
 .hero-banner { display: none; 
    

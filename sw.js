@@ -2,12 +2,17 @@ const CACHE_NAME = 'dentis-full-cache-v1';
 const urlsToCache = [
   '/',                  // головна сторінка
   '/index.html',
-  '/icons/icon-192.png'
-  '/icons/icon-512.png'
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
   '/assets/css/style.css',
   '/assets/js/script.js',
   '/assets/images/ZARA_LOGO_with_Text.png',
-  '/assets/images/ZARA_LOGO.png'
+  '/assets/images/ZARA_LOGO.png',
+  '/admin/index.html',
+  '/assets/images/hero-bg.png',
+  '/admin/preview-templates/DoctorPreview.js',
+  '/js/load-news.js'
+
   // Додайте інші зображення та сторінки сайту сюди
 ];
 
