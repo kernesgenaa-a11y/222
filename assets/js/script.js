@@ -1,7 +1,11 @@
 'use strict';
 
 
-
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(() => console.log('Service Worker Dentis зареєстровано з повним кешем'))
+    .catch(err => console.error('Помилка Service Worker:', err));
+}
 
 
 /**
