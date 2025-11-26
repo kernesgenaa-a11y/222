@@ -520,7 +520,12 @@ body.nav-active { overflow: hidden; }
 }
 
 /* Модалка для iOS */
+#ios-close {
+  cursor: pointer;
+}
+
 .ios-modal {
+  pointer-events: auto;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.45);
@@ -531,17 +536,22 @@ body.nav-active { overflow: hidden; }
 }
 
 .ios-modal-content {
+  pointer-events: auto;
   background: #fff;
   padding: 20px;
   border-radius: 14px;
   max-width: 340px;
   text-align: center;
+   position: relative;
+  z-index: 100000;
 }
 
 .ios-modal-content img {
   width: 100%;
   margin: 12px 0;
 }
+.ios-modal-content button,
+
 
 .hero-banner { display: none; 
    
