@@ -170,12 +170,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Закриття модалки для iOS
-  function closeIosModal() {
-  iosModal.classList.add('hidden');
-}
-iosClose.addEventListener('click', closeIosModal);
-iosClose.addEventListener('touchstart', closeIosModal);
+ 
+
+
   iosClose.addEventListener('click', () => {
+    iosModal.classList.add('hidden');
+  });
+  iosClose.addEventListener('touchstart', () => {
     iosModal.classList.add('hidden');
   });
 });
