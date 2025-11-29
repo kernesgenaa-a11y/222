@@ -1672,20 +1672,23 @@ display: none;
 }
 
 .doctors .box-container .box{
+   display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   background:#fff;
   border-radius: .5rem;
-  border:var(--border);
+  border:var(--middle-blue-green_40);
   box-shadow: var(--box-shadow);
   padding:2rem;
 }
 
 .doctors .box-container .box img{
-  height: 20rem;
+  width: 60%;
+  height: 50rem;
   border:var(--border);
   border-radius: .5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+
 }
 
 .doctors .box-container .box h3{
@@ -1694,7 +1697,7 @@ display: none;
 }
 
 .doctors .box-container .box span{
-  color:var(--green);
+  color:var(--middle-blue-green_40);
   font-size: 1.5rem;
 }
 
@@ -1707,14 +1710,14 @@ display: none;
   width: 5rem;
   line-height: 4.5rem;
   font-size: 2rem;
-  color:var(--green);
+  color:var(--middle-blue-green_40);
   border-radius: .5rem;
   border:var(--border);
   margin:.3rem;
 }
 
 .doctors .box-container .box .share a:hover{
-  background:var(--green);
+  background:var(--middle-blue-green_40);
   color:#fff;
   box-shadow: var(--box-shadow);
 }
@@ -1729,7 +1732,7 @@ display: none;
 }
 .heading span{
   text-transform: uppercase;
-  color:var(--green);
+  color:var(--middle-blue-green_40);
 }
 
 
