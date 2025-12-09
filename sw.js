@@ -8,10 +8,7 @@ const urlsToCache = [
   '/assets/js/script.js',
   '/assets/images/ZARA_LOGO_with_Text.png',
   '/assets/images/ZARA_LOGO.png',
-  '/admin/index.html',
   '/assets/images/hero-bg.png',
-  '/admin/preview-templates/DoctorPreview.js',
-  '/js/load-news.js'
 ];
 
 // Встановлення та кешування
