@@ -12,8 +12,6 @@ const urlsToCache = [
   '/assets/images/hero-bg.png',
   '/admin/preview-templates/DoctorPreview.js',
   '/js/load-news.js'
-
-  // Додайте інші зображення та сторінки сайту сюди
 ];
 
 // Встановлення та кешування
