@@ -1,6 +1,6 @@
-const repoOwner = "kernesgenaa-a11y"; // ← заміни
-const repoName = "222";      // ← заміни
-const branch = "main";                    // ← або "master"
+const repoOwner = "kernesgenaa-a11y";
+const repoName = "222";
+const branch = "main";
 const folderPath = "public/news";
 
 
@@ -46,7 +46,6 @@ function formatDate(dateString) {
 }
 
 function convertMarkdownToHTML(markdown) {
-  // Простий Markdown → HTML (тільки заголовки та абзаци)
   return markdown
     .replace(/^### (.*$)/gim, '<h3>$1</h3>')
     .replace(/^## (.*$)/gim, '<h2>$1</h2>')
