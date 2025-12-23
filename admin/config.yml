@@ -12,29 +12,15 @@ locale: 'uk'
 collections:
   - name: "news"
     label: "Новини"
-    folder: "public/news"
+    folder: "data/news"
     create: true
     slug: "{{slug}}"
+    extension: "md"
     fields:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Дата", name: "date", widget: "datetime" }
       - { label: "Автор", name: "author", widget: "string", default: "Дентіс" }
-      - { label: "Категорія", name: "category", widget: "select", options: ["Поради щодо здоров'я", "Професійний розвиток"] }      
+      - { label: "Категорія", name: "category", widget: "select", options: ["Поради щодо здоров'я", "Професійний розвиток", "Акції"] }      
       - { label: "Текст", name: "body", widget: "markdown" }
 
-  - name: "doctors"
-    label: "Лікарі"
-    folder: "content/doctors"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    preview_path: "doctor/{{slug}}"
-    editor:
-      preview: true
-    fields:
-      - { label: "Фото", name: "photo", widget: "image" }
-      - { label: "ПІП", name: "name", widget: "string" }
-      - { label: "Посада", name: "position", widget: "string" }
-      - { label: "Спеціалізація", name: "specialization", widget: "string" }
-      - { label: "Стаж", name: "experience", widget: "string" }
-      
+
