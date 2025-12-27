@@ -1,13 +1,40 @@
-let currentPage = 0;
-const perPage = 3;
-let news = [];
+const repoOwner = "kernesgenaa-a11y";
+const repoName = "222";
+const branch = "main";
+const folderPath = "public/news";
 
-fetch('/data/news/index.json')
-  .then(res => res.json())
-  .then(data => {
-    news = data;
-    render();
+
+async function fetchFileList() {
+  const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=${branch}`;
+  const response = await fetch(apiUrl);
+  if (!response.ok) return [];
+  const files = await response.json();
+  return files.filter(file => file.name.endsWith(".md"));
+}
+
+async function fetchMarkdownFile(url) {
+  const response = await fetch(url);
+  if (!response.ok) return null;
+  return await response.text();
+}
+
+function parseFrontMatter(raw) {
+  const match = raw.match(/^---\n([\s\S]+?)\n---\n([\s\S]*)$/);
+  if (!match) return null;
+
+  const yaml = match[1];
+  const content = match[2];
+  const data = {};
+
+  yaml.split('\n').forEach(line => {
+    const [key, ...rest] = line.split(':');
+    if (key && rest.length) {
+      data[key.trim()] = rest.join(':').trim().replace(/^"(.*)"$/, '$1');
+    }
   });
+
+  return { data, content };
+}
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -73,18 +100,58 @@ const MAX_VISIBLE = 3;
 let currentIndex = 0;
 let sortedNews = [];
 
+async function loadNews() {
+  const newsList = document.querySelector(".grid-list");
+  if (!newsList) return;
 
+  const files = await fetchFileList();
+  const parsedFiles = [];
 
-document.getElementById('nextNews').onclick = () => {
-  if ((currentPage + 1) * perPage < news.length) {
-    currentPage++;
-    render();
+  for (const file of files) {
+    const raw = await fetchMarkdownFile(file.download_url);
+    if (!raw) continue;
+
+    const parsed = parseFrontMatter(raw);
+    if (!parsed || !parsed.data || !parsed.data.date) continue;
+
+    parsedFiles.push({
+      data: parsed.data,
+      content: parsed.content
+    });
   }
-};
 
-document.getElementById('prevNews').onclick = () => {
-  if (currentPage > 0) {
-    currentPage--;
-    render();
+  sortedNews = parsedFiles.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+  renderNextBatch();
+
+  if (sortedNews.length > MAX_VISIBLE) {
+    const showMoreBtn = document.createElement("button");
+    showMoreBtn.className = "btn-text title-lg show-more-btn";
+    showMoreBtn.textContent = "Показати більше";
+
+    showMoreBtn.addEventListener("click", () => {
+      renderNextBatch();
+      if (currentIndex >= sortedNews.length) {
+        showMoreBtn.remove();
+      }
+    });
+
+    newsList.insertAdjacentElement("afterend", showMoreBtn);
   }
-};
+}
+
+function renderNextBatch() {
+  const newsList = document.querySelector(".grid-list");
+  const nextItems = sortedNews.slice(currentIndex, currentIndex + MAX_VISIBLE);
+
+  for (const item of nextItems) {
+    const fullTextHTML = convertMarkdownToHTML(item.content);
+    const card = createNewsCard(item.data, fullTextHTML);
+    newsList.appendChild(card);
+  }
+
+  currentIndex += MAX_VISIBLE;
+  enableToggle();
+}
+
+document.addEventListener("DOMContentLoaded", loadNews);

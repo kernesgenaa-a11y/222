@@ -6,15 +6,87 @@
     
     
 .doctor-card{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    background:#fff;
-    border:1px solid var(--neutral);
-    padding:12px;
-    border-radius:12px;
-    flex:1;
-    min-width:220px}
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 50px 36px;
+  border-radius: var(--radius-12);
+  border: 2px solid var(--alice-blue);
+  background-image: url('../images/blog-card.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+  .doctor-card::before,
+.doctor-card::after {
+  inset: 0;
+  z-index: -1;
+  transition: var(--transition-3);
+}
+
+.doctor-card::before {
+  background-color: var(--midnight-green);
+  opacity: 0.9;
+}
+
+.doctor-card::after { background-color: var(--white); }
+
+.doctor-card:is(:hover, :focus-within)::after { transform: translateY(100%); }
+
+.doctor-card .meta-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 20px;
+  margin-block-end: 12px;
+}
+
+.doctor-card .card-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--midnight-green);
+}
+
+.doctor-card .card-meta ion-icon { font-size: 1.8rem; }
+
+.doctor-card .card-meta:first-child .span { text-transform: uppercase; }
+
+.doctor-card .date {
+  color: var(--space-cadet);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-block: 16px;
+}
+
+.doctor-card .btn-text {
+  color: var(--verdigris);
+  margin-block-start: 12px;
+}
+
+.doctor-cardd :is(.card-meta, .card-title, .date, .card-text, .btn-text ) {
+  transition: var(--transition-2);
+}
+
+.doctor-card:is(:hover, :focus-within) :is(.card-meta, .card-title, .date, .card-text, .btn-text, .full-text) {
+  color: var(--white);
+}
+
+.doctor-card .full-text {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  
+}
+
+
+.doctor-card.expanded .full-text {
+  max-height: 1000px;
+  margin-top: 1rem;
+  transition: var(--transition-2);
+}
+
 .avatar{
     width:72px;
     height:72px;
@@ -38,3 +110,16 @@
   .doctors-grid{
     flex-direction:column
 }
+    }
+
+    .blog-card {
+  padding: 50px 36px;
+  border-radius: var(--radius-12);
+  border: 2px solid var(--alice-blue);
+  background-image: url('../images/blog-card.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+

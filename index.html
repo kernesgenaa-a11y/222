@@ -16,7 +16,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-  <link rel="stylesheet" href="./assets/css/style.css">  
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/doctors.css">   
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="preload" fetchpriority="high" as="image" href="./assets/images/hero-banner.png">
   <link rel="preload" fetchpriority="high" as="image" href="./assets/images/hero-bg.png">
@@ -286,20 +287,15 @@
         - #HERO
       -->
 
-      <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home">
-        
-
+      <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home">      
         <div class="container">
-
-          <div class="hero-content">
-           
+          <div class="hero-content">           
             <h1 class="hero-subtitle has-before" data-reveal="left">Стоматолог у м.Кропивницький</h1>
             <p class="headline-lg hero-title" data-reveal="left">
               Посмішка — це інвестиція  <br>
               в себе.
             </p>          
           </div>
-
           <figure class="hero-banner" data-reveal="right">
             <img src="./assets/images/hero-banner.png"  alt="hero banner"
               class="w-100">
@@ -467,6 +463,9 @@
               </ul>
             </div>
           </div>
+           <figure class="about-banner" data-reveal="right">
+            <img src="./assets/images/about-banner.png" width="554" height="678" loading="lazy" alt="about therapists banner" class="w-100">
+          </figure>
         </div>
       </section> 
 
@@ -493,139 +492,33 @@
           </ul>
         </div>
       </section>
+      <script src="/assets/js/news.js"></script>
       
       
-      
-      <!--Doctors-
+     <!-- 
+        - #doc
+      -->
   <section id="doctors" class="section doctors">
-      <div class="container">
-        <h2 class="section-title">Наші лікарі</h2>
+      <div class="container doctors">
+        <div class="section doctors tittle">
+        <p class="section-subtitle title-lg text-center" id="blog-label" data-reveal="bottom">Наші</p>
+          <h2 class="section-title headline-md text-center" data-reveal="bottom">Лікарі</h2>
+          </div>
         <div class="doctors-grid">
           <div class="doctor-card">
-            <div class="avatar">OP</div>
-            <div class="info">
-              <h3>Олександ Олександрович Верховський</h3>
-              <p class="meta">Стоматолог‑терапевт</p>
+            
+              <img src="/assets/images/1.png" class="doctor-img" alt="OOV">
+            
+            <div class="doctor-info">
+              <div class="doctor-name">Олександ Олександрович Верховський</div>
+              <div class="doctor-specialty">Стоматолог‑терапевт</div>
             </div>
             <button class="btn outline small">Записатися</button>
           </div>
-<!--
-          <div class="doctor-card">
-            <div class="avatar">OM</div>
-            <div class="info">
-              <h3>Олена М.</h3>
-              <p class="meta">Ортопед</p>
-            </div>
-            <button class="btn outline small">Записатися</button>
-          </div>-
         </div>
       </div>
-    </section>-->
+  </section>
 
-      <!-- 
-        - #personal
-
-      -->   
-        
-     <!-- 
-      <section class="section listing" aria-labelledby="listing-label">
-        <div class="container">
-          <ul class="grid-list">
-            <li>
-              <p class="section-subtitle title-lg" id="listing-label" data-reveal="left">Therapists Directory</p>
-              <h2 class="headline-md" data-reveal="left">Explore Our Therapists</h2>
-            </li>
-            <li>
-              <div class="listing-card" data-reveal="bottom">
-                <div class="card-icon">
-                  <img src="./assets/images/message1.png" width="71" height="71" loading="lazy" alt="icon">
-                </div>
-                <div>
-                  <h3 class="headline-sm card-title">Massage Therapist</h3>
-                  <p class="card-text">Specializes in various massage techniques for relaxation and pain relief.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="listing-card" data-reveal="bottom">
-                <div class="card-icon">
-                  <img src="./assets/images/Physical Therapist.png" width="71" height="71" loading="lazy" alt="icon">
-                </div>
-                <div>
-                  <h3 class="headline-sm card-title">Physical Therapist</h3>
-                  <p class="card-text">Expert in rehabilitation exercises and restoring mobility after injuries.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="listing-card" data-reveal="bottom">
-                <div class="card-icon">
-                  <img src="./assets/images/Acupuncture.png" width="71" height="71" loading="lazy" alt="icon">
-                </div>
-                <div>
-                  <h3 class="headline-sm card-title">Acupuncturist</h3>
-                  <p class="card-text">Specializes in traditional Chinese medicine techniques for pain management and wellness.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="listing-card" data-reveal="bottom">
-                <div class="card-icon">
-                  <img src="./assets/images/Aromatherapy.png" width="71" height="71" loading="lazy" alt="icon">
-                </div>
-                <div>
-                  <h3 class="headline-sm card-title">Aromatherapist</h3>
-                  <p class="card-text">Utilizes essential oils and aromatherapy techniques to promote relaxation and improve mood.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="listing-card" data-reveal="bottom">
-                <div class="card-icon">
-                  <img src="./assets/images/Holistic Therapist.png" width="71" height="71" loading="lazy" alt="icon">
-                </div>
-                <div>
-                  <h3 class="headline-sm card-title">Holistic Therapist</h3>
-                  <p class="card-text">Employs holistic approach to wellness,integrating mind & body for comprehensive healing.</p>
-                </div>
-              </div>
-            </li>
-            
-            <li>
-              <div class="listing-card" data-reveal="bottom">
-                <div class="card-icon">
-                  <img src="./assets/images/Chiropractor.png" width="71" height="71" loading="lazy" alt="icon">
-                </div>
-                <div>
-                  <h3 class="headline-sm card-title">Chiropractor</h3>
-                  <p class="card-text">Specializes in spinal adjustments and manipulations to alleviate pain and improve mobility.</p>
-                </div>
-              </div>
-            </li>
-            
-          </ul>
-        </div>
-      </section> 
--->
-<!--
-      <section class="doctors" id="doctors">
-        <h1 class="heading">Наші<span>лікарі</span></h1>
-<div class="box-container">
-  <div class="box">
-          <img  src="assets/images/1.png" alt="">
-          <h3>Верховський Олександр Олександрович</h3>
-          <span>Головний лікар</span>
-          <div class="share">
-              <a href="#" class="fab fa-facebook-f"></a>
-              <a href="#" class="fab fa-instagram"></a>
-              <a href="#" class="fab fa-linkedin"></a>
-          </div>
-      </div>
-</div>
-      </section>
-      <script src="/doctors.js"></script>
-      -->
-      
 
 
 <section id="contact-details" class="section-p1" data-wow-delay="0.5s" data-wow-duration="1s">
@@ -662,6 +555,41 @@
      
 </section>
 
+<section id="faq" class="section faq">
+  <div class="container">
+  <h2>Поширені запитання</h2>
+
+  <details>
+    <summary>Скільки коштує лікування зубів у Dentis?</summary>
+    <p>Вартість лікування залежить від складності випадку та обраного методу. Остаточну ціну лікар визначає після огляду.</p>
+  </details>
+
+  <details>
+    <summary>Чи боляче лікувати зуби?</summary>
+    <p>У клініці Dentis застосовується сучасна анестезія, що робить лікування комфортним та безболісним.</p>
+  </details>
+
+  <details>
+    <summary>Як записатися на прийом у Dentis?</summary>
+    <p>Запис можливий телефоном, через онлайн-форму на сайті або під час особистого візиту до клініки.</p>
+  </details>
+
+  <details>
+    <summary>Де знаходиться стоматологія Dentis?</summary>
+    <p>Клініка Dentis знаходиться у місті Кропивницький. Контакти, адреса та графік роботи вказані у розділі контактів.</p>
+  </details>
+
+  <details>
+    <summary>Які методи лікування зубів доступні?</summary>
+    <p>У Dentis доступні сучасні методи лікування: терапія карієсу, пломбування, професійна гігієна, імплантація та ортопедія.</p>
+  </details>
+
+  <details>
+    <summary>Чи є у клініці рентген та сучасне обладнання?</summary>
+    <p>Так, Dentis оснащена сучасним цифровим рентгеном та іншим високотехнологічним обладнанням для точної діагностики та лікування.</p>
+  </details>
+ </div>
+</section>
 
 
 
@@ -905,6 +833,63 @@ banner.addEventListener('click', e => e.stopPropagation());
   <script>
     new WOW().init();
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Скільки коштує лікування зубів у Dentis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вартість лікування залежить від складності випадку та обраного методу. Остаточну ціну лікар визначає після огляду."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи боляче лікувати зуби?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "У клініці Dentis застосовується сучасна анестезія, що робить лікування комфортним та безболісним."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як записатися на прийом у Dentis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Запис можливий телефоном, через онлайн-форму на сайті або під час особистого візиту до клініки."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Де знаходиться стоматологія Dentis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Клініка Dentis знаходиться у місті Кропивницький. Контакти, адреса та графік роботи вказані у розділі контактів."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Які методи лікування зубів доступні?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "У Dentis доступні сучасні методи лікування: терапія карієсу, пломбування, професійна гігієна, імплантація та ортопедія."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи є у клініці рентген та сучасне обладнання?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, Dentis оснащена сучасним цифровим рентгеном та іншим високотехнологічним обладнанням для точної діагностики та лікування."
+      }
+    }
+  ]
+}
+</script>
+
 
 
 </body>
