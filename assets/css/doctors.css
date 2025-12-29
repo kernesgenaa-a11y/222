@@ -12,8 +12,7 @@
     padding: 50px 36px;
   border-radius: var(--radius-12);
   border: 2px solid var(--alice-blue);
-  background-image: url('../images/blog-card.jpg');
-  background-repeat: no-repeat;
+   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   overflow: hidden;
@@ -112,7 +111,7 @@
 }
     }
 
-    .blog-card {
+  .blog-card {
   padding: 50px 36px;
   border-radius: var(--radius-12);
   border: 2px solid var(--alice-blue);

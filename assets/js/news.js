@@ -1,7 +1,7 @@
 const repoOwner = "kernesgenaa-a11y";
 const repoName = "222";
 const branch = "main";
-const folderPath = "public/news";
+const folderPath = "data/news";
 
 
 async function fetchFileList() {

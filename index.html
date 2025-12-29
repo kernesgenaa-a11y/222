@@ -184,7 +184,7 @@
     <div class="container">
 
       <a href="https://dentis.pp.ua/" class="logo" style="font-size: larger;">
-        <img src="./assets/images/Dentis_with_Text.png" style=" width: max(11vw,120px);"alt="Zara">
+        <img src="./assets/images/Dentis_with_Text.png" style=" width: max(11vw,120px);"alt="Dentis">
       </a>
       <nav class="navbar" data-navbar>
 
@@ -487,8 +487,7 @@
             блог
           </p>
           <h2 class="section-title headline-md text-center" data-reveal="bottom">Останні Новини</h2>
-          <ul class="grid-list">
-           
+          <ul class="grid-list">           
           </ul>
         </div>
       </section>
@@ -501,13 +500,13 @@
   <section id="doctors" class="section doctors">
       <div class="container doctors">
         <div class="section doctors tittle">
-        <p class="section-subtitle title-lg text-center" id="blog-label" data-reveal="bottom">Наші</p>
+        <h1 class="section-subtitle title-lg text-center" id="blog-label" data-reveal="bottom">Наші</h1>
           <h2 class="section-title headline-md text-center" data-reveal="bottom">Лікарі</h2>
           </div>
         <div class="doctors-grid">
           <div class="doctor-card">
             
-              <img src="/assets/images/1.png" class="doctor-img" alt="OOV">
+              <img src="/assets/images/1.png" class="avatar" alt="OOV">
             
             <div class="doctor-info">
               <div class="doctor-name">Олександ Олександрович Верховський</div>
@@ -666,7 +665,7 @@
       <div class="section footer-top">
         <div class="footer-brand" data-reveal="bottom">
           <a href="#" class="logo">
-            <img src="./assets/images/ZARA_LOGO_with_Text.png" width="136" height="46" loading="lazy" alt="Therapist Home">
+            <img src="./assets/images/Dentis_with_Text.png" width="136" height="46" loading="lazy" alt="Therapist Home">
           </a>
           <ul class="contact-list has-after">
             <li class="contact-item">
@@ -739,7 +738,7 @@
       
       </div>
           
-      <div class="footer-bottom">
+    <div class="footer-bottom"> 
         <p class="text copyright">
           &copy; Дентіс 2025 | All Rights Reserved by Roman Shkurenko
         </p>
@@ -781,7 +780,6 @@
     <ion-icon name="chevron-up"></ion-icon>
   </a>
 
-
 <a href="tel:+38 050 480 0825" class="call-banner" id="callBanner">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.9 19.9 0 0 1 3.1 4.18 2 2 0 0 1 5.1 2h3a2 2 0 0 1 2 1.72c.12.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L9 9a16 16 0 0 0 6 6l.83-.83a2 2 0 0 1 2.11-.45c.74.34 1.53.58 2.34.7A2 2 0 0 1 22 16.92z"/>
@@ -791,7 +789,6 @@
 <script>
 const banner = document.getElementById('callBanner');
 let hideTimeout;
-
 document.querySelectorAll('.open-call-banner').forEach(btn => {
   btn.addEventListener('click', e => {
     e.preventDefault();
@@ -800,15 +797,12 @@ document.querySelectorAll('.open-call-banner').forEach(btn => {
     hideTimeout = setTimeout(() => banner.classList.remove('visible'), 4000);
   });
 });
-
 document.addEventListener('click', e => {
   if (!banner.contains(e.target) && !e.target.classList.contains('open-call-banner')) {
     banner.classList.remove('visible');
   }
 });
-
 banner.addEventListener('click', e => e.stopPropagation());
-
 </script>
 
 
@@ -817,22 +811,19 @@ banner.addEventListener('click', e => e.stopPropagation());
   <!-- 
     - custom js link
   -->
-  <script src="./assets/js/script.js"></script>
-<script src="./js/load-news.js"></script>
+     <script src="./assets/js/script.js"></script>
+     <script src="./js/load-news.js"></script>
     <!-- 
-    - custom js link
-  
+    - custom js link  
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 -->
-
   <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    - ionicon link  
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>-->
   <script>
     new WOW().init();
 </script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
