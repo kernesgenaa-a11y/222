@@ -6,8 +6,8 @@ const urlsToCache = [
   '/icons/icon-512.png',
   '/assets/css/style.css',
   '/assets/js/script.js',
-  '/assets/images/ZARA_LOGO_with_Text.png',
-  '/assets/images/ZARA_LOGO.png',
+  '/assets/images/Dentis_with_Text.png',
+  '/assets/images/Dentis.png',
   '/assets/images/hero-bg.png',
 ];
 

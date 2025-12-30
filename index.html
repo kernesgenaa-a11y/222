@@ -17,7 +17,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
   <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="stylesheet" href="./assets/css/doctors.css">   
+  <link rel="stylesheet" href="./assets/css/doctors.css">
+  <link rel="stylesheet" href="./assets/css/news.css">   
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="preload" fetchpriority="high" as="image" href="./assets/images/hero-banner.png">
   <link rel="preload" fetchpriority="high" as="image" href="./assets/images/hero-bg.png">
@@ -84,7 +85,7 @@
     </div>
     <div id="ios-instructions" class="ios-instructions">
       <!-- Тут твоя картинка інструкції -->
-      <img src="ios-guide.png" alt="Інструкція для iOS">
+      <img src="assets/images/ios-guide.png" alt="Інструкція для iOS">
       <button id="ios-ok-btn" class="pwa-btn">Зрозуміло</button>
     </div>
   </div>
@@ -812,14 +813,7 @@ banner.addEventListener('click', e => e.stopPropagation());
     - custom js link
   -->
      <script src="./assets/js/script.js"></script>
-     <script src="./js/load-news.js"></script>
-    <!-- 
-    - custom js link  
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
--->
-  <!-- 
-    - ionicon link  
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>-->
+     <script src="./js/news.js"></script>
   <script>
     new WOW().init();
 </script>
@@ -850,7 +844,7 @@ banner.addEventListener('click', e => e.stopPropagation());
       "name": "Як записатися на прийом у Dentis?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Запис можливий телефоном, через онлайн-форму на сайті або під час особистого візиту до клініки."
+        "text": "Запис можливий телефоном або під час особистого візиту до клініки."
       }
     },
     {

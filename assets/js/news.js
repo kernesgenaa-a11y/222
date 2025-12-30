@@ -85,19 +85,26 @@ function createNewsCard(data, fullTextHTML) {
 
 function enableToggle() {
   document.querySelectorAll(".toggle-btn").forEach(button => {
-    button.addEventListener("click", () => {
+    button.onclick = () => {
       const card = button.closest(".blog-card");
       const fullText = card.querySelector(".full-text");
+      const isOpen = card.classList.toggle("expanded");
 
-      const isExpanded = card.classList.toggle("expanded");
-      fullText.hidden = !isExpanded;
-      button.textContent = isExpanded ? "Згорнути" : "Читати далі";
-    });
+      fullText.hidden = !isOpen;
+      button.textContent = isOpen ? "Згорнути" : "Читати далі";
+
+      if (!isOpen) {
+        card.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    };
   });
 }
 
-const MAX_VISIBLE = 3;
-let currentIndex = 0;
+const PAGE_SIZE = 3;
+let currentPage = 0;
 let sortedNews = [];
 
 async function loadNews() {
@@ -112,7 +119,7 @@ async function loadNews() {
     if (!raw) continue;
 
     const parsed = parseFrontMatter(raw);
-    if (!parsed || !parsed.data || !parsed.data.date) continue;
+    if (!parsed || !parsed.data?.date) continue;
 
     parsedFiles.push({
       data: parsed.data,
@@ -120,38 +127,65 @@ async function loadNews() {
     });
   }
 
-  sortedNews = parsedFiles.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+  // 🔥 НАЙНОВІШІ ПЕРШИМИ
+  sortedNews = parsedFiles.sort(
+    (a, b) => new Date(b.data.date) - new Date(a.data.date)
+  );
 
-  renderNextBatch();
-
-  if (sortedNews.length > MAX_VISIBLE) {
-    const showMoreBtn = document.createElement("button");
-    showMoreBtn.className = "btn-text title-lg show-more-btn";
-    showMoreBtn.textContent = "Показати більше";
-
-    showMoreBtn.addEventListener("click", () => {
-      renderNextBatch();
-      if (currentIndex >= sortedNews.length) {
-        showMoreBtn.remove();
-      }
-    });
-
-    newsList.insertAdjacentElement("afterend", showMoreBtn);
-  }
+  renderPage();
+  createNavigation();
 }
 
-function renderNextBatch() {
+function renderPage() {
   const newsList = document.querySelector(".grid-list");
-  const nextItems = sortedNews.slice(currentIndex, currentIndex + MAX_VISIBLE);
+  newsList.innerHTML = "";
 
-  for (const item of nextItems) {
+  const start = currentPage * PAGE_SIZE;
+  const pageItems = sortedNews.slice(start, start + PAGE_SIZE);
+
+  pageItems.forEach(item => {
     const fullTextHTML = convertMarkdownToHTML(item.content);
-    const card = createNewsCard(item.data, fullTextHTML);
-    newsList.appendChild(card);
-  }
+    newsList.appendChild(createNewsCard(item.data, fullTextHTML));
+  });
 
-  currentIndex += MAX_VISIBLE;
   enableToggle();
+  updateNavButtons();
+
+  // 🌊 плавна прокрутка до початку новин
+  newsList.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function createNavigation() {
+  const container = document.createElement("div");
+  container.className = "news-nav";
+
+  container.innerHTML = `
+    <button class="nav-btn prev" hidden>←</button>
+    <button class="nav-btn next">→</button>
+  `;
+
+  const prevBtn = container.querySelector(".prev");
+  const nextBtn = container.querySelector(".next");
+
+  prevBtn.onclick = () => {
+    currentPage--;
+    renderPage();
+  };
+
+  nextBtn.onclick = () => {
+    currentPage++;
+    renderPage();
+  };
+
+  document.querySelector(".grid-list").after(container);
+}
+
+function updateNavButtons() {
+  const prevBtn = document.querySelector(".nav-btn.prev");
+  const nextBtn = document.querySelector(".nav-btn.next");
+
+  prevBtn.hidden = currentPage === 0;
+  nextBtn.hidden = (currentPage + 1) * PAGE_SIZE >= sortedNews.length;
 }
 
 document.addEventListener("DOMContentLoaded", loadNews);
