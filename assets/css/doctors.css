@@ -3,8 +3,8 @@
     display:flex;
     gap:16px;
     flex-wrap:wrap}
-    
-    
+
+
 .doctor-card{
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     display: flex;
@@ -76,7 +76,7 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease;
-  
+
 }
 
 
@@ -104,7 +104,7 @@
     margin:4px 0 0;
     color:var(--muted);
     font-size:14px}
-    
+
     @media (max-width:720px){
   .doctors-grid{
     flex-direction:column
