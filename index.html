@@ -70,11 +70,13 @@
   ]
 }
 </script>
+ 
 
 </head>
 
-<!-- Банер -->
+
 <body id="top">
+<!-- Банер -->
   <div id="pwa-banner" class="pwa-banner">
     <div class="pwa-content">
       <img src="assets/images/Dentis_with_Text.png" alt="Логотип" class="pwa-logo">
@@ -90,77 +92,94 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const banner = document.getElementById("pwa-banner");
-      const installBtn = document.getElementById("pwa-install-btn");
-      const closeBtn = document.getElementById("pwa-close-btn");
-      const iosInstructions = document.getElementById("ios-instructions");
-      const iosOkBtn = document.getElementById("ios-ok-btn");
+   document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("pwa-banner");
+    const installBtn = document.getElementById("pwa-install-btn");
+    const closeBtn = document.getElementById("pwa-close-btn");
+    const iosInstructions = document.getElementById("ios-instructions");
+    const iosOkBtn = document.getElementById("ios-ok-btn");
 
-      let deferredPrompt;
+    let deferredPrompt;
 
-      // Перевірка чи вже встановлено або закрито раніше
-      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-      const isBannerDismissed = localStorage.getItem("pwaBannerDismissed") === "true";
+    // Перевірка чи вже встановлено або закрито раніше
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    const isBannerDismissed = localStorage.getItem("pwaBannerDismissed") === "true";
 
-      if (isStandalone || isBannerDismissed) {
-        banner.style.display = "none";
-        return;
-      }
+    // Якщо вже встановлено або закрито користувачем - не показуємо
+    if (isStandalone || isBannerDismissed) {
+      banner.style.display = "none"; 
+      return;
+    }
 
-      // Плавне fade-in при першому показі
-      setTimeout(() => {
-        banner.classList.add("visible");
-      }, 300);
+    // Плавне розгортання при завантаженні (відсуває сайт вниз)
+    setTimeout(() => {
+      banner.classList.add("visible");
+    }, 500);
 
-      // Відловлюємо подію beforeinstallprompt (Android/Chrome)
-      window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-      });
+    // Відловлюємо подію beforeinstallprompt (Android/Chrome)
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
 
-      // Визначаємо iOS
-      const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+    // Визначаємо iOS
+    const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
 
-      installBtn.addEventListener("click", () => {
-        if (isIOS) {
-          iosInstructions.classList.add("active");
-        } else if (deferredPrompt) {
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.then((choice) => {
-            if (choice.outcome === "accepted") {
-              hideBanner();
-            }
-          });
-        }
-      });
-
-      iosOkBtn.addEventListener("click", () => {
-        hideBanner();
-      });
-
-      closeBtn.addEventListener("click", () => {
-        hideBanner();
-      });
-
-      // При першому скролі плавно згортається з затримкою і більше не показується
-      let scrolled = false;
-      window.addEventListener("scroll", () => {
-        if (!scrolled) {
-          scrolled = true;
-          setTimeout(() => {
-            hideBanner();
-          }, 1500);
-        }
-      });
-
-      function hideBanner() {
-        banner.classList.remove("visible");
-        banner.classList.add("hidden");
-        localStorage.setItem("pwaBannerDismissed", "true");
+    installBtn.addEventListener("click", () => {
+      if (isIOS) {
+        // Показуємо інструкцію для iOS
+        iosInstructions.classList.add("active");
+      } else if (deferredPrompt) {
+        // Стандартний промпт для Android/Desktop
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choice) => {
+          if (choice.outcome === "accepted") {
+            hideBanner(true); // Ховаємо назавжди після встановлення
+          }
+        });
       }
     });
+
+    iosOkBtn.addEventListener("click", () => {
+      iosInstructions.classList.remove("active");
+      hideBanner(true); // Ховаємо банер після ознайомлення з інструкцією
+    });
+
+    closeBtn.addEventListener("click", () => {
+      hideBanner(true); // Закриття хрестиком = назавжди
+    });
+
+    // При скролі вниз - плавно ховаємо
+    let scrolled = false;
+    window.addEventListener("scroll", () => {
+      if (!scrolled && window.scrollY > 50) { // Додано поріг > 50px, щоб не спрацьовувало від мікро-рухів
+        scrolled = true;
+        
+        // Затримка перед зникненням
+        setTimeout(() => {
+          // Важливо: При скролі ми ховаємо банер, але чи ховати його НАЗАВЖДИ?
+          // false = при наступному перезавантаженні сторінки він знову з'явиться (якщо не був натиснутий хрестик)
+          // true = більше ніколи не показувати
+          hideBanner(false); 
+        }, 1500);
+      }
+    });
+
+    /**
+     * Функція приховування банера
+     * @param {boolean} remember - чи запам'ятовувати вибір в localStorage
+     */
+    function hideBanner(remember) {
+      banner.classList.remove("visible");
+      banner.classList.add("hidden");
+      
+      if (remember) {
+        localStorage.setItem("pwaBannerDismissed", "true");
+      }
+    }
+  });
   </script>
+ 
   <!-- 
     - #PRELOADER
   -->
@@ -172,18 +191,14 @@
   -->
   <header class="header" data-header>
     <div class="container">
-
       <a href="https://dentis.pp.ua/" class="logo" style="font-size: larger;">
         <img src="./assets/images/Dentis_with_Text.png" style="width: max(11vw,120px);" alt="Dentis">
       </a>
       <nav class="navbar" data-navbar>
-
         <div class="navbar-top">
-
           <a href="https://dentis.pp.ua/" class="logo">
             <img src="./assets/images/Dentis_with_Text.png" width="120" height="48" alt="Dentis home">
           </a>
-
           <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
             <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
           </button>
@@ -191,57 +206,44 @@
         </div>
 
         <ul class="navbar-list">
-
           <li class="navbar-item">
             <a href="index.html" class="navbar-link title-md">Головна</a>
           </li>
-
             <li class="navbar-item">
             <a href="#service" class="navbar-link title-md">Послуги</a>
-          </li>
-   
+          </li>   
           <li class="navbar-item">
             <a href="#about" class="navbar-link title-md">Про нас</a>
-          </li>        
-         
+          </li>     
           <li class="navbar-item">
             <a href="#doctors" class="navbar-link title-md">Лікарі</a>
           </li>
-
            <li class="navbar-item">
             <a href="#blog" class="navbar-link title-md">Новини</a>
           </li>
-
-
           <li class="navbar-item">
             <a href="#contact-details" class="navbar-link title-md">Контакти</a>
           </li>
-
           <li class="navbar-item">
             <a href="#"  class="open-call-banner navbar-link title-md" style="background-color: hsl(182, 100%, 35%); border-radius: 6px;">Записатися на прийом</a>
           </li>
         </ul>
-
         <ul class="social-list">
-
           <li>
             <a href="#" class="social-link">
               <ion-icon name="logo-twitter"></ion-icon>
             </a>
           </li>
-
           <li>
             <a href="#" class="social-link">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
-
           <li>
             <a href="#" class="social-link">
               <ion-icon name="logo-pinterest"></ion-icon>
             </a>
           </li>
-
           <li>
             <a href="https://www.instagram.com/dentis_krop?igsh=MWp3YXR0M3puaXNveQ==" class="social-link">
               <ion-icon name="logo-instagram"></ion-icon>
@@ -266,17 +268,11 @@
     </div>
   </header>
 
-
-
-
-
   <main>
     <article>
-
       <!-- 
         - #HERO
       -->
-
       <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home">      
         <div class="container">
           <div class="hero-content">           
@@ -293,15 +289,9 @@
 
         </div>
       </section>
-
-
-
-
-
       <!-- 
         - #SERVICE
       -->
-
       <section id="service" class="service" aria-label="service">
         <div class="container">
           <ul class="service-list">
@@ -364,18 +354,12 @@
                 </h3>
                 <p class="card-text">
                   Зубний біль, який часто викликаний станом нерва зуба, може з'являтися через запущений карієс, бактерії або травму. Неякісне лікування може призвести до втрати зуба. У наших клініках ми використовуємо передові технології та гарантуємо безпечне та комфортне лікування. Якщо у вас є сумніви щодо стану зуба, рекомендуємо пройти огляд для вчасного вирішення проблеми.
-                </p>
-               
+                </p>               
               </div>
             </li>
           </ul>
         </div>
       </section>
-      
-
-
-
-
 
       <!-- 
         - #ABOUT
@@ -428,10 +412,7 @@
       });
     });
   });
-</script>
-
-
-            
+</script>            
             <div class="wrapper">
               <ul class="about-list">
                 <li class="about-item" data-reveal="left">
@@ -458,19 +439,9 @@
           </figure>
         </div>
       </section> 
-
-
-
-
-
-      <!-- 
-        - #LISTING
-      -->      
-
-      <!-- 
+        <!-- 
         - #BLOG
       -->
-
       <section id="blog" class="section blog" aria-labelledby="blog-label">
         <div class="container">
           <p class="section-subtitle title-lg text-center" id="blog-label" data-reveal="bottom">
@@ -481,8 +452,7 @@
           </ul>
         </div>
       </section>
-      <script src="/assets/js/news.js"></script>
-      
+      <script src="/assets/js/news.js"></script>     
       
      <!-- 
         - #doc
@@ -508,7 +478,9 @@
       </div>
   </section>
 
-
+      <!-- 
+        - #CONTACT DETAILS
+      -->
 
 <section id="contact-details" class="section-p1" data-wow-delay="0.5s" data-wow-duration="1s">
   
