@@ -707,7 +707,7 @@ display: none;
 \*-----------------------------------*/
 
 .blog {
-  background-image: linear-gradient(to bottom, var(--alice-blue) 60%, var(--white) 60%);
+  background-image: linear-gradient(to bottom, var(--alice-blue) 60%);
   padding-block-start: 0;
 }
 
@@ -963,7 +963,7 @@ display: none;
   transition: var(--transition-1);
   opacity: 0;
   z-index: 3;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23fff' viewBox='0 0 32 32'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
     }
 
 
@@ -2469,20 +2469,20 @@ Product */
 .pwa-banner {
     background-color: var(--midnight-green); /* Колір фону банера */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    max-width: 100%;
     z-index: 10;
     position: relative; 
     overflow: hidden;  
-     height: 0;
-  opacity: 0;
-  padding: 0;
-     transition:
-    height 0.5s ease,
-    opacity 0.3s ease,
-    padding 0.5s ease;
+    height: 0;
+    opacity: 0;
+    padding: 0;
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
+    transition:
+     height 0.5s ease,
+     opacity 0.3s ease,
+     padding 0.5s ease;
   }
 
 .pwa-banner.visible {
@@ -2520,12 +2520,12 @@ Product */
     flex-grow: 1;
     font-size: 14px;
     font-weight: 500;
-    color: #333;
+    color: #ffffff;
     margin-right: 10px;
   }
 
  .pwa-btn {
-    background-color: #007bff;
+    background-color: var(--verdigris);
     color: white;
     border: none;
     padding: 8px 16px;

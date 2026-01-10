@@ -127,7 +127,7 @@ async function loadNews() {
     });
   }
 
-  // 🔥 НАЙНОВІШІ ПЕРШИМИ
+  // НАЙНОВІШІ ПЕРШИМИ
   sortedNews = parsedFiles.sort(
     (a, b) => new Date(b.data.date) - new Date(a.data.date)
   );
@@ -151,7 +151,6 @@ function renderPage() {
   enableToggle();
   updateNavButtons();
 
-  // 🌊 плавна прокрутка до початку новин
   newsList.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
