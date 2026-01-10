@@ -70,8 +70,6 @@
   ]
 }
 </script>
- 
-
 </head>
 
 
@@ -85,101 +83,11 @@
       <button id="pwa-close-btn" class="pwa-close">✕</button>
     </div>
     <div id="ios-instructions" class="ios-instructions">
-      <!-- Тут твоя картинка інструкції -->
       <img src="assets/images/ios-guide.png" alt="Інструкція для iOS">
       <button id="ios-ok-btn" class="pwa-btn">Зрозуміло</button>
     </div>
   </div>
 
-  <script>
-   document.addEventListener("DOMContentLoaded", () => {
-    const banner = document.getElementById("pwa-banner");
-    const installBtn = document.getElementById("pwa-install-btn");
-    const closeBtn = document.getElementById("pwa-close-btn");
-    const iosInstructions = document.getElementById("ios-instructions");
-    const iosOkBtn = document.getElementById("ios-ok-btn");
-
-    let deferredPrompt;
-
-    // Перевірка чи вже встановлено або закрито раніше
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-    const isBannerDismissed = localStorage.getItem("pwaBannerDismissed") === "true";
-
-    // Якщо вже встановлено або закрито користувачем - не показуємо
-    if (isStandalone || isBannerDismissed) {
-      banner.style.display = "none"; 
-      return;
-    }
-
-    // Плавне розгортання при завантаженні (відсуває сайт вниз)
-    setTimeout(() => {
-      banner.classList.add("visible");
-    }, 500);
-
-    // Відловлюємо подію beforeinstallprompt (Android/Chrome)
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-    });
-
-    // Визначаємо iOS
-    const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
-
-    installBtn.addEventListener("click", () => {
-      if (isIOS) {
-        // Показуємо інструкцію для iOS
-        iosInstructions.classList.add("active");
-      } else if (deferredPrompt) {
-        // Стандартний промпт для Android/Desktop
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choice) => {
-          if (choice.outcome === "accepted") {
-            hideBanner(true); // Ховаємо назавжди після встановлення
-          }
-        });
-      }
-    });
-
-    iosOkBtn.addEventListener("click", () => {
-      iosInstructions.classList.remove("active");
-      hideBanner(true); // Ховаємо банер після ознайомлення з інструкцією
-    });
-
-    closeBtn.addEventListener("click", () => {
-      hideBanner(true); // Закриття хрестиком = назавжди
-    });
-
-    // При скролі вниз - плавно ховаємо
-    let scrolled = false;
-    window.addEventListener("scroll", () => {
-      if (!scrolled && window.scrollY > 50) { // Додано поріг > 50px, щоб не спрацьовувало від мікро-рухів
-        scrolled = true;
-        
-        // Затримка перед зникненням
-        setTimeout(() => {
-          // Важливо: При скролі ми ховаємо банер, але чи ховати його НАЗАВЖДИ?
-          // false = при наступному перезавантаженні сторінки він знову з'явиться (якщо не був натиснутий хрестик)
-          // true = більше ніколи не показувати
-          hideBanner(false); 
-        }, 1500);
-      }
-    });
-
-    /**
-     * Функція приховування банера
-     * @param {boolean} remember - чи запам'ятовувати вибір в localStorage
-     */
-    function hideBanner(remember) {
-      banner.classList.remove("visible");
-      banner.classList.add("hidden");
-      
-      if (remember) {
-        localStorage.setItem("pwaBannerDismissed", "true");
-      }
-    }
-  });
-  </script>
- 
   <!-- 
     - #PRELOADER
   -->
@@ -269,8 +177,8 @@
   </header>
 
   <main>
-    <article>
-      <!-- 
+    <article>    
+        <!-- 
         - #HERO
       -->
       <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home">      
