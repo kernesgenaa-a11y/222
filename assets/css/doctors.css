@@ -87,8 +87,8 @@
 }
 
 .avatar{
-    width:72px;
-    height:72px;
+    width:144px;
+    height:152px;
     border-radius:50%;
     background:linear-gradient(135deg,var(--accent),#1E88E5);
     display:flex;
