@@ -1,0 +1,27 @@
+name: CI Validate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dev deps
+        run: npm ci
+      - name: Run HTML validator
+        run: npm run lint-html
+      - name: Check manifest
+        run: npm run check-manifest
+      - name: Build bundle
+        run: npm run build
+      - name: List artifacts
+        run: ls -la assets/dist || true

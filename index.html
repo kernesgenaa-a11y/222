@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="title" content="Dentis"><title>Стоматологія Dentis — лікування зубів у Кропивницькому</title>
+  <meta name="title" content="Dentis">
+  <title>Стоматологія Dentis — лікування зубів у Кропивницькому</title>
   <meta name="description" content="Стоматологічна клініка Dentis у Кропивницькому. Лікування зубів, професійна гігієна. Сучасне обладнання, досвідчені лікарі.">
   <meta name="keywords" content="стоматологія Кропивницький, стоматолог Кропивницький, лікування зубів, Dentis">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,23 +13,25 @@
   <link rel="shortcut icon" href="assets/images/Dentis.png" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/doctors.css">
   <link rel="stylesheet" href="./assets/css/news.css">
-  <link rel="preload" fetchpriority="high" as="image" href="./assets/images/hero-banner.png">
-  <link rel="preload" fetchpriority="high" as="image" href="./assets/images/hero-bg.png">
+  <!-- preload hero images (AVIF preferred, then WebP, fallback PNG) -->
+  <link rel="preload" fetchpriority="high" as="image" href="./assets/images/opt/hero-bg.avif" type="image/avif">
+  <link rel="preload" fetchpriority="high" as="image" href="./assets/images/opt/hero-bg.webp" type="image/webp">
+  <link rel="preload" fetchpriority="high" as="image" href="./assets/images/hero-bg.png" type="image/png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#005761">
   <link rel="apple-touch-icon" href="/icons/icon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="stylesheet" href="/pwa/pwa.css">
+  <!-- pwa styles not present in repo; remove or add if needed -->
     
     <script type="application/ld+json">
 {
@@ -100,15 +103,15 @@
   -->
   <header class="header" data-header>
     <div class="container">
-      <a href="https://dentis.pp.ua/" class="logo" style="font-size: larger;">
-        <img src="./assets/images/Dentis_with_Text.png" style="width: max(11vw,120px);" alt="Dentis">
+      <a href="https://dentis.pp.ua/" class="logo logo-large">
+        <img src="./assets/images/Dentis_with_Text.png" class="logo-img" alt="Dentis">
       </a>
-      <nav class="navbar" data-navbar>
+      <nav class="navbar" data-navbar id="primary-navigation">
         <div class="navbar-top">
           <a href="https://dentis.pp.ua/" class="logo">
             <img src="./assets/images/Dentis_with_Text.png" width="120" height="48" alt="Dentis home">
           </a>
-          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler aria-controls="primary-navigation" aria-expanded="false">
             <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
           </button>
 
@@ -134,7 +137,7 @@
             <a href="#contact-details" class="navbar-link title-md">Контакти</a>
           </li>
           <li class="navbar-item">
-            <a href="#"  class="open-call-banner navbar-link title-md" style="background-color: hsl(182, 100%, 35%); border-radius: 6px;">Записатися на прийом</a>
+            <a href="#" class="open-call-banner navbar-link title-md cta">Записатися на прийом</a>
           </li>
         </ul>
         <ul class="social-list">
@@ -169,7 +172,7 @@
 
       </nav>
 
-      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler aria-controls="primary-navigation" aria-expanded="false">
         <ion-icon name="menu-outline"></ion-icon>
       </button>
 
@@ -182,7 +185,7 @@
         <!-- 
         - #HERO
       -->
-      <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home">      
+      <section class="section hero" aria-label="home">      
         <div class="container">
           <div class="hero-content">           
             <p class="hero-subtitle has-before" data-reveal="left">Стоматолог у м.Кропивницький</p>
@@ -192,8 +195,11 @@
             </h1>          
           </div>
           <figure class="hero-banner" data-reveal="right">
-            <img src="./assets/images/hero-banner.png"  alt="hero banner"
-              class="w-100">
+            <picture>
+              <source type="image/avif" srcset="./assets/images/opt/about-banner.avif">
+              <source type="image/webp" srcset="./assets/images/opt/about-banner.webp">
+              <img src="./assets/images/about-banner.png" alt="Герой банер — стоматологія Dentis" class="w-100">
+            </picture>
           </figure>
 
         </div>
@@ -203,13 +209,14 @@
       -->
       <section id="service" class="service" aria-label="service">
         <div class="container">
+          <h2 class="section-title headline-md" data-reveal="left">Наші послуги</h2>
           <ul class="service-list">
             <li>
               <div class="service-card" data-reveal="bottom">
                 <div class="card-icon">
                  <!-- <img src="./assets/images/message1.png" width="71" height="71" loading="lazy" alt="icon">-->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" stroke="#0FA3A3" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="cleanTitle">
-  
+  <title id="cleanTitle">Іконка послуги — очищення</title>
   <path d="M12 2c-1.5 0-2.8.8-3.6 2.1C7.2 6 7 7.8 7 9.5 7 13.5 9.9 16.9 13 18c3.1-1.1 6-4.5 6-8.5 0-1.7-.2-3.5-1.4-5.4C14.8 2.8 13.5 2 12 2z"/>
   <path d="M4 20s2-3 6-3" />
   <path d="M20 6l-3 3" />
@@ -228,7 +235,7 @@
             <li>
               <div class="service-card" data-reveal="bottom">
                 <div class="card-icon">
-                  <img src="./assets/images/Physical Rehabilitation.png" width="71" height="71" loading="lazy" alt="icon">
+                  <img src="./assets/images/Physical%20Rehabilitation.png" width="71" height="71" loading="lazy" alt="">
                 </div>
                 <h3 class="headline-sm card-title">
                   <a href="#">Професійне очищення</a>
@@ -242,7 +249,7 @@
             <li>
               <div class="service-card" data-reveal="bottom">
                 <div class="card-icon">
-                  <img src="./assets/images/Acupuncture.png" width="71" height="71" loading="lazy" alt="icon">
+                  <img src="./assets/images/Acupuncture.png" width="71" height="71" loading="lazy" alt="">
                 </div>
                 <h3 class="headline-sm card-title">
                   <a href="#">Хірургія</a>
@@ -256,7 +263,7 @@
             <li>
               <div class="service-card" data-reveal="bottom">
                 <div class="card-icon">
-                  <img src="./assets/images/Aromatherapy.png" width="71" height="71" loading="lazy" alt="icon">
+                  <img src="./assets/images/Aromatherapy.png" width="71" height="71" loading="lazy" alt="">
                 </div>
                 <h3 class="headline-sm card-title">
                   <a href="#">Лікування каналів зуба</a>
@@ -300,28 +307,6 @@
     Наша команда спеціалізується на терапевтичній, ортопедичній, хірургічній та естетичній стоматології. Ми пропонуємо комплексні рішення для здоров’я та краси вашої усмішки.
   </div>
 </div>
-
-<script>
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-text');
-
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const target = button.getAttribute('data-tab');
-
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      tabContents.forEach(content => {
-        if (content.getAttribute('data-tab-content') === target) {
-          content.classList.add('active');
-        } else {
-          content.classList.remove('active');
-        }
-      });
-    });
-  });
-</script>            
             <div class="wrapper">
               <ul class="about-list">
                 <li class="about-item" data-reveal="left">
@@ -343,8 +328,12 @@
               </ul>
             </div>
           </div>
-           <figure class="about-banner" data-reveal="right">
-            <img src="./assets/images/about-banner.png" width="554" height="678" loading="lazy" alt="about therapists banner" class="w-100">
+          <figure class="about-banner" data-reveal="right">
+            <picture>
+              <source type="image/avif" srcset="./assets/images/opt/about-banner.avif">
+              <source type="image/webp" srcset="./assets/images/opt/about-banner.webp">
+              <img src="./assets/images/about-banner.png" width="554" height="678" loading="lazy" alt="about therapists banner" class="w-100">
+            </picture>
           </figure>
         </div>
       </section> 
@@ -360,7 +349,7 @@
           <ul class="grid-list">           
           </ul>
         </div>
-        <script src="/assets/js/news.js"></script> 
+        
       </section>
           
       
@@ -370,13 +359,17 @@
   <section id="doctors" class="section doctors">
       <div class="container">
         <div class="section doctors tittle">
-        <h1 class="section-subtitle title-lg text-center" id="blog-label" data-reveal="bottom">Наші</h1>
+        <h2 class="section-subtitle title-lg text-center" id="doctors-label" data-reveal="bottom">Наші</h2>
           <h2 class="section-title headline-md text-center" data-reveal="bottom">Лікарі</h2>
           </div>
         <div class="doctors-grid">
           <div class="doctor-card">
             
-              <img src="/assets/images/1.png" class="avatar" alt="OOV">
+              <picture>
+                <source type="image/avif" srcset="./assets/images/opt/1.avif">
+                <source type="image/webp" srcset="./assets/images/opt/1.webp">
+                <img src="/assets/images/1.png" class="avatar" alt="OOV">
+              </picture>
             
             <div class="doctor-info">
               <div class="doctor-name">Олександ Олександрович Верховський</div>
@@ -400,7 +393,7 @@
             <div class="contact-content">
             <div>
                 <i class="fas fa-phone"></i>          
-                <a href="tel:+38 050 480 0825" class="contact-link">+380504800825</a>
+                <a href="tel:+380504800825" class="contact-link">+380504800825</a>
             </div>
             <div>
                 <i class="far fa-envelope"></i> 
@@ -421,7 +414,7 @@
             </div>         
         </div>
         <div class="map wow animate__animated animate__fadeInRight">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2643.656772483319!2d32.21787637667696!3d48.501473225757316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d043f27017c63f%3A0x154da7cabb6e9d5c!2z0JTQtdC90YLQuNGB!5e0!3m2!1suk!2sua!4v1760328933472!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe title="Карта — Dentis, Кропивницький" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2643.656772483319!2d32.21787637667696!3d48.501473225757316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d043f27017c63f%3A0x154da7cabb6e9d5c!2z0JTQtdC90YLQuNGB!5e0!3m2!1suk!2sua!4v1760328933472!5m2!1suk!2sua" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
      
 </section>
@@ -465,16 +458,20 @@
 
 
 
- <section class="review" id="section review">
+ <section class="review" id="section-review">
   <div class="container">
           
     
-    <h1 class="heading"><span>Відгуки</span> </h1>
+    <h2 class="heading"><span>Відгуки</span></h2>
 
     <div class="box-container">
 
         <div class="box">
-            <img src="./assets/images/rew1.avif" alt="1">
+            <picture>
+              <source type="image/avif" srcset="./assets/images/opt/rew1.avif">
+              <source type="image/webp" srcset="./assets/images/opt/rew1.webp">
+              <img src="./assets/images/rew1.avif" alt="Відгук клієнта Pavlo Bidnenko">
+            </picture>
             <h3>Pavlo Bidnenko</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -487,7 +484,11 @@
         </div>
 
         <div class="box">
-            <img src="./assets/images/rew2.avif" alt="1">
+            <picture>
+              <source type="image/avif" srcset="./assets/images/opt/rew2.avif">
+              <source type="image/webp" srcset="./assets/images/opt/rew2.webp">
+              <img src="./assets/images/rew2.avif" alt="Відгук клієнта Людмила">
+            </picture>
             <h3>Людмила</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -500,7 +501,11 @@
         </div>
 
         <div class="box">
-            <img src="./assets/images/rew3.avif" alt="3">
+            <picture>
+              <source type="image/avif" srcset="./assets/images/opt/rew3.avif">
+              <source type="image/webp" srcset="./assets/images/opt/rew3.webp">
+              <img src="./assets/images/rew3.avif" alt="Відгук клієнта Юліана Динул">
+            </picture>
             <h3>Юліана Динул</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -532,7 +537,7 @@
     - #FOOTER
   -->
 
- <footer class="footer" style="background-image: url('./assets/images/footer-bg.png')">
+ <footer class="footer footer--bg">
     <div class="container">
       <div class="section footer-top">
         <div class="footer-brand" data-reveal="bottom">
@@ -562,7 +567,7 @@
               </div>
               <div>
                 <p>
-                  Номер телефону : <a href="tel:+38 050 480 0825" class="contact-link">+38 050 480 0825</a>
+                  Номер телефону : <a href="tel:+380504800825" class="contact-link">+38 050 480 0825</a>
                 </p>
               </div>
             </li>
@@ -601,9 +606,9 @@
         </ul>
         <div class="footer-list-btn" data-reveal="bottom">
           
-          <form action="" class="footer-form">
+          <form class="footer-form">
             
-            <button id="openCallBanner"  class="open-call-banner navbar-link title-md" style="background-color: hsl(182, 100%, 35%); border-radius: 6px;">Зателефонувати</button>
+            <button id="openCallBanner"  class="open-call-banner navbar-link title-md cta">Зателефонувати</button>
           </form>
           
         </div>
@@ -651,37 +656,13 @@
   <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
     <ion-icon name="chevron-up"></ion-icon>
   </a>
-<a href="tel:+38 050 480 0825" class="call-banner" id="callBanner">
+<a href="tel:+380504800825" class="call-banner" id="callBanner">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.9 19.9 0 0 1 3.1 4.18 2 2 0 0 1 5.1 2h3a2 2 0 0 1 2 1.72c.12.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L9 9a16 16 0 0 0 6 6l.83-.83a2 2 0 0 1 2.11-.45c.74.34 1.53.58 2.34.7A2 2 0 0 1 22 16.92z"/>
   </svg>
 </a>
-<script>
-const banner = document.getElementById('callBanner');
-let hideTimeout;
-document.querySelectorAll('.open-call-banner').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    banner.classList.add('visible');
-    clearTimeout(hideTimeout);
-    hideTimeout = setTimeout(() => banner.classList.remove('visible'), 4000);
-  });
-});
-document.addEventListener('click', e => {
-  if (!banner.contains(e.target) && !e.target.classList.contains('open-call-banner')) {
-    banner.classList.remove('visible');
-  }
-});
-banner.addEventListener('click', e => e.stopPropagation());
-</script>
-  <!-- 
-    - custom js link
-  -->
-     <script src="./assets/js/script.js"></script>
-     <script src="./js/news.js"></script>
-  <script>
-    new WOW().init();
-</script>
+  <!-- bundled scripts -->
+  <script src="assets/dist/bundle.js" defer></script>
 
 <script type="application/ld+json">
 {

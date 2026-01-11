@@ -9,6 +9,8 @@ const urlsToCache = [
   '/assets/images/Dentis_with_Text.png',
   '/assets/images/Dentis.png',
   '/assets/images/hero-bg.png',
+  '/assets/images/opt/hero-bg.avif',
+  '/assets/images/opt/hero-bg.webp',
 ];
 
 // Встановлення та кешування

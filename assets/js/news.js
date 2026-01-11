@@ -127,23 +127,29 @@ async function loadNews() {
     });
   }
 
-  // НАЙНОВІШІ ПЕРШИМИ
+  // Найновіші першими
   sortedNews = parsedFiles.sort(
     (a, b) => new Date(b.data.date) - new Date(a.data.date)
   );
 
-  renderPage();
   createNavigation();
+  console.debug('news: parsedFiles=', parsedFiles.length, 'sortedNews=', sortedNews.length);
+  renderCarousel();
+  // ensure layout after render
+  layoutCarousel();
+  window.addEventListener('resize', () => layoutCarousel());
+  // enable touch swipe on mobile
+  setupSwipe();
 }
 
-function renderPage() {
+function renderCarousel() {
   const newsList = document.querySelector(".grid-list");
+  if (!newsList) return;
+
   newsList.innerHTML = "";
+  newsList.classList.add('carousel');
 
-  const start = currentPage * PAGE_SIZE;
-  const pageItems = sortedNews.slice(start, start + PAGE_SIZE);
-
-  pageItems.forEach(item => {
+  sortedNews.forEach(item => {
     const fullTextHTML = convertMarkdownToHTML(item.content);
     newsList.appendChild(createNewsCard(item.data, fullTextHTML));
   });
@@ -151,40 +157,138 @@ function renderPage() {
   enableToggle();
   updateNavButtons();
 
-  newsList.scrollIntoView({ behavior: "smooth", block: "start" });
+  // initial position
+  const viewport = document.querySelector('.carousel-viewport');
+  if (viewport) {
+    const list = newsList;
+    list.style.transition = 'transform 400ms ease';
+    list.style.transform = `translateX(-${currentPage * viewport.clientWidth}px)`;
+  }
+}
+
+function layoutCarousel() {
+  const list = document.querySelector('.grid-list');
+  const viewport = document.querySelector('.carousel-viewport');
+  if (!list || !viewport) return;
+
+  const items = Array.from(list.querySelectorAll('li'));
+  const percent = 100 / PAGE_SIZE;
+
+  items.forEach(li => {
+    li.style.flex = `0 0 ${percent}%`;
+    li.style.maxWidth = `${percent}%`;
+    li.style.boxSizing = 'border-box';
+  });
+
+  // set transform in pixels so it's viewport-accurate
+  const shift = currentPage * viewport.clientWidth;
+  list.style.transform = `translateX(-${shift}px)`;
+}
+
+function setupSwipe() {
+  const viewport = document.querySelector('.carousel-viewport');
+  const list = document.querySelector('.grid-list');
+  if (!viewport || !list) return;
+
+  let startX = 0;
+  let currentX = 0;
+  let isDown = false;
+  const threshold = 50; // px
+
+  // allow vertical scrolling but capture horizontal pointer moves
+  viewport.style.touchAction = 'pan-y';
+
+  viewport.addEventListener('pointerdown', (e) => {
+    isDown = true;
+    startX = e.clientX;
+    currentX = startX;
+    try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+    list.style.transition = 'none';
+  });
+
+  viewport.addEventListener('pointermove', (e) => {
+    if (!isDown) return;
+    currentX = e.clientX;
+    const dx = currentX - startX;
+    const base = -currentPage * viewport.clientWidth;
+    list.style.transform = `translateX(${base + dx}px)`;
+  });
+
+  function endPointer(e) {
+    if (!isDown) return;
+    isDown = false;
+    try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
+    const dx = currentX - startX;
+    list.style.transition = 'transform 400ms ease';
+    if (Math.abs(dx) > threshold) {
+      changePage(dx < 0 ? 1 : -1);
+    } else {
+      // snap back
+      const shift = currentPage * viewport.clientWidth;
+      list.style.transform = `translateX(-${shift}px)`;
+    }
+  }
+
+  viewport.addEventListener('pointerup', endPointer);
+  viewport.addEventListener('pointercancel', endPointer);
 }
 
 function createNavigation() {
-  const container = document.createElement("div");
-  container.className = "news-nav";
+  if (document.querySelector('.news-wrapper')) return;
 
-  container.innerHTML = `
-    <button class="nav-btn prev" hidden>←</button>
-    <button class="nav-btn next">→</button>
-  `;
+  const list = document.querySelector('.grid-list');
+  if (!list) return;
 
-  const prevBtn = container.querySelector(".prev");
-  const nextBtn = container.querySelector(".next");
+  const wrapper = document.createElement('div');
+  wrapper.className = 'news-wrapper';
 
-  prevBtn.onclick = () => {
-    currentPage--;
-    renderPage();
-  };
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'nav-btn prev';
+  prevBtn.setAttribute('aria-label', 'previous news');
+  prevBtn.innerHTML = '<svg class="strelka-left-3" viewBox="0 0 5 9" xmlns="http://www.w3.org/2000/svg">\n    <path fill="currentColor" d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z"></path>\n  </svg>';
 
-  nextBtn.onclick = () => {
-    currentPage++;
-    renderPage();
-  };
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'nav-btn next';
+  nextBtn.setAttribute('aria-label', 'next news');
+  nextBtn.innerHTML = '<svg class="strelka-right-3" viewBox="0 0 5 9" xmlns="http://www.w3.org/2000/svg">\n    <path fill="currentColor" d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z"></path>\n  </svg>';
 
-  document.querySelector(".grid-list").after(container);
+  const viewport = document.createElement('div');
+  viewport.className = 'carousel-viewport';
+
+  // insert wrapper and move list into viewport
+  list.parentElement.insertBefore(wrapper, list);
+  wrapper.appendChild(prevBtn);
+  wrapper.appendChild(viewport);
+  viewport.appendChild(list);
+  wrapper.appendChild(nextBtn);
+
+  prevBtn.addEventListener('click', () => changePage(-1));
+  nextBtn.addEventListener('click', () => changePage(1));
+}
+
+function changePage(delta) {
+  const list = document.querySelector('.grid-list');
+  const viewport = document.querySelector('.carousel-viewport');
+  if (!list || !viewport) return;
+
+  const totalPages = Math.ceil(sortedNews.length / PAGE_SIZE) || 0;
+  const newPage = Math.max(0, Math.min(totalPages - 1, currentPage + delta));
+  if (newPage === currentPage) return;
+
+  currentPage = newPage;
+  const shift = currentPage * viewport.clientWidth;
+  list.style.transition = 'transform 400ms ease';
+  list.style.transform = `translateX(-${shift}px)`;
+  updateNavButtons();
 }
 
 function updateNavButtons() {
   const prevBtn = document.querySelector(".nav-btn.prev");
   const nextBtn = document.querySelector(".nav-btn.next");
+  const totalPages = Math.ceil(sortedNews.length / PAGE_SIZE) || 0;
 
-  prevBtn.hidden = currentPage === 0;
-  nextBtn.hidden = (currentPage + 1) * PAGE_SIZE >= sortedNews.length;
+  if (prevBtn) prevBtn.hidden = currentPage === 0;
+  if (nextBtn) nextBtn.hidden = currentPage >= totalPages - 1;
 }
 
 document.addEventListener("DOMContentLoaded", loadNews);
