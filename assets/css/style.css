@@ -519,6 +519,7 @@ body.nav-active { overflow: hidden; }
   padding-block: 60px 30px;
   padding-inline: 25px;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   border-radius: var(--radius-12);
   margin-block-start: -60px;
@@ -526,7 +527,8 @@ body.nav-active { overflow: hidden; }
   box-shadow: var(--shadow-1);
 }
 
-.service-card { text-align: center; }
+.service-card { text-align: center;
+height: 100%; }
 
 .service-card .card-icon,
 .btn-circle {
@@ -536,7 +538,10 @@ body.nav-active { overflow: hidden; }
 
 .service-card .card-icon { margin-block-end: 25px; }
 
-.service-card .card-text { margin-block: 20px 15px; }
+.service-card .card-text { 
+  text-align: justify;
+  line-height: 1.6;
+  margin-block: 20px 15px; }
 
 .service-card .btn-circle {
   color: var(--verdigris);
@@ -567,7 +572,8 @@ body.nav-active { overflow: hidden; }
   gap: 20px;
 }
 
-.about .section-text { margin-block: 20px 35px; }
+.about .section-text { margin-block: 20px 35px;
+max-width: 500px; }
 
 .tab-list {
   display: grid;
@@ -602,6 +608,7 @@ body.nav-active { overflow: hidden; }
   display: block;
   color: var(--midnight-green);
   margin-block: 35px;
+  max-width: 500px;
   max-height: 500px;
   opacity: 1;
   transform: translateY(0);
@@ -955,7 +962,6 @@ display: none;
   bottom: 30px;
   right: 30px;
   background-color: var(--verdigris);
-  cursor: pointer;
   color: var(--white);
   padding: 16px;
   font-size: 2rem;
@@ -963,9 +969,7 @@ display: none;
   transition: var(--transition-1);
   opacity: 0;
   z-index: 3;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23fff' viewBox='0 0 32 32'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
-    }
-
+}
 
 .back-top-btn:is(:hover, :focus-visible) { background-color: var(--eerie-black); }
 
@@ -1162,7 +1166,29 @@ display: none;
    * SERVICE
    */
 
-  .service-list { grid-template-columns: repeat(4, 1fr); }
+  /* Desktop: display service items as a horizontal carousel showing 4 items */
+  .service-list {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    align-items: stretch;
+  }
+
+  .service-list > li {
+    flex: 0 0 calc(100% / 4);
+    max-width: calc(100% / 4);
+    scroll-snap-align: start;
+    list-style: none;
+    box-sizing: border-box;
+  }
+
+  /* hide native scrollbar but keep functionality */
+  .service-list::-webkit-scrollbar { display: none; }
+  .service-list { -ms-overflow-style: none; scrollbar-width: none; }
 
 
 
@@ -1359,6 +1385,7 @@ display: none;
   margin-bottom: 0px;
   margin-left: 0px;
   line-height: 25px;
+  text-align: center;
 }
 
 .responsive-cell-block {
@@ -1445,6 +1472,7 @@ display: none;
   margin-right: 0px;
   margin-bottom: 5px;
   margin-left: 0px;
+  text-align: center;
 }
 
 .position {
@@ -2281,22 +2309,23 @@ padding: 0rem;
 
 
 /*-----------------------------------*\
-  review section appointment Page
+  review section
 \*-----------------------------------*/
+/* 
 .review .box {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.9s ease;
+    transition: all 0.5s ease;
 }
 
-/* клас, який активує анімацію */
+клас, який активує анімацію 
 .review .box.show {
     opacity: 1;
     transform: translateY(0);
 }
 .review .box:nth-child(1) { transition-delay: 0.1s; }
 .review .box:nth-child(2) { transition-delay: 0.2s; }
-.review .box:nth-child(3) { transition-delay: 0.25s; }
+.review .box:nth-child(3) { transition-delay: 0.2s; }*/*/
 
 .review .box-container{
   display: grid;
@@ -2467,7 +2496,7 @@ Product */
 /*baner*/
 
 .pwa-banner {
-    background-color: var(--midnight-green); /* Колір фону банера */
+    background-color: var(--midnight-green); 
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     max-width: 100%;
     z-index: 10;
@@ -2697,12 +2726,7 @@ Product */
 
 /* Circular styled side buttons matching site theme */
 .news-wrapper .nav-btn {
-  width: 56px;
-  height: 56px;
-  padding: 0;
-  border-radius: 50%;
-  background: var(--verdigris);
-  color: var(--white);
+  
   border: none;
   display: inline-flex;
   align-items: center;
@@ -2843,7 +2867,7 @@ Product */
   font-size: 1.8rem;
 }
 
-.nav-btn svg { display: block; width: 12px; height: 20px; }
+.nav-btn svg { display: block; width: 30px; height: 30px; }
 
 .nav-btn[hidden] { opacity: 0.15; pointer-events: none; }
 

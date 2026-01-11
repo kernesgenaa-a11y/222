@@ -208,5 +208,65 @@ window.addEventListener("load", revealElementOnScroll);
 
 
 
+  /* ---------------------------------------------
+     SERVICE CAROUSEL - autoplay by 4 items (slow)
+     --------------------------------------------- */
+  document.addEventListener('DOMContentLoaded', () => {
+    const serviceList = document.querySelector('.service-list');
+    if (!serviceList) return;
+
+    const items = serviceList.querySelectorAll('li');
+    const VISIBLE = 4; // number of visible items to move by
+    const AUTOPLAY_DELAY = 5000; // 5 seconds - slow
+    let timer = null;
+
+    const scrollStep = () => {
+      // scroll by container width (shows next group of VISIBLE items)
+      const step = serviceList.clientWidth;
+      const maxScrollLeft = serviceList.scrollWidth - serviceList.clientWidth;
+
+      if (serviceList.scrollLeft >= maxScrollLeft - 2) {
+        // when at the end, go back to start smoothly
+        serviceList.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        serviceList.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+      if (window.innerWidth >= 992 && items.length > VISIBLE) {
+        timer = setInterval(scrollStep, AUTOPLAY_DELAY);
+      }
+    };
+
+    const stopAutoplay = () => {
+      if (timer) { clearInterval(timer); timer = null; }
+    };
+
+    // start/stop based on viewport
+    const onResize = () => {
+      if (window.innerWidth >= 992 && items.length > VISIBLE) startAutoplay();
+      else stopAutoplay();
+    };
+
+    onResize();
+    window.addEventListener('resize', onResize);
+
+    // Pause autoplay on user interaction
+    serviceList.addEventListener('mouseenter', stopAutoplay);
+    serviceList.addEventListener('mouseleave', startAutoplay);
+    serviceList.addEventListener('touchstart', stopAutoplay, { passive: true });
+    serviceList.addEventListener('touchend', startAutoplay, { passive: true });
+
+    // allow keyboard focus to pause autoplay
+    serviceList.addEventListener('focusin', stopAutoplay);
+    serviceList.addEventListener('focusout', startAutoplay);
+
+    // Provide affordance for dragging
+    serviceList.style.cursor = 'grab';
+    serviceList.addEventListener('pointerdown', () => { serviceList.style.cursor = 'grabbing'; });
+    serviceList.addEventListener('pointerup', () => { serviceList.style.cursor = 'grab'; });
+  });
 
 

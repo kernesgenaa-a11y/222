@@ -193,44 +193,80 @@ function setupSwipe() {
   let startX = 0;
   let currentX = 0;
   let isDown = false;
-  const threshold = 50; // px
+  let isDragging = false; // Додали прапорець, щоб розрізняти клік і свайп
+  const threshold = 10; // Поріг у пікселях, після якого рух вважається свайпом
 
-  // allow vertical scrolling but capture horizontal pointer moves
   viewport.style.touchAction = 'pan-y';
 
   viewport.addEventListener('pointerdown', (e) => {
     isDown = true;
+    isDragging = false; // Скидаємо прапорець
     startX = e.clientX;
     currentX = startX;
-    try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
     list.style.transition = 'none';
+    // ВАЖЛИВО: Ми НЕ робимо setPointerCapture тут. 
+    // Ми зробимо це тільки якщо користувач почне рухати мишу.
   });
 
   viewport.addEventListener('pointermove', (e) => {
     if (!isDown) return;
-    currentX = e.clientX;
-    const dx = currentX - startX;
-    const base = -currentPage * viewport.clientWidth;
-    list.style.transform = `translateX(${base + dx}px)`;
+    
+    const dxRaw = e.clientX - startX;
+
+    // Якщо ми ще не в режимі перетягування, перевіряємо, чи ми "поїхали" достатньо далеко
+    if (!isDragging && Math.abs(dxRaw) > threshold) {
+      isDragging = true;
+      try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+
+    // Якщо ми в режимі перетягування — рухаємо слайдер
+    if (isDragging) {
+      e.preventDefault(); // Запобігаємо виділенню тексту тощо
+      currentX = e.clientX;
+      const dx = currentX - startX;
+      const base = -currentPage * viewport.clientWidth;
+      list.style.transform = `translateX(${base + dx}px)`;
+    }
   });
 
   function endPointer(e) {
     if (!isDown) return;
     isDown = false;
-    try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
-    const dx = currentX - startX;
-    list.style.transition = 'transform 400ms ease';
-    if (Math.abs(dx) > threshold) {
-      changePage(dx < 0 ? 1 : -1);
+    
+    if (isDragging) {
+      try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
+      
+      const dx = currentX - startX;
+      list.style.transition = 'transform 400ms ease';
+      
+      if (Math.abs(dx) > 50) { // Поріг для перемикання слайду
+        changePage(dx < 0 ? 1 : -1);
+      } else {
+        // Повертаємо назад, якщо свайп був слабким
+        const shift = currentPage * viewport.clientWidth;
+        list.style.transform = `translateX(-${shift}px)`;
+      }
     } else {
-      // snap back
-      const shift = currentPage * viewport.clientWidth;
-      list.style.transform = `translateX(-${shift}px)`;
+      // Якщо це не був свайп (isDragging === false), ми нічого не робимо з transform,
+      // і подія click спокійно пройде до кнопки "Читати далі".
+      // Можна повернути transition для краси, якщо потрібно
+      list.style.transition = 'transform 400ms ease';
     }
+    
+    isDragging = false;
   }
 
   viewport.addEventListener('pointerup', endPointer);
   viewport.addEventListener('pointercancel', endPointer);
+  
+  // Додатковий захист: блокуємо кліки, якщо відбувався свайп
+  // Це запобігає випадковому відкриттю картки, коли ви просто гортали слайдер
+  viewport.addEventListener('click', (e) => {
+    if (isDragging) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true); // true означає phase capture (перехоплення до того, як дійде до кнопки)
 }
 
 function createNavigation() {
