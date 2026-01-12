@@ -2,15 +2,13 @@
   "name": "222",
   "version": "1.0.0",
   "description": "Dentist website for Verhovskyj Olksandr",
-  "main": "sw.js",
+  "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx esbuild assets/js/entry.js --bundle --minify --sourcemap --outfile=assets/dist/bundle.js",
     "bundle": "npm run build",
     "start": "npx http-server -p 8080",
-    "serve": "npm run start",
-    "lint-html": "npx html-validator-cli --file=index.html --verbose",
-    "check-manifest": "node scripts/check-manifest.js",
+    "serve": "npm run start",    
     "optimize-images": "node scripts/convert-images.js"
   },
   "repository": {

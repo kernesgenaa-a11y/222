@@ -327,4 +327,4 @@ function updateNavButtons() {
   if (nextBtn) nextBtn.hidden = currentPage >= totalPages - 1;
 }
 
-document.addEventListener("DOMContentLoaded", loadNews);
+document.addEventListener("DOMContentLoaded", loadNews);   

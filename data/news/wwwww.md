@@ -1,7 +1,9 @@
 ---
-title: wwwww
-date: 2025-12-30T16:15:00
+title: Комфортні умови лікування для кожного пацієнта
+date: 2025-11-03T10:00:00.000+03:00
 author: Дентіс
-category: Поради щодо здоров'я
+category: Оновлення
+description:
+slug: "112"
 ---
-gjh;sghisd;lfhkjsdfhgmd oij g;dksfjh kfgl ;jdopgijd; f,j dgifl,m; fbposijb/,m'ldfi ;jk ksdjfpoij ;klj p[sifjlks ,fm bopoo siogulfjm sfo 'as lfigs' dfpjfois'ofi]kieoprig  ;fkjsfig9f oiuip[fuhfhjp[fgoi ofigpoipofhipsofih ooifhihi
+Ми подбали про ще більший комфорт наших пацієнтів під час візиту до клініки. Оновлено зону очікування, покращено умови перебування в кабінетах та впроваджено дружню атмосферу, яка допомагає зменшити хвилювання перед лікуванням і зробити кожен візит приємнішим.

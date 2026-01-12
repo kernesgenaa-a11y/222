@@ -1,7 +1,7 @@
 'use strict';
 
 
-if ('serviceWorker' in navigator) {
+/**if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
     .then(() => console.log('Service Worker Dentis зареєстровано з повним кешем'))
     .catch(err => console.error('Помилка Service Worker:', err));
@@ -34,7 +34,7 @@ window.addEventListener("load", function () {
 
 /**
  * pwa banner
- */
+ 
 
  document.addEventListener("DOMContentLoaded", () => {
     const banner = document.getElementById("pwa-banner");
@@ -109,10 +109,10 @@ window.addEventListener("load", function () {
       }
     });
 
-    /**
+    
      * Функція приховування банера
-     * @param {boolean} remember - чи запам'ятовувати вибір в localStorage
-     */
+     * - чи запам'ятовувати вибір в localStorage
+     
     function hideBanner(remember) {
       banner.classList.remove("visible");
       banner.classList.add("hidden");
@@ -122,7 +122,7 @@ window.addEventListener("load", function () {
       }
     }
   });
-
+*/
 /**
  * MOBILE NAVBAR
  * 

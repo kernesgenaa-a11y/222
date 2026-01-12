@@ -520,7 +520,7 @@ body.nav-active { overflow: hidden; }
   padding-inline: 25px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  gap: 20px;
   border-radius: var(--radius-12);
   margin-block-start: -60px;
   background-color: var(--white);
@@ -1788,61 +1788,97 @@ display: none;
 
 #contact-details {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2.5rem; 
-  line-height: 4rem;
-  }
-  
-  #contact-details .details {
+  gap: 4rem;
+  padding: 4rem;
+  background: #f8fbfb;
+}
+
+/* LEFT */
+#contact-details .details {
   width: 48%;
-  }
-  
- #contact-details .details span {
-  font-size: 1.6rem;
-  color:  var(--black);
-  }
-  
-  #contact-details .details h2 {
-  font-size: 4rem;
+  background: #fff;
+  padding: 3.5rem;
+  border-radius: 1.6rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+.section-label {
+  font-size: 1.4rem;
   text-transform: uppercase;
-  line-height: 2.5rem;
-  padding: 4rem 1rem;
+  letter-spacing: .12rem;
+  color: var(--green);
+}
+
+#contact-details h2 {
+  font-size: 3.2rem;
+  margin: 1.2rem 0 3rem;
   color: var(--verdigris);
-  }
-  
-  #contact-details .details .contact-content div {
-  margin-bottom: 1.25rem;
+}
+
+.contact-content {
+  display: grid;
+  gap: 2.2rem;
+}
+
+.contact-item {
   display: flex;
   align-items: flex-start;
-  }
-  
-  #contact-details .details i {
-  font-size: 2rem;
-  margin-right: .6rem;
-  color: var(--green); 
-  cursor: pointer;
-  transition: .3s ease;
-  }
-  #contact-details .details i:hover {
-   color: var(--green);
-  }
-  
-  #contact-details .details p {
-  font-size: 1.5rem;
-  margin: 0;
+  gap: 1.6rem;
+}
+
+.contact-item i {
+  min-width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background: rgba(0, 150, 136, 0.1);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+}
+
+.contact-item p,
+.contact-item a {
+  font-size: 1.6rem;
   color: var(--black);
-  }
-  
-  #contact-details .map {
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  color: var(--green);
+}
+
+/* RIGHT */
+#contact-details .map {
   width: 48%;
-  }
-  
-  #contact-details .map iframe {
+  border-radius: 1.6rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+#contact-details .map iframe {
   width: 100%;
-  height: 50rem; 
-  border: .1rem solid #ddd; 
+  height: 100%;
+  min-height: 42rem;
+  border: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  #contact-details {
+    flex-direction: column;
+    padding: 2rem;
   }
+
+  #contact-details .details,
+  #contact-details .map {
+    width: 100%;
+  }
+}
+
+  
  /*-----------------------------------*\
   contact  form Details
 \*-----------------------------------*/
