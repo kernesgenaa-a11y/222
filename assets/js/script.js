@@ -269,4 +269,22 @@ window.addEventListener("load", revealElementOnScroll);
     serviceList.addEventListener('pointerup', () => { serviceList.style.cursor = 'grab'; });
   });
 
-
+document.addEventListener('DOMContentLoaded', () => {
+  new Swiper('.review-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.review-next',
+      prevEl: '.review-prev'
+    },
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 }
+    }
+  });
+});

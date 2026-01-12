@@ -30,7 +30,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">-->
- 
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
     
     <script type="application/ld+json">
 {
@@ -557,26 +559,40 @@
 
 
 
- <section class="review" id="section-review">
-       
-    <h2 class="heading"><span>Відгуки</span></h2>
-    <div class="box-container">
-        <div class="box">
-            <picture>
-              <source type="image/avif" srcset="./assets/images/opt/rew1.avif">
-              <source type="image/webp" srcset="./assets/images/opt/rew1.webp">
-              <img src="./assets/images/rew1.avif" alt="Відгук клієнта Pavlo Bidnenko">
-            </picture>
-            <h3>Pavlo Bidnenko</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <p class="text">Дуже хороша клініка. Ходив вже кілька разів, але відгук вирішив залишити через деякий час, щоб точно впевнитись що все гаразд. Так і вийшло. Лікарі професійні, є як стоматологи, так і ортодонт. Усе виконують швидко, якісно та за адекватні гроші. Сервіс також приємний, буду ходити далі саме сюди.</p>
+ <section class="review" id="section-review" aria-labelledby="review-heading">
+  <h2 class="heading" id="review-heading">
+    <span>Відгуки пацієнтів</span>
+  </h2>
+
+  <div class="swiper review-swiper" aria-roledescription="carousel">
+    <div class="swiper-wrapper">
+
+      <!-- CARD -->
+      <article class="swiper-slide review-card">
+        <picture>
+          <source type="image/avif" srcset="./assets/images/opt/rew1.avif">
+          <source type="image/webp" srcset="./assets/images/opt/rew1.webp">
+          <img 
+            src="./assets/images/rew1.avif"
+            alt="Відгук клієнта Pavlo Bidnenko"
+            loading="lazy"
+            width="96"
+            height="96"
+          >
+        </picture>
+
+        <h3>Pavlo Bidnenko</h3>
+
+        <div class="stars" aria-label="Оцінка 5 з 5">
+          ★★★★★
         </div>
+
+        <p class="text">
+          Дуже хороша клініка. Лікарі професійні, сервіс приємний,
+          все швидко та якісно. Буду ходити далі саме сюди.
+        </p>
+      </article>
+
         <div class="box">
             <picture>
               <source type="image/avif" srcset="./assets/images/opt/rew2.avif">
@@ -610,7 +626,14 @@
             <p class="text">Доброго вечора! Поділюсь відгуком про клініку Дентіс. Звернулась я за допомогою з дитиною, тому що до цього ми лікувалися в іншій приватній клініці, і нам там убили зуб. Від нього майже нічого не залишилося. Знайшла клініку Дентіс, а саме Олександра Олександровича, добрий та прекрасний лікар. Він нам урятував зуб. Дякую йому величезне, надій у мене не було. Клініка чиста, затишна, все за смаком, нове обладнання. Привітний та ввічливий персонал. Тому якщо хтось досі сумнівається, чи варто йти в Дентіс. Ідіть сміливо та не сумнівайтеся. Вам нададуть потрібну допомогу не за космічні гроші. 
               </p>
         </div>
+<div class="review-controls">
+      <button class="review-prev" aria-label="Попередній відгук"></button>
+      <button class="review-next" aria-label="Наступний відгук"></button>
+    </div>
 
+    <div class="swiper-pagination" aria-hidden="true"></div>
+  </div>
+</section>
     </div>
   
 </section>
