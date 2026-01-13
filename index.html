@@ -18,13 +18,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">  
   <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="stylesheet" href="./assets/css/doctors.css">
   <link rel="stylesheet" href="./assets/css/news.css">
   <!-- preload hero images (AVIF preferred, then WebP, fallback PNG) -->
   <link rel="preload" fetchpriority="high" as="image" href="./assets/images/opt/hero-bg.avif" type="image/avif">
- <!--  <link rel="preload" fetchpriority="high" as="image" href="./assets/images/opt/hero-bg.webp" type="image/webp">
+  <link rel="preload" fetchpriority="high" as="image" href="./assets/images/opt/hero-bg.webp" type="image/webp">
   <link rel="preload" fetchpriority="high" as="image" href="./assets/images/hero-bg.png" type="image/png">
- <link rel="manifest" href="/manifest.json">
+<!-- <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#005761">
   <link rel="apple-touch-icon" href="/icons/icon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png">
@@ -184,7 +183,7 @@
  
 
   <main>
-    <article>  
+    
        
         <!-- 
         - #HERO
@@ -192,17 +191,16 @@
       <section class="section hero" aria-label="home">      
         <div class="container">
           <div class="hero-content">           
-            <p class="hero-subtitle has-before" data-reveal="left">Стоматолог у м.Кропивницький</p>
-            <h1 class="headline-lg hero-title" data-reveal="left">
-              Посмішка — це інвестиція  <br>
-              в себе.
-            </h1>          
+            <h1 class="headline-lg hero-title" data-reveal="left">Стоматолог у  <br> м.Кропивницький</h1>
+            <p class="hero-subtitle" data-reveal="left">
+              Посмішка — це інвестиція в себе.
+            </p>          
           </div>
           <figure class="hero-banner" data-reveal="right">
             <picture>
               <source type="image/avif" srcset="">
               <source type="image/webp" srcset="">
-              <img src="" alt="Герой банер — стоматологія Dentis" class="w-100">
+              <img src="/assets/images/hero-banner.png" alt="Герой банер — стоматологія Dentis" class="w-100">
             </picture>
           </figure>
 
@@ -340,10 +338,13 @@
       -->
 
 <section id="about" class="section about" aria-labelledby="about-label">
-        <div class="container">
+  <div class="section-container">
+        
+           <p class="section-subtitle title-lg text-center" id="about-label" data-reveal="bottom">Про наших лікарів</p>
+          <h2 class="headline-md text-center" data-reveal="bottom">Висококваліфіковані фахівці</h2>
+          <div class="container">
           <div class="about-content">
-            <p class="section-subtitle title-lg has-after" id="about-label" data-reveal="left">Про наших лікарів</p>
-            <h2 class="headline-md" data-reveal="left">Висококваліфіковані фахівці</h2>
+           
             <p class="section-text" data-reveal="left">
               У “Дентіс” ми віримо, що здорові зуби — це не розкіш, а звичка. Ми поєднуємо точність сучасних технологій із людським підходом, який не зникає за маскою лікаря. Наші спеціалісти працюють так, щоб ви приходили не зі страхом, а з довірою.
 
@@ -394,7 +395,12 @@
             </picture>
           </figure>
         </div>
+        </div>
       </section> 
+
+
+
+
         <!-- 
         - #BLOG
       -->
@@ -488,6 +494,7 @@
 
 <section id="contact-details" class="section-p1" data-wow-delay="0.5s" data-wow-duration="1s">
   
+  
         <div class="details wow animate__animated animate__fadeInLeft">
           <span class="section-label">Контактна інформація</span>
     <h2>Ласкаво просимо до <strong>Дентіс</strong></h2>
@@ -560,14 +567,13 @@
 
 
  <section class="review" id="section-review" aria-labelledby="review-heading">
+  <div class="container">
   <h2 class="heading" id="review-heading">
-    <span>Відгуки пацієнтів</span>
+    Відгуки пацієнтів
   </h2>
 
   <div class="swiper review-swiper" aria-roledescription="carousel">
     <div class="swiper-wrapper">
-
-      <!-- CARD -->
       <article class="swiper-slide review-card">
         <picture>
           <source type="image/avif" srcset="./assets/images/opt/rew1.avif">
@@ -580,69 +586,59 @@
             height="96"
           >
         </picture>
-
         <h3>Pavlo Bidnenko</h3>
-
         <div class="stars" aria-label="Оцінка 5 з 5">
           ★★★★★
         </div>
-
         <p class="text">
           Дуже хороша клініка. Лікарі професійні, сервіс приємний,
           все швидко та якісно. Буду ходити далі саме сюди.
         </p>
       </article>
-
-        <div class="box">
-            <picture>
-              <source type="image/avif" srcset="./assets/images/opt/rew2.avif">
-              <source type="image/webp" srcset="./assets/images/opt/rew2.webp">
-              <img src="./assets/images/rew2.avif" alt="Відгук клієнта Людмила">
-            </picture>
-            <h3>Людмила</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <p class="text">Дуже вдячна всьому колективу Дентис! Лікують професійно, якісно, безболісно, комфортно та швидко! Ціни адекватні. Персонал чемний, вихований з гарним почуттям гумору))) Особлива подяка молодому лікарю Антону, так як лікувалася саме у нього. Звернулася в цю клініку за рекомендацією знайомих, не пожалкувала)  Мати з Вами справу - одне задоволення! Успіхів ВАМ !!!</p>
-        </div>
-        <div class="box">
+      <article class="swiper-slide review-card">
             <picture>
               <source type="image/avif" srcset="./assets/images/opt/rew3.avif">
               <source type="image/webp" srcset="./assets/images/opt/rew3.webp">
-              <img src="./assets/images/rew3.avif" alt="Відгук клієнта Юліана Динул">
+              <img src="./assets/images/rew3.avif" alt="Відгук клієнта Юліана"
+            loading="lazy"
+            width="96"
+            height="96">
             </picture>
             <h3>Юліана Динул</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <p class="text">Доброго вечора! Поділюсь відгуком про клініку Дентіс. Звернулась я за допомогою з дитиною, тому що до цього ми лікувалися в іншій приватній клініці, і нам там убили зуб. Від нього майже нічого не залишилося. Знайшла клініку Дентіс, а саме Олександра Олександровича, добрий та прекрасний лікар. Він нам урятував зуб. Дякую йому величезне, надій у мене не було. Клініка чиста, затишна, все за смаком, нове обладнання. Привітний та ввічливий персонал. Тому якщо хтось досі сумнівається, чи варто йти в Дентіс. Ідіть сміливо та не сумнівайтеся. Вам нададуть потрібну допомогу не за космічні гроші. 
-              </p>
+            <div class="stars" aria-label="Оцінка 5 з 5">
+          ★★★★★
         </div>
-<div class="review-controls">
+            <p class="text">Доброго вечора! Поділюсь відгуком про клініку Дентіс. Звернулась я за допомогою з дитиною, тому що до цього ми лікувалися в іншій приватній клініці, і нам там убили зуб. Від нього майже нічого не залишилося. Знайшла клініку Дентіс, а саме Олександра Олександровича, добрий та прекрасний лікар. Він нам урятував зуб. Дякую йому величезне, надій у мене не було. Клініка чиста, затишна, все за смаком, нове обладнання. Привітний та ввічливий персонал. Тому якщо хтось досі сумнівається, чи варто йти в Дентіс. Ідіть сміливо та не сумнівайтеся. Вам нададуть потрібну допомогу не за космічні гроші. 
+             </p>
+      </article>
+       
+        <article class="swiper-slide review-card">
+            <picture>
+              <source type="image/avif" srcset="./assets/images/opt/rew2.avif">
+              <source type="image/webp" srcset="./assets/images/opt/rew2.webp">
+              <img src="./assets/images/rew2.avif"  alt="Відгук клієнта Людмила"
+            loading="lazy"
+            width="96"
+            height="96">
+            </picture>
+            <h3>Людмила</h3>
+            <div class="stars" aria-label="Оцінка 5 з 5">
+          ★★★★★
+        </div>
+        <p class="text">Дуже вдячна всьому колективу Дентис! Лікують професійно, якісно, безболісно, комфортно та швидко! Ціни адекватні. Персонал чемний, вихований з гарним почуттям гумору))) Особлива подяка молодому лікарю Антону, так як лікувалася саме у нього. Звернулася в цю клініку за рекомендацією знайомих, не пожалкувала)  Мати з Вами справу - одне задоволення! Успіхів ВАМ !!!</p>
+        </article>
+         
+     <div class="review-controls">
       <button class="review-prev" aria-label="Попередній відгук"></button>
       <button class="review-next" aria-label="Наступний відгук"></button>
-    </div>
+     </div>
 
-    <div class="swiper-pagination" aria-hidden="true"></div>
+      <div class="swiper-pagination" aria-hidden="true"></div>
+    </div>  
   </div>
-</section>
-    </div>
-  
+ </div>
 </section>
 
-
- 
-
-
-    </article>
   </main>
 
 
@@ -662,10 +658,7 @@
           </a>
           <ul class="contact-list has-after">
             <li class="contact-item">
-              <div class="item-icon">
-                <ion-icon name="mail-open-outline"></ion-icon>
-              </div>
-              <div>
+                           <div>
                 <p>
                   Main Email : <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dentis.verhovsky@gmail.com" 
    target="_blank" 
@@ -678,10 +671,7 @@
               </div>
             </li>
             <li class="contact-item">
-              <div class="item-icon">
-                <ion-icon name="call-outline"></ion-icon>
-              </div>
-              <div>
+                            <div>
                 <p>
                   Номер телефону : <a href="tel:+380504800825" class="contact-link">+38 050 480 0825</a>
                 </p>
@@ -695,7 +685,6 @@
             Ми прагнемо покращити якість життя наших пацієнтів, надаючи найкращі стоматологічні послуги в комфортній та дружній атмосфері.
           </p>
           <address class="address">
-            <ion-icon name="map-outline"></ion-icon>
             <span class="text">
               вулиця Героїв-рятувальників, 9 корпус 2 <br>
               Кропивницький, Україна, 25000
