@@ -212,79 +212,133 @@ window.addEventListener("load", revealElementOnScroll);
      SERVICE CAROUSEL - autoplay by 4 items (slow)
      --------------------------------------------- */
   document.addEventListener('DOMContentLoaded', () => {
-    const serviceList = document.querySelector('.service-list');
-    if (!serviceList) return;
+  const serviceList = document.querySelector('.service-list');
+  if (!serviceList) return;
 
-    const items = serviceList.querySelectorAll('li');
-    const VISIBLE = 4; // number of visible items to move by
-    const AUTOPLAY_DELAY = 5000; // 5 seconds - slow
-    let timer = null;
+  const items = Array.from(serviceList.querySelectorAll('li'));
+  if (!items.length) return;
 
-    const scrollStep = () => {
-      // scroll by container width (shows next group of VISIBLE items)
-      const step = serviceList.clientWidth;
-      const maxScrollLeft = serviceList.scrollWidth - serviceList.clientWidth;
+  const DESKTOP_BP = 992;
+  const AUTOPLAY_DELAY = 4000;
 
-      if (serviceList.scrollLeft >= maxScrollLeft - 2) {
-        // when at the end, go back to start smoothly
-        serviceList.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        serviceList.scrollBy({ left: step, behavior: 'smooth' });
-      }
-    };
+  let autoplayTimer = null;
+  let isDragging = false;
+  let startX = 0;
+  let scrollStart = 0;
 
-    const startAutoplay = () => {
-      stopAutoplay();
-      if (window.innerWidth >= 992 && items.length > VISIBLE) {
-        timer = setInterval(scrollStep, AUTOPLAY_DELAY);
-      }
-    };
+  /* ----------------------------------------
+     Helpers
+  ---------------------------------------- */
 
-    const stopAutoplay = () => {
-      if (timer) { clearInterval(timer); timer = null; }
-    };
+  const getItemWidth = () => {
+    const item = items[0];
+    const style = getComputedStyle(item);
+    return item.offsetWidth + parseFloat(style.marginRight || 0);
+  };
 
-    // start/stop based on viewport
-    const onResize = () => {
-      if (window.innerWidth >= 992 && items.length > VISIBLE) startAutoplay();
-      else stopAutoplay();
-    };
+  const maxScrollLeft = () =>
+    serviceList.scrollWidth - serviceList.clientWidth;
 
-    onResize();
-    window.addEventListener('resize', onResize);
+  const snapToNearest = () => {
+    const itemWidth = getItemWidth();
+    const index = Math.round(serviceList.scrollLeft / itemWidth);
+    serviceList.scrollTo({
+      left: index * itemWidth,
+      behavior: 'smooth'
+    });
+  };
 
-    // Pause autoplay on user interaction
-    serviceList.addEventListener('mouseenter', stopAutoplay);
-    serviceList.addEventListener('mouseleave', startAutoplay);
-    serviceList.addEventListener('touchstart', stopAutoplay, { passive: true });
-    serviceList.addEventListener('touchend', startAutoplay, { passive: true });
+  /* ----------------------------------------
+     Autoplay
+  ---------------------------------------- */
 
-    // allow keyboard focus to pause autoplay
-    serviceList.addEventListener('focusin', stopAutoplay);
-    serviceList.addEventListener('focusout', startAutoplay);
+  const autoplayStep = () => {
+    if (isDragging) return;
 
-    // Provide affordance for dragging
-    serviceList.style.cursor = 'grab';
-    serviceList.addEventListener('pointerdown', () => { serviceList.style.cursor = 'grabbing'; });
-    serviceList.addEventListener('pointerup', () => { serviceList.style.cursor = 'grab'; });
-  });
+    const itemWidth = getItemWidth();
+    const next = serviceList.scrollLeft + itemWidth * 3;
 
-document.addEventListener('DOMContentLoaded', () => {
-  new Swiper('.review-swiper', {
-    slidesPerView: 1,
-    spaceBetween: 24,
-    loop: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    },
-    navigation: {
-      nextEl: '.review-next',
-      prevEl: '.review-prev'
-    },
-    breakpoints: {
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
+    if (next >= maxScrollLeft() - 2) {
+      serviceList.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      serviceList.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
     }
+  };
+
+  const startAutoplay = () => {
+    stopAutoplay();
+    if (window.innerWidth >= DESKTOP_BP && items.length > 3) {
+      autoplayTimer = setInterval(autoplayStep, AUTOPLAY_DELAY);
+    }
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  };
+
+  /* ----------------------------------------
+     Drag with mouse (desktop)
+  ---------------------------------------- */
+
+  serviceList.style.cursor = 'grab';
+
+  serviceList.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse') return;
+
+    isDragging = true;
+    startX = e.clientX;
+    scrollStart = serviceList.scrollLeft;
+
+    stopAutoplay();
+    serviceList.style.cursor = 'grabbing';
+    serviceList.setPointerCapture(e.pointerId);
   });
+
+  serviceList.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+
+    const dx = e.clientX - startX;
+    serviceList.scrollLeft = scrollStart - dx;
+  });
+
+  const stopDrag = e => {
+    if (!isDragging) return;
+
+    isDragging = false;
+    serviceList.style.cursor = 'grab';
+    serviceList.releasePointerCapture(e.pointerId);
+
+    snapToNearest();
+    startAutoplay();
+  };
+
+  serviceList.addEventListener('pointerup', stopDrag);
+  serviceList.addEventListener('pointercancel', stopDrag);
+  serviceList.addEventListener('pointerleave', stopDrag);
+
+  /* ----------------------------------------
+     Pause on interaction
+  ---------------------------------------- */
+
+  serviceList.addEventListener('mouseenter', stopAutoplay);
+  serviceList.addEventListener('mouseleave', startAutoplay);
+  serviceList.addEventListener('focusin', stopAutoplay);
+  serviceList.addEventListener('focusout', startAutoplay);
+  serviceList.addEventListener('touchstart', stopAutoplay, { passive: true });
+  serviceList.addEventListener('touchend', startAutoplay, { passive: true });
+
+  /* ----------------------------------------
+     Resize (debounced)
+  ---------------------------------------- */
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(startAutoplay, 200);
+  });
+
+  startAutoplay();
 });

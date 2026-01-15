@@ -18,7 +18,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">  
   <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="stylesheet" href="./assets/css/news.css">
   <!-- preload hero images (AVIF preferred, then WebP, fallback PNG) -->
   <link rel="preload" fetchpriority="high" as="image" href="./assets/images/opt/hero-bg.avif" type="image/avif">
   <link rel="preload" fetchpriority="high" as="image" href="./assets/images/opt/hero-bg.webp" type="image/webp">
@@ -33,46 +32,9 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
     
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Dentist",
-  "name": "Dentis",
-  "image": "https://dentis.pp.ua/img/logo.png",
-  "@id": "https://dentis.pp.ua",
-  "url": "https://dentis.pp.ua",
-  "telephone": "+380504800825",
-  "priceRange": "₴₴",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "вул. Героїв-рятувальників, 9/2",
-    "addressLocality": "Кропивницький",
-    "addressRegion": "Кіровоградська область",
-    "postalCode": "25000",
-    "addressCountry": "UA"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "48.5018658",
-    "longitude": "32.2201729"
-  },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "opens": "09:00",
-    "closes": "18:00"
-  }],
-  "sameAs": [
-    "https://www.instagram.com/dentis_krop?igsh=MWp3YXR0M3puaXNveQ=="
-  ]
-}
+    <script type="application/ld+json"
+    src="/assets/schema/shchema.jsonld">
+
 </script>
 </head>
 
@@ -137,7 +99,7 @@
             <a href="#contact-details" class="navbar-link title-md">Контакти</a>
           </li>
           <li class="navbar-item">
-            <a href="#" class="open-call-banner navbar-link title-md cta">Записатися на прийом</a>
+            <a href="#" class="btn has-before title-md">Записатися на прийом</a>
           </li>
         </ul>
         <ul class="social-list">
@@ -629,8 +591,8 @@
         </article>
          
      <div class="review-controls">
-      <button class="review-prev" aria-label="Попередній відгук"></button>
-      <button class="review-next" aria-label="Наступний відгук"></button>
+      <button class="review-prev" aria-label="Попередній відгук"><</button>
+      <button class="review-next" aria-label="Наступний відгук">></button>
      </div>
 
       <div class="swiper-pagination" aria-hidden="true"></div>
@@ -653,27 +615,23 @@
     <div class="container">
       <div class="section footer-top">
         <div class="footer-brand" data-reveal="bottom">
-          <a href="#" class="logo">
+          <a href="#top" class="logo">
             <img src="./assets/images/Dentis_with_Text.png" width="136" height="46" loading="lazy" alt="Therapist Home">
           </a>
           <ul class="contact-list has-after">
-            <li class="contact-item">
-                           <div>
+            <li class="footer-contact-item">
+              <div class="footer-item-item">
+                <i class="far fa-envelope"></i>
                 <p>
-                  Main Email : <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dentis.verhovsky@gmail.com" 
-   target="_blank" 
-   class="contact-link">
-    dentis.verhovsky@gmail.com
-</a>
-
-                </p>
-                
+                  Наша Е-пошта : <br> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dentis.verhovsky@gmail.com" target="_blank" class="footer-contact-link">dentis.verhovsky@gmail.com</a>
+                </p>           
               </div>
             </li>
-            <li class="contact-item">
-                            <div>
+            <li class="footer-contact-item">
+              <div class="footer-item-item">
+                 <i class="fas fa-phone"></i>
                 <p>
-                  Номер телефону : <a href="tel:+380504800825" class="contact-link">+38 050 480 0825</a>
+                  Номер телефону : <br> <a href="tel:+380504800825" class="footer-contact-link">+38 050 480 0825</a>
                 </p>
               </div>
             </li>
@@ -709,11 +667,37 @@
             <a href="#" class="text footer-link">Питання та відповіді</a>
           </li>
         </ul>
+         <ul class="footer-list" data-reveal="bottom">
+          <li>
+            <p class="headline-sm footer-list-title">Послуги</p>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Діагностика</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Професійне очищення</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Хірургія</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Лікування каналів</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Протезування</a>
+          </li>
+          <li>
+            <a href="#" class="text footer-link">Ортодонтія</a>
+            </li>
+            <li>
+            <a href="#" class="text footer-link">Імплантація</a>
+          </li>
+          
+        </ul>
         <div class="footer-list-btn" data-reveal="bottom">
           
-          <form class="footer-form">
-            
-            <button id="openCallBanner"  class="open-call-banner navbar-link title-md cta">Зателефонувати</button>
+          <form class="footer-form">            
+            <button id="openCallBanner"  class="btn has-before title-md">Зателефонувати</button>
           </form>
           
         </div>
@@ -770,63 +754,6 @@
 
   <!-- bundled scripts -->
   <script src="assets/dist/bundle.js" defer></script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Скільки коштує лікування зубів у Dentis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Вартість лікування залежить від складності випадку та обраного методу. Остаточну ціну лікар визначає після огляду."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Чи боляче лікувати зуби?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "У клініці Dentis застосовується сучасна анестезія, що робить лікування комфортним та безболісним."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Як записатися на прийом у Dentis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Запис можливий телефоном або під час особистого візиту до клініки."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Де знаходиться стоматологія Dentis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Клініка Dentis знаходиться у місті Кропивницький. Контакти, адреса та графік роботи вказані у розділі контактів."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Які методи лікування зубів доступні?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "У Dentis доступні сучасні методи лікування: терапія карієсу, пломбування, професійна гігієна, імплантація та ортопедія."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Чи є у клініці рентген та сучасне обладнання?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Так, Dentis оснащена сучасним цифровим рентгеном та іншим високотехнологічним обладнанням для точної діагностики та лікування."
-      }
-    }
-  ]
-}
-</script>
 
 
 

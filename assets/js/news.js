@@ -103,228 +103,201 @@ function enableToggle() {
   });
 }
 
-const PAGE_SIZE = 3;
+const MOBILE_BREAKPOINT = 768;
+
 let currentPage = 0;
 let sortedNews = [];
+let pageSize = getPageSize();
+
+
+function isMobile() {
+  return window.innerWidth < MOBILE_BREAKPOINT;
+}
+
+function getPageSize() {
+  return isMobile() ? 1 : 3;
+}
 
 async function loadNews() {
-  const newsList = document.querySelector(".grid-list");
-  if (!newsList) return;
+  const list = document.querySelector(".grid-list");
+  if (!list) return;
 
   const files = await fetchFileList();
-  const parsedFiles = [];
+  const parsed = [];
 
   for (const file of files) {
     const raw = await fetchMarkdownFile(file.download_url);
     if (!raw) continue;
-
-    const parsed = parseFrontMatter(raw);
-    if (!parsed || !parsed.data?.date) continue;
-
-    parsedFiles.push({
-      data: parsed.data,
-      content: parsed.content
-    });
+    const parsedFile = parseFrontMatter(raw);
+    if (!parsedFile?.data?.date) continue;
+    parsed.push(parsedFile);
   }
 
-  // Найновіші першими
-  sortedNews = parsedFiles.sort(
+  sortedNews = parsed.sort(
     (a, b) => new Date(b.data.date) - new Date(a.data.date)
   );
 
   createNavigation();
-  console.debug('news: parsedFiles=', parsedFiles.length, 'sortedNews=', sortedNews.length);
-  renderCarousel();
-  // ensure layout after render
-  layoutCarousel();
-  window.addEventListener('resize', () => layoutCarousel());
-  // enable touch swipe on mobile
+  render();
   setupSwipe();
+  window.addEventListener("resize", onResize);
 }
 
-function renderCarousel() {
-  const newsList = document.querySelector(".grid-list");
-  if (!newsList) return;
+document.addEventListener("DOMContentLoaded", loadNews);
 
-  newsList.innerHTML = "";
-  newsList.classList.add('carousel');
+function render() {
+  pageSize = getPageSize();
+  currentPage = Math.min(currentPage, getTotalPages() - 1);
+
+  const list = document.querySelector(".grid-list");
+  const viewport = document.querySelector(".carousel-viewport");
+
+  list.innerHTML = "";
+  list.classList.add("carousel");
 
   sortedNews.forEach(item => {
-    const fullTextHTML = convertMarkdownToHTML(item.content);
-    newsList.appendChild(createNewsCard(item.data, fullTextHTML));
+    const html = convertMarkdownToHTML(item.content);
+    list.appendChild(createNewsCard(item.data, html));
   });
 
-  enableToggle();
+  layout();
   updateNavButtons();
-
-  // initial position
-  const viewport = document.querySelector('.carousel-viewport');
-  if (viewport) {
-    const list = newsList;
-    list.style.transition = 'transform 400ms ease';
-    list.style.transform = `translateX(-${currentPage * viewport.clientWidth}px)`;
-  }
+  enableToggle();
 }
 
-function layoutCarousel() {
-  const list = document.querySelector('.grid-list');
-  const viewport = document.querySelector('.carousel-viewport');
+function layout() {
+  const list = document.querySelector(".grid-list");
+  const viewport = document.querySelector(".carousel-viewport");
   if (!list || !viewport) return;
 
-  const items = Array.from(list.querySelectorAll('li'));
-  const percent = 100 / PAGE_SIZE;
+  const widthPercent = 100 / pageSize;
 
-  items.forEach(li => {
-    li.style.flex = `0 0 ${percent}%`;
-    li.style.maxWidth = `${percent}%`;
-    li.style.boxSizing = 'border-box';
+  [...list.children].forEach(li => {
+    li.style.flex = `0 0 ${widthPercent}%`;
+    li.style.maxWidth = `${widthPercent}%`;
   });
 
-  // set transform in pixels so it's viewport-accurate
-  const shift = currentPage * viewport.clientWidth;
-  list.style.transform = `translateX(-${shift}px)`;
+  list.style.transition = "transform 400ms ease";
+  list.style.transform = `translateX(-${currentPage * viewport.clientWidth}px)`;
 }
 
-function setupSwipe() {
-  const viewport = document.querySelector('.carousel-viewport');
-  const list = document.querySelector('.grid-list');
-  if (!viewport || !list) return;
-
-  let startX = 0;
-  let currentX = 0;
-  let isDown = false;
-  let isDragging = false; // Додали прапорець, щоб розрізняти клік і свайп
-  const threshold = 10; // Поріг у пікселях, після якого рух вважається свайпом
-
-  viewport.style.touchAction = 'pan-y';
-
-  viewport.addEventListener('pointerdown', (e) => {
-    isDown = true;
-    isDragging = false; // Скидаємо прапорець
-    startX = e.clientX;
-    currentX = startX;
-    list.style.transition = 'none';
-    // ВАЖЛИВО: Ми НЕ робимо setPointerCapture тут. 
-    // Ми зробимо це тільки якщо користувач почне рухати мишу.
-  });
-
-  viewport.addEventListener('pointermove', (e) => {
-    if (!isDown) return;
-    
-    const dxRaw = e.clientX - startX;
-
-    // Якщо ми ще не в режимі перетягування, перевіряємо, чи ми "поїхали" достатньо далеко
-    if (!isDragging && Math.abs(dxRaw) > threshold) {
-      isDragging = true;
-      try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
-    }
-
-    // Якщо ми в режимі перетягування — рухаємо слайдер
-    if (isDragging) {
-      e.preventDefault(); // Запобігаємо виділенню тексту тощо
-      currentX = e.clientX;
-      const dx = currentX - startX;
-      const base = -currentPage * viewport.clientWidth;
-      list.style.transform = `translateX(${base + dx}px)`;
-    }
-  });
-
-  function endPointer(e) {
-    if (!isDown) return;
-    isDown = false;
-    
-    if (isDragging) {
-      try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
-      
-      const dx = currentX - startX;
-      list.style.transition = 'transform 400ms ease';
-      
-      if (Math.abs(dx) > 50) { // Поріг для перемикання слайду
-        changePage(dx < 0 ? 1 : -1);
-      } else {
-        // Повертаємо назад, якщо свайп був слабким
-        const shift = currentPage * viewport.clientWidth;
-        list.style.transform = `translateX(-${shift}px)`;
-      }
-    } else {
-      // Якщо це не був свайп (isDragging === false), ми нічого не робимо з transform,
-      // і подія click спокійно пройде до кнопки "Читати далі".
-      // Можна повернути transition для краси, якщо потрібно
-      list.style.transition = 'transform 400ms ease';
-    }
-    
-    isDragging = false;
-  }
-
-  viewport.addEventListener('pointerup', endPointer);
-  viewport.addEventListener('pointercancel', endPointer);
-  
-  // Додатковий захист: блокуємо кліки, якщо відбувався свайп
-  // Це запобігає випадковому відкриттю картки, коли ви просто гортали слайдер
-  viewport.addEventListener('click', (e) => {
-    if (isDragging) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  }, true); // true означає phase capture (перехоплення до того, як дійде до кнопки)
-}
-
-function createNavigation() {
-  if (document.querySelector('.news-wrapper')) return;
-
-  const list = document.querySelector('.grid-list');
-  if (!list) return;
-
-  const wrapper = document.createElement('div');
-  wrapper.className = 'news-wrapper';
-
-  const prevBtn = document.createElement('button');
-  prevBtn.className = 'nav-btn prev';
-  prevBtn.setAttribute('aria-label', 'previous news');
-  prevBtn.innerHTML = '<svg class="strelka-left-3" viewBox="0 0 5 9" xmlns="http://www.w3.org/2000/svg">\n    <path fill="currentColor" d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z"></path>\n  </svg>';
-
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'nav-btn next';
-  nextBtn.setAttribute('aria-label', 'next news');
-  nextBtn.innerHTML = '<svg class="strelka-right-3" viewBox="0 0 5 9" xmlns="http://www.w3.org/2000/svg">\n    <path fill="currentColor" d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z"></path>\n  </svg>';
-
-  const viewport = document.createElement('div');
-  viewport.className = 'carousel-viewport';
-
-  // insert wrapper and move list into viewport
-  list.parentElement.insertBefore(wrapper, list);
-  wrapper.appendChild(prevBtn);
-  wrapper.appendChild(viewport);
-  viewport.appendChild(list);
-  wrapper.appendChild(nextBtn);
-
-  prevBtn.addEventListener('click', () => changePage(-1));
-  nextBtn.addEventListener('click', () => changePage(1));
+/* =========================
+   Navigation
+========================= */
+function getTotalPages() {
+  return Math.ceil(sortedNews.length / pageSize);
 }
 
 function changePage(delta) {
-  const list = document.querySelector('.grid-list');
-  const viewport = document.querySelector('.carousel-viewport');
-  if (!list || !viewport) return;
+  const newPage = Math.max(
+    0,
+    Math.min(getTotalPages() - 1, currentPage + delta)
+  );
 
-  const totalPages = Math.ceil(sortedNews.length / PAGE_SIZE) || 0;
-  const newPage = Math.max(0, Math.min(totalPages - 1, currentPage + delta));
   if (newPage === currentPage) return;
-
   currentPage = newPage;
-  const shift = currentPage * viewport.clientWidth;
-  list.style.transition = 'transform 400ms ease';
-  list.style.transform = `translateX(-${shift}px)`;
+  layout();
   updateNavButtons();
 }
 
 function updateNavButtons() {
-  const prevBtn = document.querySelector(".nav-btn.prev");
-  const nextBtn = document.querySelector(".nav-btn.next");
-  const totalPages = Math.ceil(sortedNews.length / PAGE_SIZE) || 0;
+  const prev = document.querySelector(".news-nav-btn.prev");
+  const next = document.querySelector(".news-nav-btn.next");
 
-  if (prevBtn) prevBtn.hidden = currentPage === 0;
-  if (nextBtn) nextBtn.hidden = currentPage >= totalPages - 1;
+  if (isMobile()) {
+    prev.hidden = true;
+    next.hidden = true;
+    return;
+  }
+
+  prev.hidden = currentPage === 0;
+  next.hidden = currentPage >= getTotalPages() - 1;
+}
+
+/* =========================
+   Resize
+========================= */
+function onResize() {
+  const oldSize = pageSize;
+  pageSize = getPageSize();
+
+  if (oldSize !== pageSize) {
+    currentPage = Math.floor((currentPage * oldSize) / pageSize);
+  }
+
+  layout();
+  updateNavButtons();
+}
+
+/* =========================
+   Swipe (mobile-first)
+========================= */
+function setupSwipe() {
+  const viewport = document.querySelector(".carousel-viewport");
+  const list = document.querySelector(".grid-list");
+  if (!viewport || !list) return;
+
+  let startX = 0;
+  let deltaX = 0;
+  let active = false;
+
+  viewport.style.touchAction = "pan-y";
+
+  viewport.addEventListener("pointerdown", e => {
+    active = true;
+    startX = e.clientX;
+    deltaX = 0;
+    list.style.transition = "none";
+  });
+
+  viewport.addEventListener("pointermove", e => {
+    if (!active) return;
+    deltaX = e.clientX - startX;
+
+    const base = -currentPage * viewport.clientWidth;
+    list.style.transform = `translateX(${base + deltaX}px)`;
+  });
+
+  viewport.addEventListener("pointerup", () => {
+    if (!active) return;
+    active = false;
+
+    list.style.transition = "transform 400ms ease";
+
+    if (Math.abs(deltaX) > viewport.clientWidth * 0.25) {
+      changePage(deltaX < 0 ? 1 : -1);
+    } else {
+      layout();
+    }
+  });
+}
+
+/* =========================
+   Navigation DOM
+========================= */
+function createNavigation() {
+  if (document.querySelector(".news-wrapper")) return;
+
+  const list = document.querySelector(".grid-list");
+  const wrapper = document.createElement("div");
+  wrapper.className = "news-wrapper";
+
+  const prev = document.createElement("button");
+  prev.className = "news-nav-btn prev";
+  prev.innerHTML = "‹";
+  prev.onclick = () => changePage(-1);
+
+  const next = document.createElement("button");
+  next.className = "news-nav-btn next";
+  next.innerHTML = "›";
+  next.onclick = () => changePage(1);
+
+  const viewport = document.createElement("div");
+  viewport.className = "carousel-viewport";
+
+  list.parentNode.insertBefore(wrapper, list);
+  wrapper.append(prev, viewport, next);
+  viewport.appendChild(list);
 }
 
 document.addEventListener("DOMContentLoaded", loadNews);   

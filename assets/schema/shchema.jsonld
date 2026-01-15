@@ -1,0 +1,169 @@
+{
+  "@context": "https://schema.org",
+ "@graph": [
+  {
+  "@type": "Dentist",
+  "name": "Стоматологія Dentis",
+  "image": "https://dentis.pp.ua/img/logo.png",
+  "@id": "https://dentis.pp.ua",
+  "url": "https://dentis.pp.ua",
+  "telephone": "+380504800825",
+  "priceRange": "₴₴",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "вул. Героїв-рятувальників, 9/2",
+    "addressLocality": "Кропивницький",
+    "addressRegion": "Кіровоградська область",
+    "postalCode": "25000",
+    "addressCountry": "UA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "48.5018658",
+    "longitude": "32.2201729"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "18:00"
+  }],
+  "sameAs": [
+    "https://www.instagram.com/dentis_krop?igsh=MWp3YXR0M3puaXNveQ=="
+  ]
+},
+{
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Головна",
+          "item": "https://dentis.pp.ua"
+        },
+            {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Послуги",
+          "item": "https://dentis.pp.ua/#service"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Про нас",
+          "item": "https://dentis.pp.ua/#about"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Контакти",
+          "item": "https://dentis.pp.ua/#contact-details"
+        },
+         {
+      "@type": "MedicalProcedure",
+      "name": "Чищення зубів",
+      "description": "Професійне чищення зубів ультразвуком і полірування",
+      "url": "https://dentis.pp.ua/#service"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Відбілювання зубів",
+      "description": "Безпечне відбілювання зубів за допомогою сучасних технологій",
+      "url": "https://dentis.pp.ua/#service"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Лікування карієсу",
+      "description": "Сучасне лікування карієсу з використанням пломбування",
+      "url": "https://dentis.pp.ua/#service"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Імплантація зубів",
+      "description": "Швидка та безболісна імплантація зубів",
+      "url": "https://dentis.pp.ua/#service"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Встановлення брекетів",
+      "description": "Ортодонтичне лікування та установка брекет-систем",
+      "url": "https://dentis.pp.ua/#service"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Протезування зубів",
+      "description": "Виготовлення знімних та незнімних протезів",
+      "url": "https://dentis.pp.ua/#service"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Лікування ясен",
+      "description": "Професійне лікування захворювань ясен",
+      "url": "https://dentis.pp.ua/#service"
+    }
+    
+      ]
+    },
+{
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Скільки коштує лікування зубів у Dentis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вартість лікування залежить від складності випадку та обраного методу. Остаточну ціну лікар визначає після огляду."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи боляче лікувати зуби?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "У клініці Dentis застосовується сучасна анестезія, що робить лікування комфортним та безболісним."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як записатися на прийом у Dentis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Запис можливий телефоном або під час особистого візиту до клініки."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Де знаходиться стоматологія Dentis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Клініка Dentis знаходиться у місті Кропивницький. Контакти, адреса та графік роботи вказані у розділі контактів."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Які методи лікування зубів доступні?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "У Dentis доступні сучасні методи лікування: терапія карієсу, пломбування, професійна гігієна, імплантація та ортопедія."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи є у клініці рентген та сучасне обладнання?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, Dentis оснащена сучасним цифровим рентгеном та іншим високотехнологічним обладнанням для точної діагностики та лікування."
+      }
+    }
+  ]
+}
+
+]
+}
