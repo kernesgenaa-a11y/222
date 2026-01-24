@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx esbuild assets/js/entry.js --bundle --minify --sourcemap --outfile=assets/dist/bundle.js",
     "bundle": "npm run build",
-    "start": "npx http-server -p 8080",
+    "start": "npx http-server -p 8085",
     "serve": "npm run start",    
     "optimize-images": "node scripts/convert-images.js"
   },
