@@ -2,8 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 const srcDir = path.join(__dirname, '..', 'assets', 'images');
-const outDir = path.join(srcDir, 'opt');
-if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
 async function run() {
   let sharp;
@@ -15,7 +13,10 @@ async function run() {
   }
 
   const exts = ['.png', '.jpg', '.jpeg', '.webp', '.avif'];
-  const files = fs.readdirSync(srcDir).filter(f => exts.includes(path.extname(f).toLowerCase()));
+  const files = fs.readdirSync(srcDir).filter(f => {
+    const ext = path.extname(f).toLowerCase();
+    return exts.includes(ext) && !f.includes('opt');
+  });
   if (files.length === 0) {
     console.log('No image files found in', srcDir);
     return;
@@ -24,18 +25,16 @@ async function run() {
   for (const f of files) {
     const inPath = path.join(srcDir, f);
     const name = path.parse(f).name;
-    const outWebp = path.join(outDir, `${name}.webp`);
-    const outAvif = path.join(outDir, `${name}.avif`);
+    const outPath = path.join(srcDir, `${name}.webp`);
     try {
       await sharp(inPath)
         .resize({ withoutEnlargement: true })
         .webp({ quality: 80 })
-        .toFile(outWebp);
-      await sharp(inPath)
-        .resize({ withoutEnlargement: true })
-        .avif({ quality: 50 })
-        .toFile(outAvif);
-      console.log('Converted', f, '→', path.relative(process.cwd(), outWebp), ',', path.relative(process.cwd(), outAvif));
+        .toFile(outPath);
+      
+      // Видалити оригінальний файл
+      fs.unlinkSync(inPath);
+      console.log('Converted and replaced', f, '→', path.relative(process.cwd(), outPath));
     } catch (err) {
       console.error('Failed to convert', f, err.message);
     }
