@@ -753,7 +753,7 @@ display: none;
   padding: 50px 36px;
   border-radius: var(--radius-12);
   border: 2px solid var(--alice-blue);
-  background-image: url('../images/blog-card.jpg');
+  background-image: url('../images/blog-card.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -2334,10 +2334,6 @@ padding: 0rem;
   padding: 6rem 0;
 }
 
-/* Swiper */
-.review-swiper {
-  padding: 4rem 1rem 6rem;
-}
 
 /* CARD */
 .review-card {

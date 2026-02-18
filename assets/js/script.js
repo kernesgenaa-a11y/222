@@ -1,3 +1,4 @@
+
 /**
  * add event listener on multiple elements
  */
@@ -93,7 +94,7 @@ window.addEventListener("scroll", revealElementOnScroll);
 
 window.addEventListener("load", revealElementOnScroll);
 
-/* about*/
+
 
 
 
@@ -106,4 +107,8 @@ window.addEventListener("load", revealElementOnScroll);
 
 
 
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 89ff47b (222)
