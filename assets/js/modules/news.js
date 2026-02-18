@@ -39,23 +39,37 @@ function parseFrontMatter(raw) {
 
 function convertMarkdownToHTML(markdown) {
   return markdown
-    .replace(/^### (.*$)/gim, "<h3>$1</h3>")
-    .replace(/^## (.*$)/gim, "<h2>$1</h2>")
-    .replace(/^# (.*$)/gim, "<h1>$1</h1>")
-    .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
-    .replace(/\*(.*?)\*/gim, "<em>$1</em>")
-    .replace(/\n/gim, "<br>");
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+    .replace(/\n$/gim, '<br>')
+    .replace(/\n/gim, '<p>');
 }
 
-function createNewsCard(data, html) {
+function createNewsCard(data, fullTextHTML) {
   const li = document.createElement("li");
   li.innerHTML = `
-    <div class="blog-card">
-      <h3 class="headline-sm card-title">${data.title}</h3>
-      <time class="date">${formatDate(data.date)}</time>
+    <div class="blog-card has-before has-after">
+      <div class="meta-wrapper">
+        <div class="card-meta">
+          <ion-icon name="person-outline"></ion-icon>
+          <span class="span">${data.author || "Автор"}</span>
+        </div>
+        <div class="card-meta">
+          <ion-icon name="folder-outline"></ion-icon>
+          <span class="span">${data.category || "Категорія"}</span>
+        </div>
+      </div>
+      <h3 class="headline-sm card-title">${data.title || "Без назви"}</h3>
+      <time class="title-sm date">${formatDate(data.date)}</time>
       <p class="card-text">${data.description || ""}</p>
-      <div class="full-text" hidden>${html}</div>
-      <button class="btn-text toggle-btn">Читати далі</button>
+
+      <div class="full-text" hidden>
+        ${fullTextHTML}
+      </div>
+      <button class="btn-text title-lg toggle-btn">Читати далі</button>
     </div>
   `;
   return li;
