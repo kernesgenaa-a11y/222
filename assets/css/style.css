@@ -559,8 +559,12 @@ background-color: var(--verdigris);
 .service-list { grid-template-columns: 1fr; }
 
 .service-card { text-align: center;
+  transition: transform .3s ease;
 height: 100%; }
 
+.service-card:hover {
+  transform: translateY(-8px);
+}
 .service-card .card-icon,
 .btn-circle {
   max-width: max-content;
@@ -758,6 +762,7 @@ display: none;
   background-position: center;
   background-size: cover;
   overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
 .blog-card::before,
@@ -772,6 +777,10 @@ display: none;
   opacity: 0.9;
 }
 
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.1);
+}
 .blog-card::after { background-color: var(--white); }
 
 .blog-card:is(:hover, :focus-within)::after { transform: translateY(100%); }
@@ -2839,6 +2848,14 @@ Product */
 }
 
 .toggle-btn { transition: transform .12s ease; }
+.toggle-btn {
+  margin-top: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 600;
+}
 .toggle-btn:active { transform: translateY(1px) scale(.995); }
 
 /* iframe border reset (moved from inline) */

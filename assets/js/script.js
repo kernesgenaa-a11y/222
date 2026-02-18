@@ -107,8 +107,3 @@ window.addEventListener("load", revealElementOnScroll);
 
 
 
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 89ff47b (222)
