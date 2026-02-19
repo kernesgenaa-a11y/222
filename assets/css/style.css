@@ -456,13 +456,6 @@ background-color: var(--verdigris);
   padding: 10px 24px;
 }
 
-.social-list {
-  justify-content: center;
-  gap: 20px;
-  color: var(--white);
-  font-size: 1.8rem;
-}
-
 .overlay {
   right: -100%;
   background-color: var(--black);
@@ -548,14 +541,7 @@ background-color: var(--verdigris);
   box-shadow: var(--shadow-1);
 }
 
-.service-list> li {
-  flex: 0 0 auto;
-   list-style: none;
-  scroll-snap-align: start;
-     box-sizing: border-box;
 
-
-}
 .service-list { grid-template-columns: 1fr; }
 
 .service-card { text-align: center;
@@ -564,11 +550,6 @@ height: 100%; }
 
 .service-card:hover {
   transform: translateY(-8px);
-}
-.service-card .card-icon,
-.btn-circle {
-  max-width: max-content;
-  margin-inline: auto;
 }
 
 .service-card .card-icon { margin-block-end: 25px; }
@@ -1124,11 +1105,6 @@ display: none;
 
 
 
-  /**
-   * SERVICE
-   */
-
-
 
 
   /**
@@ -1226,9 +1202,7 @@ display: none;
 
   
 
-  /* hide native scrollbar but keep functionality */
-  .service-list::-webkit-scrollbar { display: none; }
-  .service-list { -ms-overflow-style: none; scrollbar-width: none; }
+ 
 
 
 
@@ -2322,21 +2296,21 @@ padding: 0rem;
 /*-----------------------------------*\
   review section
 \*-----------------------------------*/
-/* 
+
 .review .box {
     opacity: 0;
     transform: translateY(40px);
     transition: all 0.5s ease;
 }
 
-клас, який активує анімацію 
+
 .review .box.show {
     opacity: 1;
     transform: translateY(0);
 }
 .review .box:nth-child(1) { transition-delay: 0.1s; }
 .review .box:nth-child(2) { transition-delay: 0.2s; }
-.review .box:nth-child(3) { transition-delay: 0.2s; }*/
+.review .box:nth-child(3) { transition-delay: 0.2s; }
 
 .review {
   background: #f7f9fa;
@@ -2408,36 +2382,6 @@ padding: 0rem;
   font-size: 1.55rem;
   line-height: 1.8;
   color: #4b5563;
-}
-
-/* controls */
-.review-controls button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4.2rem;
-  height: 4.2rem;
-  border-radius: 50%;
-  background: #fff;
-  border: none;
-  box-shadow: 0 8px 20px rgba(0,0,0,.15);
-  cursor: pointer;
-}
-
-.review-prev { left: 1rem; }
-.review-next { right: 1rem; }
-
-.review-controls button:focus-visible {
-  outline: 3px solid var(--verdigris);
-}
-
-/* pagination */
-.swiper-pagination-bullet {
-  background: #9ca3af;
-  opacity: 1;
-}
-.swiper-pagination-bullet-active {
-  background: var(--verdigris);
 }
 
 /* 
@@ -2546,140 +2490,6 @@ Product */
   vertical-align: middle;
 }
   
-
-/*baner*/
-
-.pwa-banner {
-    background-color: var(--midnight-green); 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-    z-index: 10;
-    position: relative; 
-    overflow: hidden;  
-    height: 0;
-    opacity: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition:
-     height 0.5s ease,
-     opacity 0.3s ease,
-     padding 0.5s ease;
-  }
-
-.pwa-banner.visible {
-    height: 64px;
-    padding: 12px 16px;
-  opacity: 1;
-  }
-
-.pwa-banner.hidden {
-    max-height: 0 !important;
-    opacity: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    pointer-events: none;
-  }
-
-
-.pwa-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-    width: 100%;
-    max-width: 1200px; 
-  }
-
-.pwa-logo {
-    height: 40px;
-    width: auto;
-    margin-right: 10px;
-  }
-
-
-.pwa-text {
-    flex-grow: 1;
-    font-size: 14px;
-    font-weight: 500;
-    color: #ffffff;
-    margin-right: 10px;
-  }
-
- .pwa-btn {
-    background-color: var(--verdigris);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    margin-right: 10px;
-    white-space: nowrap;
-  }
-
-.pwa-close {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #666;
-  }
-
-   .ios-instructions {
-    display: none;
-    position: fixed; 
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    z-index: 10000;
-    text-align: center;
-    width: 90%;
-    max-width: 350px;
-  }
-
-.ios-instructions.active {
-    display: block;
-    animation: slideUp 0.3s ease-out;
-  }
-  
-  .ios-instructions img {
-    max-width: 100%;
-    margin-bottom: 10px;
-  }
-
-  @keyframes slideUp {
-    from { transform: translate(-50%, 100%); }
-    to { transform: translate(-50%, 0); }
-  }
-/*baner
-
-.doctors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-}
-.doctor-card {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 8px;
-  background: #fff;
-  text-align: center;
-}
-.doctor-card img {
-  max-width: 100%;
-  border-radius: 50%;
-}
-    */
-
-/* ----- moved inline styles ------ */
-
 /* hero background image (uses optimized AVIF/WebP with PNG fallback) */
 .hero {
   background-image: -webkit-image-set(
@@ -2712,119 +2522,6 @@ Product */
   display: inline-block;
 }
 
-/* News pagination controls */
-.news-nav {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.news-nav .news-nav-btn {
-  background: var(--white);
-  border: 1px solid var(--gainsboro);
-  padding: 8px 14px;
-  font-size: 1.6rem;
-  border-radius: 8px;
-  box-shadow: var(--shadow-2);
-  color: var(--independece);
-  transition: transform .12s ease, background .12s ease, color .12s ease;
-  min-width: 44px;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Wrapper layout: previous button | news list | next button */
-.news-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.news-wrapper .grid-list {
-  flex: 1 1 auto;
-  margin: 0; /* grid-list likely has its own gap; reset margin to align */
-}
-
-/* Animation states for smooth page transitions */
-.news-wrapper { overflow: hidden; }
-.grid-list {
-  transition: transform .36s cubic-bezier(.2,.8,.2,1), opacity .28s ease;
-}
-.grid-list.out-left { transform: translateX(-24px); opacity: 0; }
-.grid-list.out-right { transform: translateX(24px); opacity: 0; }
-.grid-list.in-left { transform: translateX(-24px); opacity: 0; }
-.grid-list.in-right { transform: translateX(24px); opacity: 0; }
-
-.grid-list.in-left:not(.out-left):not(.out-right),
-.grid-list.in-right:not(.out-left):not(.out-right) {
-  transform: none; opacity: 1;
-}
-
-
-
-@media (max-width: 720px) {
-  .news-wrapper { flex-direction: column; gap: 12px; }
-  
-}
-
-/* Circular styled side buttons matching site theme */
-.news-wrapper .news-nav-btn {  
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px; font-size: 1.8rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: transform .14s ease, box-shadow .14s ease, background .12s ease;
-}
-
-.news-wrapper .news-nav-btn:hover,
-.news-wrapper .news-nav-btn:focus {
-  transform: translateY(-3px) scale(1.03);
-  background: color-mix(in srgb, var(--verdigris) 80%, #000 20%);
-}
-
-.news-wrapper .news-nav-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 6px rgba(22,160,133,0.12);
-}
-
-
-
-.news-nav .news-nav-btnn:hover,
-.news-nav .news-nav-btnn:focus {
-  transform: translateY(-2px);
-  background: var(--verdigris);
-  color: var(--white);
-  outline: none;
-}
-
-.news-nav .news-nav-btn:focus-visible {
-  box-shadow: 0 0 0 4px rgba(22,160,133,0.12);
-}
-
-.news-nav .news-nav-btn[hidden] { display: none; }
-
-@media (max-width: 520px) {
-  .news-nav { gap: 8px; }
- 
-}
-
-/* News nav entrance animation */
-/* News nav minimal entrance: visible by default; buttons have a subtle transition */
-.news-nav {
-  opacity: 1;
-  transform: none;
-}
-
-.news-nav .news-nav-btn {
-  opacity: 1;
-  transform: none;
-  transition: transform .18s ease, opacity .18s ease;
-}
 
 /* Smooth reveal for full news text */
 .blog-card {
@@ -2869,72 +2566,3 @@ Product */
 }
 
 /* end moved styles */
-
-/* -----------------------------
-   News carousel styles
-   ----------------------------- */
-.news-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.carousel-viewport {
-  overflow: hidden;
-  flex: 1 1 auto;
-}
-
-/* allow vertical scroll while enabling horizontal swipe logic */
-.carousel-viewport { touch-action: pan-y; }
-
-.grid-list.carousel {
-  display: flex;
-  gap: 20px;
-  transition: transform 400ms ease;
-  will-change: transform;
-  padding: 0;
-  margin: 0;
-}
-
-.grid-list.carousel li {
-  list-style: none;
-  flex: 0 0 33.3333%;
-  max-width: 33.3333%;
-  box-sizing: border-box;
-}
-
-
-.news-nav-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--white);
-  color: var(--verdigris);
-  display: grid;
-  place-items: center;
-  box-shadow: var(--shadow-2);
-  border: 2px solid var(--verdigris);
-  font-size: 1.8rem;
-}
-
-
-
-.news-nav-btn[hidden] { opacity: 0.01; pointer-events: none; }
-
-.news-nav-btn:hover { background: var(--verdigris); color: var(--white); border-color: var(--verdigris); }
-
-
-@media (max-width: 900px) {
-  .grid-list.carousel li { flex: 0 0 50%; max-width: 50%; }
-}
-
-@media (max-width: 560px) {
-  .grid-list.carousel li { flex: 0 0 100%; max-width: 100%; }
-  .nav-btn { width: 36px; height: 36px; }
-}
-
-/* hide arrow buttons on narrow screens and rely on swipe */
-@media (max-width: 560px) {
-  .news-nav-btn { display: none; }
-}
