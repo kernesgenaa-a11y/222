@@ -4,7 +4,7 @@ export function initNavigation() {
   const navbar = document.querySelector("[data-navbar]");
   const navTogglers = document.querySelectorAll("[data-nav-toggler]");
   const overlay = document.querySelector("[data-overlay]");
-  const navLinks = document.querySelectorAll("[data-navbar] a");
+  const navLinks = document.querySelectorAll("[data-navbar]");
 
   if (!navbar) return;
 
